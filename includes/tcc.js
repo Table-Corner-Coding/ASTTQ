@@ -1,4 +1,13 @@
 
+function refreshStyles(){
+	jQuery('.acf-true-false > label').each(function(){
+		
+		jQuery(this).addClass('switch');
+		jQuery(this).append(jQuery('<div class="slider round"></div>'));
+		
+	});
+}
+
 jQuery(document).ready(function(){
 	
 	jQuery('#evenements').on('change',function(){
@@ -15,6 +24,8 @@ jQuery(document).ready(function(){
 		alert(jQuery(this).val());
 		
 	});
+	
+	refreshStyles();
 	
 });
 
