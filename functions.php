@@ -582,13 +582,14 @@ function foreignDbAction(){
 	// On retourne sur le site local
 	$wpdb_new = $wpdb_old;	
 
+	/*
 	ob_start();
 		
 	var_dump($tempVar);
 	
 	$retVal = ob_get_clean();
-
-	return '<div>Post: '.$post_id.' was created! <br/>'.$retVal.'</div>';
+*/
+	return '<div>Post: '.$post_id.' was created! </div>';
 	//return $retVal;
 	
 	
@@ -597,6 +598,10 @@ function foreignDbAction(){
 
 // Add Shortcode
 function update_pointages_shortcode() {
+	
+	$retVal = '';
+	
+	if(is_user_logged_in()){
 	$retVal .= '
 	
 	<div class="update_btn_holder">
@@ -625,7 +630,7 @@ function update_pointages_shortcode() {
 	
 	});
 </script>';
-	
+	}
 	return $retVal;
 }
 add_shortcode( 'update_pointages', 'update_pointages_shortcode' );
