@@ -1,0 +1,349 @@
+/*
+ Theme Name:     ASTTQ
+ Description:    Divi Child Theme
+ Author:         Elegant Themes
+ Template:       Divi
+ Version:        1.0.0
+*/
+ 
+@import url("../Divi/style.css");
+ 
+/* =Theme customization starts here
+------------------------------------------------------- */
+
+/* Login form */
+
+.login 
+{
+	text-align:center;	
+	padding-top: 110px;
+}
+
+
+
+.login .message, .uam_login_form
+ {
+    margin: 20px auto !important;
+    width: 320px;
+	text-align:left;
+	
+	background: #fff none repeat scroll 0 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.13);
+    padding: 26px 24px 46px;
+}
+
+.login #login_error, 
+.login .message {
+    border-left: 4px solid #00a0d2;
+    padding: 12px;
+    margin-left: 0;
+    background-color: #fff;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+}
+
+.login form .input, 
+.login input[type=text] {
+    font-size: 24px;
+    width: 100%;
+    padding: 3px;
+    margin: 2px 6px 16px 0;
+}
+
+
+.login .uam_login_form
+{
+	padding: 26px 24px;	
+}
+
+.uam_login_form .input_label {
+    display: block;
+    text-align: left;
+}
+
+
+.uam_login_form .button {
+    display: block;
+    margin: 20px auto 0;
+}
+
+.login .et_pb_row 
+{
+	margin:auto;	
+}
+
+/* Events */
+
+#tribe-bar-form .tribe-bar-submit input[type=submit] {
+    text-transform: lowercase;
+}
+
+.et_pb_widget.tribe-events-list-widget > h4{
+	text-decoration: underline;
+}
+
+.et_pb_bg_layout_light .et_pb_widget li a,
+.et_pb_widget_area .et_pb_widget a{
+    color: #cecece;
+}
+
+.tribe-events-list-widget-events{
+	
+}
+
+.tribe-events-list-widget-events .tribe-event-duration{
+	color: transparent;
+}
+
+.tribe-events-list-widget-events .tribe-event-duration .tribe-event-date-start{
+	color:#ffffff;
+}
+
+.tribe-events-list-widget-events .tribe-event-duration .tribe-event-time{
+	display: none;
+}
+
+.tribe-events-list-widget .tribe-events-list-widget-events{
+	padding: 1.5em 0 0.5em;
+}
+
+.et_pb_post .entry-content{
+    color: #ffffff;
+}
+
+.entry-content .learn-more-content tr th, 
+.entry-content .learn-more-content thead th{
+    color: #ffffff;
+    background: rgba(255,255,255,0.55);
+    text-shadow: 1px 1px 1px #000;
+
+}
+
+.entry-content .learn-more-content tbody tr:nth-child(odd) td{
+    color: #ffffff;
+    background: rgba(255,255,255,0.25);
+}
+
+.tribe-events-loop .tribe-events-event-meta{
+	float: left;
+	clear: none;
+}
+
+.tribe-events-list #tribe-events-header,
+.tribe-events-list #tribe-events-footer,
+.tribe-events-notices,
+body.events-list .tribe-bar-disabled #tribe-bar-form #tribe-bar-views+.tribe-bar-filters{
+	display:none !important;
+}
+
+table.liste-evenements{
+	text-align: center;
+}
+
+h2.tribe-events-page-title {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+body.events-list .tribe-bar-disabled #tribe-bar-form #tribe-bar-views {
+    float: left;
+    font-size: 16px;
+    left: 0;
+    padding: 0;
+    right: auto;
+    width: initial;
+}
+
+.post-php #postcustom,
+  .post-php #the_grid_item_formats,
+    td[data-name=rang],
+	td[data-name=pointage],
+	td[data-name=points],
+	th[data-name=rang],
+	th[data-name=pointage],
+	th[data-name=points]{
+      display:none;
+    } 
+
+.acf-field-592da5f526f1e > .acf-input > .acf-repeater > .acf-table > tbody > tr{
+	border:10px solid;
+}
+
+a.acf-button.button.button-primary
+{
+	background-color: #666;
+    background-image: none;
+    border-radius: 3px;
+    border: 0;
+    box-shadow: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: normal;
+    padding: 6px 9px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    vertical-align: middle;
+    zoom: 1;
+}
+
+
+.acf-button.button.button-primary.button-large {
+    background-color: #cd5c5c;
+    background-image: none;
+    border-radius: 3px;
+    border: 0;
+    box-shadow: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: normal;
+    padding: 9px 9px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    vertical-align: middle;
+    zoom: 1;
+    width: 100%;
+    display: block;
+    margin: 0 auto 50px;
+}
+
+a.acf-icon.-plus.small{
+	display: none !important;
+}
+
+a.acf-button[data-event=add-row]:after{
+content: ' + ';
+    display: inline-block;
+    padding-left: 5px;
+    font-size: 1.5em;
+    margin-bottom: -0.25em;
+    margin-top: -0.25em;
+    position: relative;
+    top: 2px;
+}
+
+.logged-in .tribe_events.type-tribe_events.hentry{
+	display:none;
+}
+
+
+/* Gestion */
+
+iframe#evenement_frame {
+    width: 100%;
+    /* min-height: 850px;*/
+}
+
+body.iframe{
+overflow:hidden;	
+}
+
+.iframe #wpadminbar,
+.iframe #main-header,
+.iframe #main-footer,
+.iframe #tribe-events-header,
+.iframe .tribe-events-back,
+.iframe .tribe-events-single-event-title,
+.iframe .tribe-events-schedule.tribe-clearfix,
+.iframe #tribe-events-footer{
+	display: none !important;
+}
+
+body.iframe.logged-in{
+	margin-top: -32px;
+	background-color: transparent !important;
+}
+
+.iframe #main-content .container{
+	padding:0 !important;
+	margin: 0 !important;
+		
+}
+
+
+.et_header_style_slide .et_menu_container #et-top-navigation, 
+.et_header_style_fullscreen .et_menu_container #et-top-navigation,
+.et_header_style_slide .et-fixed-header .et_menu_container #et-top-navigation, 
+.et_header_style_fullscreen .et-fixed-header .et_menu_container #et-top-navigation{
+    padding: 10px 0 10px 0 !important;
+}
+
+
+
+
+.et_header_style_fullscreen .logo_container{
+	display: none;
+}
+
+.iframe .acf-field{
+	padding-left:0px !important;
+	padding-right:0px !important;
+}
+
+#content-area table.acf-table td{
+	padding:0;
+}
+
+body.iframe div.container{
+	width:100% !important;
+}
+
+body.iframe #main-content,
+body.iframe div#page-container{
+	background: transparent !important;
+}
+
+/* Navigation - Gestion */
+.et_pb_widget_area .et-tabs-container{
+	margin-top: 20px;
+	margin-bottom: 0;
+}
+
+.et_pb_section.gestion-content{
+	padding-top:0;
+}
+
+.et_pb_section.gestion-content > .et_pb_row{
+	padding:27px;
+	background-color: rgba(0,0,0,0.5);
+	    border: 1px solid #e7e7e7;
+	    max-width: 1078px;
+}
+
+.et_pb_column.et_pb_column_4_4.et_pb_column_0 .et_pb_widget_area_left{
+	padding-right: 0 !important;
+	border-right:0px none !important;
+}
+
+
+.et_pb_widget_area_left .et-tabs-container .et-tabs-control li a {
+    font-size: 14px;
+    color: #222222 !important;
+    text-shadow: 1px 1px 0 #fff !important;
+    display: block;
+    padding: 15px 20px;
+}
+
+.et_pb_widget_area_left .et-tabs-container .et-tabs-control li.current-menu-item > a {
+    border-style: inset;
+    background: rgba(0,0,0,0.05);
+    color: #000000 !important;
+    text-shadow: none !important;
+    text-decoration: underline !important;
+}
+
+span.select2-chosen{
+	color:#000000;
+}
+
+form.acf-form{
+	padding-bottom: 5px;
+}
