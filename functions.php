@@ -247,6 +247,7 @@ function tribe_remove_endtime_multiday ( $inner, $event ) {
 	return $inner;
 }
 //add_filter( 'tribe_events_event_schedule_details_inner', 'tribe_remove_endtime_multiday', 10, 3 );
+/*
 $post_type = 'tribe_venue';
 set_post_type( 3157, 'tribe_venue' );
 set_post_type( 3121, $post_type );
@@ -254,7 +255,7 @@ set_post_type( 3113, $post_type );
 set_post_type( 3109, $post_type );
 set_post_type( 3095, $post_type );
 set_post_type( 3041, $post_type );
-
+*/
 /* Admin CSS */
 add_action('admin_head', 'my_custom_fonts');
 
@@ -537,6 +538,100 @@ add_filter('acf/load_field/name=tireur', 'acf_load_tireur_field_choices');
 
 
 
+function foreignDbAction(){
+	global $wpdb;
+	
+	
+	$dbPass = DB_PASSWORD;
+	$dbUser = DB_USER;
+	$dbName = DB_NAME;
+	$dbHost = 'tccdev.net';
+	
+	$retVal = '';
+	
+	/* Si nous avons une adresse courriel, nous mettons à jour l'historique de peiements dans la base de données des membres */
+	
+	
+	$wpdb_old = wp_clone($GLOBALS['wpdb']);
+	$wpdb_new = &$GLOBALS['wpdb'];	
+	
+		
+	//$oldWPDB = $wpdb;
+	
+	$wpdb_new = new wpdb($dbUser,$dbPass,$dbName,$dbHost);
+	$wpdb_new->set_prefix('wrdp_2017_');
 
+	
+
+		$post_title = date();
+	
+		$my_post = array(
+		  'post_title'    => $post_title,
+		  'post_content'  => 'test de mise à jour distante',
+		  'post_status'   => 'publish',
+		  'post_author'   => 1,
+		  'post_type'	=> 'post'
+		);
+	
+		
+		$new_post = wp_insert_post( $my_post );
+		$post_id = $new_post;
+
+	
+	
+	// On retourne sur le site local
+	$wpdb_new = $wpdb_old;	
+
+	
+
+	return 'Post: '.$post_id.' was created!';
+	//return $retVal;
+	
+	
+	//return $retVal.'<pre>'.print_r($oldWPDB, true).'</pre><pre>'.print_r($mydb, true).'</pre><pre>'.print_r($wpdb, true).'</pre>';
+}
+
+// Add Shortcode
+function update_pointages_shortcode() {
+	$retVal .= '
+	
+	<div class="update_btn_holder">
+		<input type="button" value="Mettre à jour sur le serveur distant" id="update_btn" />
+	</div>
+	
+	<div id="#response"></div>
+	
+	<script>
+    ajax_url = "'.admin_url('admin-ajax.php').'";
+	jQuery(document).ready(function(){
+	
+		jQuery("#update_btn").on("click",function(){
+		
+			 var my_data = {
+                    action: \'update_point\', // This is required so WordPress knows which func to use
+                    whatever: "yes it is" // Post any variables you want here
+                };
+		
+			jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
+                    jQuery("#response").html("<div>"+response+"</div>");
+                });
+		
+		});
+	
+	});
+</script>';
+	
+	
+}
+add_shortcode( 'update_pointages', 'update_pointages_shortcode' );
+
+
+function update_point() {
+	global $wpdb;
+	echo foreignDbAction();
+	wp_die();
+}
+add_action( 'wp_ajax_update_point', 'update_point' );
+add_action( 'wp_ajax_nopriv_update_point', 'update_point' );
 
 ?>
