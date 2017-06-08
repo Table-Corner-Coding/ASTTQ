@@ -205,6 +205,18 @@ $done = array();
 		<!-- .tribe-events-sub-nav -->
 	</div>
 	<!-- #tribe-events-footer -->
+	
+	<script>
+		jQuery(document).ready(function(){
+			jQuery('.acf-true-false > label').each(function(){
+
+			jQuery(this).addClass('switch');
+			jQuery(this).append(jQuery('<div class="slider round"></div>'));
+
+			});			   
+		});
+	</script>
+	
 <?php
 
 	?>
