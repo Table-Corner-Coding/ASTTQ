@@ -561,7 +561,7 @@ function foreignDbAction(){
 	$wpdb_new = new wpdb($dbUser,$dbPass,$dbName,$dbHost);
 	$wpdb_new->set_prefix('wrdp_2017_');
 
-	
+	$tempVar = $wpdb_new;
 
 		$post_title = date();
 	
@@ -582,9 +582,13 @@ function foreignDbAction(){
 	// On retourne sur le site local
 	$wpdb_new = $wpdb_old;	
 
+	ob_start();
+		
+	var_dump($tempVar);
 	
+	$retVal = ob_get_clean();
 
-	return 'Post: '.$post_id.' was created!';
+	return '<div>Post: '.$post_id.' was created! <br/>'.$retVal.'</div>';
 	//return $retVal;
 	
 	
