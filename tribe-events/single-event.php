@@ -216,11 +216,13 @@ $done = array();
 			});		
 			
 			<?php
-			if(isset($_REQUEST['acf-field_5939ced2dcd39'])){
-				if(is_array($_REQUEST['acf-field_5939ced2dcd39'])){
+			if(isset($_REQUEST['acf'])){
+				if(is_array($_REQUEST['acf']['field_5939ced2dcd39'])){
 					if($_REQUEST['acf-field_5939ced2dcd39'][1]  == 1){
 						?> alert('Terminé!'); <?php
 					}  
+				}else{
+					?> alert('<?php echo $_REQUEST['acf']['field_5939ced2dcd39']; ?>'); <?php
 				}
 			}
 			?>
