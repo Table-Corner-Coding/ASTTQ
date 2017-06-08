@@ -596,6 +596,7 @@ function update_pointages_shortcode() {
 	$retVal .= '
 	
 	<div class="update_btn_holder">
+		<h3>Tests de mises à jour...</h3>
 		<input type="button" value="Mettre à jour sur le serveur distant" id="update_btn" />
 	</div>
 	
