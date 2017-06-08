@@ -25,7 +25,7 @@ jQuery(document).ready(function(){
 		
 	});
 	
-	refreshStyles();
+	//refreshStyles();
 	
 });
 
