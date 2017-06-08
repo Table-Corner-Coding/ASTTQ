@@ -705,8 +705,10 @@ function get_points_table_for_event($event_id, $refresh = false){
 				$points = 5+$bonus_position[$itt]+$bonus_inscription;
 				$classement .=  '<tr><td> '.$itt.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' </td><td> '.$points.' </td></tr>';
 			}
-
-			$classement .= '</tbody></table>';
+			setlocale(LC_TIME, 'fra_fra');
+			
+			
+			$classement .= '</tbody></table><br /><div class="last_updated">'.strftime('%A %d %B %Y, %H:%M').'</div>';
 		
 		
 		}
