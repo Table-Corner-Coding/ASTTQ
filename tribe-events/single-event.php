@@ -93,9 +93,9 @@ if(isset($_REQUEST['acf'])){
 			<div class="tribe-events-single-event-description tribe-events-content">
 				<?php 
 	
-					$classement = '[learn_more caption="Résultats"]';
+					$classementHeader = '[learn_more caption="Résultats"]';
 			
-					$classement .= get_points_table_for_event($event_id);
+					$classementFinal = get_points_table_for_event($event_id);
 			
 					//var_dump($competitions);
 			
@@ -138,6 +138,14 @@ if(isset($_REQUEST['acf'])){
 						}
 					}		
 					
+					
+					if(!empty($classementFinal)){
+						$classement = $classementHeader.$classementFinal;
+					}else{
+						
+						$classement = $classementHeader.$classement;
+					}
+			
 					$classement .= '[/learn_more]';
 					$classes .= '[/learn_more]';
 					
