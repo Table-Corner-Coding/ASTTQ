@@ -644,4 +644,80 @@ function update_point() {
 add_action( 'wp_ajax_update_point', 'update_point' );
 add_action( 'wp_ajax_nopriv_update_point', 'update_point' );
 
+
+function get_points_table_for_event($event_id, $refresh = false){
+	
+	$transient_name = 'asttq_p_table_'.$event_id;
+	$current_table = get_transient($transient_name);
+	
+	
+	
+	$competitions = get_field('field_592da5f526f1e', $event_id);
+			
+	$bonus_position = array(0,15,12,10,9,8,7,6,5,4,3,2,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); 
+	$bonus_inscription = get_field('field_592e44df6e8c7', $event_id);	
+
+//print_r($bonus_inscription);
+
+	//$classement = '';		
+
+	$classement = '';
+	
+	if(empty($current_table) || $refresh == true)
+	{
+	
+		foreach($competitions as $competition){
+			$term = get_term( $competition['classe'], 'classes' );
+			$classement .= '<h3>'.$term->name.'</h3>';
+
+			$grille = array();
+
+			foreach($competition['competiteur'] as $competiteur){
+				$tireur_id = $competiteur['tireur'];
+				$distance = $competiteur['distance'];
+				$tireur = get_post($tireur_id);
+				$vehicule = get_field('nom_du_vehicule', $tireur_id);
+				$nom_tireur = $tireur->post_title;
+
+				$grille[] = array(	'nom_tireur'=>$nom_tireur,
+									'vehicule'=>$vehicule,
+									'distance'=>$distance);
+			}
+
+			foreach($competition['non-membre'] as $nonmembre){
+				$distance = $nonmembre['distance'];
+				$vehicule = $nonmembre['vehicule'];
+				$nom_tireur = $nonmembre['nom_du_tireur'];
+
+				$grille[] = array(	'nom_tireur'=>$nom_tireur,
+									'vehicule'=>$vehicule,
+									'distance'=>$distance);
+			}
+
+			$grille = array_orderby($grille, 'distance', SORT_DESC);
+
+			$classement .= '<table><thead><tr><th>'.__('Rang','asttq').'</th><th>'.__('Véhicule','asttq').'</th><th>'.__('Compétiteur','asttq').'</th><th>'.__('Distance','asttq').'</th><th>'.__('Points','asttq').'</th></tr></thead><tbody>';
+
+			$itt = 0;
+			foreach($grille as $tireur){
+				$itt++;
+				$points = 5+$bonus_position[$itt]+$bonus_inscription;
+				$classement .=  '<tr><td> '.$itt.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' </td><td> '.$points.' </td></tr>';
+			}
+
+			$classement .= '</tbody></table>';
+		
+		
+		}
+		
+		delete_transient($transient_name);
+		set_transient( $transient_name, $classement, YEAR_IN_SECONDS );
+	}else{
+		$classement = $current_table;
+	}
+	
+	return $classement;
+}
+
+
 ?>
