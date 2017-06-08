@@ -604,7 +604,7 @@ function update_pointages_shortcode() {
 		<input type="button" value="Mettre à jour sur le serveur distant" id="update_btn" />
 	</div>
 	
-	<div id="#response"></div>
+	<div id="response"></div>
 	
 	<script>
     ajax_url = "'.admin_url('admin-ajax.php').'";
