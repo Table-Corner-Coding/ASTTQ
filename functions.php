@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 
 add_action( 'wp_enqueue_scripts', 'my_enqueue_assets' ); 
 
@@ -621,7 +621,7 @@ function update_pointages_shortcode() {
 	});
 </script>';
 	
-	
+	return $retVal;
 }
 add_shortcode( 'update_pointages', 'update_pointages_shortcode' );
 
