@@ -633,7 +633,15 @@ function update_pointages_shortcode() {
 			
 	foreach($current_array as $key=>$value){
 		
-		$retVal .= '<tr><td>'.$key.'</td><td>'.$value.'</td></tr>';
+		if(!empty($key)){
+			$postOBJ = get_post($key);
+			
+			$title = $postOBJ->post_title;
+		}else{
+			$title = '';
+		}
+		
+		$retVal .= '<tr><td>('.$key.') '.$title.'</td><td>'.$value.'</td></tr>';
 	}
 				
 	$retVal .= '
@@ -650,8 +658,15 @@ function update_pointages_shortcode() {
 	$current_array = get_option($option_name);
 			
 	foreach($current_array as $key=>$value){
+		if(!empty($key)){
+			$postOBJ = get_post($key);
+			
+			$title = $postOBJ->post_title;
+		}else{
+			$title = '';
+		}
 		
-		$retVal .= '<tr><td>'.$key.'</td><td>'.$value.'</td></tr>';
+		$retVal .= '<tr><td>('.$key.') '.$title.'</td><td>'.$value.'</td></tr>';
 	}
 				
 	$retVal .= '
