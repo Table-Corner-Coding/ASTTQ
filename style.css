@@ -479,7 +479,7 @@ div.last_updated:before{
 	position:relative;
 }
 
-.loading:after{
+.loading:before{
 	display: block;
 	top: 0;
 	content: ' ';
