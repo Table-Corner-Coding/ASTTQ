@@ -616,7 +616,13 @@ function foreignDbAction(){
 	
 	// On retourne sur le site local
 	$wpdb_new = $wpdb_old;	
-
+	
+	$option_name = 'tireurs-to-update';
+	delete_option( $option_name );
+	
+	$option_name = 'events-to-update';
+	delete_option( $option_name );
+	
 	/*
 	ob_start();
 		
