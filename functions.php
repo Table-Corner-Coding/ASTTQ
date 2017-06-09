@@ -630,7 +630,7 @@ function update_pointages_shortcode() {
 	
 	$option_name = 'tireurs-to-update';
 	$current_array = get_option($option_name);
-			
+	if(is_array($current_array)){			
 	foreach($current_array as $key=>$value){
 		
 		if(!empty($key)){
@@ -643,7 +643,7 @@ function update_pointages_shortcode() {
 		
 		$retVal .= '<tr><td>('.$key.') '.$title.'</td><td>'.$value.'</td></tr>';
 	}
-				
+	}
 	$retVal .= '
 	</tbody></table>
 	
