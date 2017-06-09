@@ -497,3 +497,7 @@ div.last_updated:before{
 iframe body .et_slide_in_menu_container{
 	display:none !important;
 }
+
+.iframe > #page-container > div:first-child{
+	display:none !important;
+}
