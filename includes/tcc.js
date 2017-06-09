@@ -27,10 +27,15 @@ function refreshStyles(){
 }
 
 jQuery(document).ready(function(){
+	
 	frame = jQuery('iframe#evenement_frame');
 	iframe = document.getElementById('evenement_frame');
+	
+	
 	unload();
-	iframe.onload = load;
+	if(typeof null !== iframe){
+		iframe.onload = load;
+	}
 	
 	jQuery('#evenements').on('change',function(){
 		

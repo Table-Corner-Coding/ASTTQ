@@ -442,7 +442,7 @@ function edition_competiteurs_page_shortcode($att) {
 	
 	$retVal .= '</select></div>';
 	
-	$retVal .= '<iframe scrolling="no" onLoad="" src="'.$firstUrl.'" class="evenement_frame" id="evenement_frame"></iframe>';
+	$retVal .= '<div class="iframe_container"><iframe scrolling="no" onLoad="" src="'.$firstUrl.'" class="evenement_frame" id="evenement_frame"></iframe></div>';
 	
 	wp_deregister_style( 'wp-admin' );
 
