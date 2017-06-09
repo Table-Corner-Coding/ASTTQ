@@ -45,7 +45,10 @@ jQuery(document).ready(function(){
 	
 	
 		jQuery(document).ready(function(){
-			//jQuery('.gestion-content > div:first-child').removeClass('loading');
+			if(!jQuery('iframe').length){
+				jQuery('.gestion-content > div:first-child').removeClass('loading');
+			}
+			//
 		});
 	
 	
