@@ -12,8 +12,7 @@ var load = function(){
 	iframe.onload = load;
 };
 	
-unload();
-iframe.onload = load;
+
 //iframe.src = "";
 
 function refreshStyles(){
@@ -27,9 +26,8 @@ function refreshStyles(){
 
 jQuery(document).ready(function(){
 	
-	frame.on('load',function(){
-		
-	});
+	unload();
+	iframe.onload = load;
 	
 	jQuery('#evenements').on('change',function(){
 		
