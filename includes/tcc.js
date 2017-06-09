@@ -112,7 +112,7 @@ jQuery(document).ready(function(){
 	
 	jQuery('.et_header_style_fullscreen #et-top-navigation').prepend(jQuery('<span class="mobile_menu_bar et_pb_header_toggle et_toggle_fullscreen_menu"></span>'));
 	
-	jQuery('<div class="et_slide_in_menu_container style="padding-top:20px;"><span class="mobile_menu_bar et_toggle_fullscreen_menu"></span><div class="et_pb_fullscreen_nav_container"></div></div>').prependTo('.et_header_style_fullscreen #page-container');
+	jQuery('<div class="et_slide_in_menu_container" style="padding-top:20px;"><span class="mobile_menu_bar et_toggle_fullscreen_menu"></span><div class="et_pb_fullscreen_nav_container"></div></div>').prependTo('.et_header_style_fullscreen #page-container');
 	
 	jQuery(document).ready(function(){
 		jQuery('.et_header_style_fullscreen #mobile_menu').attr('id','mobile_menu_slide');
