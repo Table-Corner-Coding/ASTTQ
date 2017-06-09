@@ -467,3 +467,9 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+
+div.last_updated:before{
+	content: 'Dernière mise à jour: ';
+	display: inline-block;
+}
