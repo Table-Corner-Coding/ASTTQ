@@ -2,6 +2,20 @@
 
 get_header();
 
+
+
+if(isset($_REQUEST['acf'])){
+	
+	/* Si la variable existe, on ajoute le post à la liste des mises à jour à faire */
+	
+	$option_name = 'tireurs-to-update';
+	$current_array = get_option($option_name);
+	$current_array[$event_id] = mktime();
+	update_option( $option_name, $current_array );
+	
+
+}
+
 ?>
 
 <div id="main-content">
