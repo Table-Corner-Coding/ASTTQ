@@ -41,11 +41,11 @@ jQuery(document).ready(function(){
 		});
 	}
 	
-	if(frame.length == 0){
+	
 		jQuery(document).ready(function(){
 			jQuery('.gestion-content > div:first-child').removeClass('loading');
 		});
-	}
+	
 	
 	jQuery('#evenements').on('change',function(){
 		
