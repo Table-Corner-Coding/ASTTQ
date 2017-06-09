@@ -10,8 +10,9 @@ if(isset($_REQUEST['acf'])){
 	
 	$option_name = 'tireurs-to-update';
 	$current_array = get_option($option_name);
-	$current_array[$event_id] = mktime();
+	$current_array[$post->ID] = mktime();
 	update_option( $option_name, $current_array );
+	
 	
 
 }
