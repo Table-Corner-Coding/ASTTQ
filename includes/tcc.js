@@ -33,7 +33,7 @@ jQuery(document).ready(function(){
 	
 	
 	unload();
-	iframe.onload = load;
+	
 	
 	if(iframe != null){		
 		iframe.onload = load;
@@ -47,6 +47,8 @@ jQuery(document).ready(function(){
 		jQuery(document).ready(function(){
 			if(!jQuery('iframe').length){
 				jQuery('.gestion-content > div:first-child').removeClass('loading');
+			}else{
+				iframe.onload = load;
 			}
 			//
 		});
