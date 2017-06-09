@@ -79,31 +79,4 @@ $organizer = tribe_get_organizer();
 </div><!-- .tribe-events-list-event-description -->
 <?php
 do_action( 'tribe_events_after_the_content' );
-		
-if($_GET['in_iframe']){
-	?>
-<script>
-	jQuery(document).ready(){
-		jQuery( window ).resize(function() {
-			
-			var frame = window.parent.jQuery('#evenement_frame');
-			var w, h;       
-
-			//detect browser dimensions
-				if(jQuery.browser.mozilla){
-				h = jQuery(window).height();
-				w = jQuery(window).width();                  
-			}else{
-				h = jQuery(document).height();
-				w = jQuery(document).width();
-			}
-
-			//set new dimensions for the iframe
-            frame.height(h);
-        	frame.width(w);
-		});
-	}
-</script>
-	<?php
-}		
-		
+		?>

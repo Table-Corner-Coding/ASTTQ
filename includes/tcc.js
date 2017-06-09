@@ -66,12 +66,7 @@ jQuery(document).ready(function(){
 	
 });
 
-jQuery(function() {
-  var isInIFrame = (window.location != window.parent.location) ? true : false;
-  if(isInIFrame) {
-    jQuery('body').addClass('iframe');
-  }
-});
+
 
 var iframe = document.getElementById('evenement_frame'),
     lastheight;
@@ -79,7 +74,7 @@ var iframe = document.getElementById('evenement_frame'),
 jQuery(document).ready(function(){
 
     
-	
+	frame = jQuery('iframe#evenement_frame');
 	
     //hide document default scroll-bar
     jQuery('iframe#evenement_frame body').css('overflow','hidden');
