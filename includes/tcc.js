@@ -33,9 +33,13 @@ jQuery(document).ready(function(){
 	
 	
 	unload();
-	if(iframe != null){
+	if(iframe != null){		
 		iframe.onload = load;
+	}else{
+		jQuery('.gestion-content > div:first-child').removeClass('loading');
 	}
+	
+	
 	
 	jQuery('#evenements').on('change',function(){
 		
