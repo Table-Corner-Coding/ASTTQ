@@ -383,7 +383,7 @@ function edition_positions_page_shortcode($att) {
 	
 	foreach($events as $event){
 		if($itt == 0){ 
-			//$retVal .= '<option value="">Sélection de l\'évènement</option>';
+			$retVal .= '<option value="">Sélection de l\'évènement</option>';
 				$firstUrl = get_permalink($event->ID).'?in_iframe=1'; 
 		}
 		$retVal .= '<option value="'.get_permalink($event->ID).'?in_iframe=1">'.$event->post_title.'</option>';
@@ -392,6 +392,7 @@ function edition_positions_page_shortcode($att) {
 	
 	$retVal .= '</select></div>';
 	
+	$firstUrl = '';
 	$retVal .= '<div class="iframe_container"><iframe scrolling="no" onLoad="" src="'.$firstUrl.'" class="evenement_frame" id="evenement_frame"></iframe></div>';
 	
 	wp_deregister_style( 'wp-admin' );
@@ -433,7 +434,7 @@ function edition_competiteurs_page_shortcode($att) {
 	
 	foreach($events as $event){
 		if($itt == 0){ 
-			//$retVal .= '<option value="">Sélection de l\'évènement</option>';
+			$retVal .= '<option value="">Sélection de l\'évènement</option>';
 				$firstUrl = get_permalink($event->ID).'?in_iframe=1'; 
 		}
 		$retVal .= '<option value="'.get_permalink($event->ID).'?in_iframe=1">'.$event->post_title.'</option>';
@@ -442,6 +443,7 @@ function edition_competiteurs_page_shortcode($att) {
 	
 	$retVal .= '</select></div>';
 	
+	$firstUrl = '';
 	$retVal .= '<div class="iframe_container"><iframe scrolling="no" onLoad="" src="'.$firstUrl.'" class="evenement_frame" id="evenement_frame"></iframe></div>';
 	
 	wp_deregister_style( 'wp-admin' );
