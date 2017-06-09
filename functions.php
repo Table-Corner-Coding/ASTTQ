@@ -600,7 +600,7 @@ function foreignDbAction(){
 
 	$tempVar = $wpdb_new;
 
-	$retVal .= '<table><thead><tr><th>Type</th><th>Post</th><th>Time</th></tr></thead><tbody>';
+	$retVal .= '<h4>Mises à jour effectuées: </h4><table><thead><tr><th>Type</th><th>Post</th><th>Time</th></tr></thead><tbody>';
 	
 		foreach($posts_to_update as $current_post){
 			$the_post_obj = $current_post['postOBJ'];
@@ -640,7 +640,7 @@ function update_pointages_shortcode() {
 	$retVal .= '
 	
 	<div class="update_btn_holder">
-		<h3>Tests de mises à jour...</h3>
+		<h3>Mise à jour de la base de données en ligne</h3>
 		<input type="button" value="Mettre à jour sur le serveur distant" id="update_btn" />
 	</div>
 	<br /><br />
@@ -666,6 +666,8 @@ function update_pointages_shortcode() {
 		
 		$retVal .= '<tr><td>('.$key.') '.$title.'</td><td>'.$value.'</td></tr>';
 	}
+	}else{
+		$retVal .= '<tr><td>Aucun tireur n\'a été mis à jour depuis la dernière syncronisation...</td></tr>';
 	}
 	$retVal .= '
 	</tbody></table>
@@ -691,6 +693,8 @@ function update_pointages_shortcode() {
 		
 		$retVal .= '<tr><td>('.$key.') '.$title.'</td><td>'.$value.'</td></tr>';
 	}
+	}else{
+		$retVal .= '<tr><td>Aucun évènement n\'a été mis à jour depuis la dernière syncronisation...</td></tr>';
 	}		
 	$retVal .= '
 	</tbody></table>
