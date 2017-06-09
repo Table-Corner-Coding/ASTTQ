@@ -34,6 +34,9 @@ jQuery(document).ready(function(){
 	
 	unload();
 	
+	jQuery('#menu-gestion > li > a').on('click',function(){
+		load();
+	});
 	
 	if(iframe != null){		
 		iframe.onload = load;
