@@ -36,7 +36,9 @@ jQuery(document).ready(function(){
 	if(iframe != null){		
 		iframe.onload = load;
 	}else{
-		jQuery('.gestion-content > div:first-child').removeClass('loading');
+		jQuery(document).ready(function(){
+			jQuery('.gestion-content > div:first-child').removeClass('loading');
+		});
 	}
 	
 	
