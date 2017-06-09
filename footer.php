@@ -53,7 +53,7 @@ wp_footer();
 if($_GET['in_iframe']){
 	?>
 <script>
-	jQuery(document).ready(){
+	jQuery(document).ready(function(){
 		jQuery( window ).resize(function() {
 			
 			var frame = window.parent.jQuery('#evenement_frame');
@@ -72,7 +72,7 @@ if($_GET['in_iframe']){
             frame.height(h);
         	frame.width(w);
 		});
-	}
+	});
 </script>
 	<?php
 }	
