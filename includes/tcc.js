@@ -3,11 +3,11 @@ var iframe = '';
 var frame = '';
 
 var unload = function(){
-	frame.parent().addClass('loading');
+	jQuery('.gestion-content > div:first-child').addClass('loading');
 };
 	
 var load = function(){
-	frame.parent().removeClass('loading');
+	jQuery('.gestion-content > div:first-child').removeClass('loading');
 	
 	iframe.contentWindow.onbeforeunload = unload;
 	iframe.onload = load;
