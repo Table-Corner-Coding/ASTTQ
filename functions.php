@@ -553,6 +553,31 @@ add_filter('acf/load_field/name=tireur', 'acf_load_tireur_field_choices');
 function foreignDbAction(){
 	global $wpdb;
 	
+	$option_name = 'tireurs-to-update';
+	$tireurs_array = get_option($option_name);
+	
+	$option_name = 'events-to-update';
+	$events_array = get_option($option_name);
+	
+	$posts_to_update=array();
+	
+	foreach($tireurs_array as $key=>$value){
+		$postOBJ = get_post($key);
+		$postMeta = get_post_meta($postOBJ->ID);
+		
+		$posts_to_update[] = array(	'postOBJ' => $postOBJ,
+										'postMeta'=> $postMeta
+								   );
+	}
+	
+	foreach($events_array as $key=>$value){
+		$postOBJ = get_post($key);
+		$postMeta = get_post_meta($postOBJ->ID);
+		
+		$posts_to_update[] = array(	'postOBJ' => $postOBJ,
+										'postMeta'=> $postMeta
+								   );
+	}
 	
 	$dbPass = DB_PASSWORD;
 	$dbUser = DB_USER;
@@ -575,21 +600,19 @@ function foreignDbAction(){
 
 	$tempVar = $wpdb_new;
 
-		$post_title = date();
+	$retVal .= '<table><thead><tr><th>Type</th><th>Post</th><th>Time</th></tr></thead><tbody>';
 	
-		$my_post = array(
-		  'post_title'    => $post_title,
-		  'post_content'  => 'test de mise à jour distante',
-		  'post_status'   => 'publish',
-		  'post_author'   => 1,
-		  'post_type'	=> 'post'
-		);
-	
-		
-		$new_post = wp_insert_post( $my_post );
-		$post_id = $new_post;
-
-	
+		foreach($posts_to_update as $current_post){
+			$the_post_obj = $current_post['postOBJ'];
+			$the_post_meta = $current_post['postMeta'];
+			
+			foreach($the_post_meta as $key=>$value){
+				update_post_meta($the_post_meta->ID,$key,$value);
+			}
+			wp_update_post($the_post_obj);
+			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
+		}
+		$retVal .= '</tbody></table>';
 	
 	// On retourne sur le site local
 	$wpdb_new = $wpdb_old;	
@@ -601,7 +624,7 @@ function foreignDbAction(){
 	
 	$retVal = ob_get_clean();
 */
-	return '<div>Post: '.$post_id.' was created! </div>';
+	return $retVal;
 	//return $retVal;
 	
 	
@@ -620,7 +643,7 @@ function update_pointages_shortcode() {
 		<h3>Tests de mises à jour...</h3>
 		<input type="button" value="Mettre à jour sur le serveur distant" id="update_btn" />
 	</div>
-	
+	<br /><br />
 	<div id="response">
 	
 	<h4>Tireurs à mettre à jour:</h4>
@@ -647,7 +670,7 @@ function update_pointages_shortcode() {
 	$retVal .= '
 	</tbody></table>
 	
-	
+	<br /><br />
 	
 	<h4>Évènements à mettre à jour:</h4>
 	
