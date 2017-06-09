@@ -481,6 +481,7 @@ div.last_updated:before{
 
 .loading:after{
 	display: block;
+	top: 0;
 	content: ' ';
 	position: absolute;
 	width: 100%;
