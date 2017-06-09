@@ -33,7 +33,7 @@ jQuery(document).ready(function(){
 	
 	
 	unload();
-	if(typeof null !== iframe){
+	if(iframe != null){
 		iframe.onload = load;
 	}
 	
