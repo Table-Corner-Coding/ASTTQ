@@ -621,7 +621,43 @@ function update_pointages_shortcode() {
 		<input type="button" value="Mettre à jour sur le serveur distant" id="update_btn" />
 	</div>
 	
-	<div id="response"></div>
+	<div id="response">
+	
+	<h4>Tireurs à mettre à jour:</h4>
+	
+	<table><tbody>
+	';
+	
+	$option_name = 'tireurs-to-update';
+	$current_array = get_option($option_name);
+			
+	foreach($current_array as $key=>$value){
+		
+		$retVal .= '<tr><td>'.$key.'</td><td>'.$value.'</td></tr>';
+	}
+				
+	$retVal .= '
+	</tbody></table>
+	
+	
+	
+	<h4>Évènements à mettre à jour:</h4>
+	
+	<table><tbody>
+	';
+	
+	$option_name = 'events-to-update';
+	$current_array = get_option($option_name);
+			
+	foreach($current_array as $key=>$value){
+		
+		$retVal .= '<tr><td>'.$key.'</td><td>'.$value.'</td></tr>';
+	}
+				
+	$retVal .= '
+	</tbody></table>
+	
+	</div>
 	
 	<script>
     ajax_url = "'.admin_url('admin-ajax.php').'";
