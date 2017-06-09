@@ -41,8 +41,14 @@ add_filter( 'wp_insert_post_data' , 'modify_post_title' , '99', 2 ); // Grabs th
 
 function modify_post_title( $data,  $postarr )
 {
-  if($data['post_type'] == 'tireurs') { // If the actual field name of the rating date is different, you'll have to update this.
 	$post_id = $postarr['ID'];
+  if($data['post_type'] == 'tireurs') { // If the actual field name of the rating date is different, you'll have to update this.
+	
+	  
+	  $option_name = 'tireurs-to-update';
+	  	$current_array = get_option($option_name);
+		$current_array[$post_id] = mktime();
+		update_option( $option_name, $current_array );
 	  
 	  if(isset($_POST['acf'])){
 		  $nomProfil = $_POST['acf']['field_59348bdad3bcc'];
@@ -66,6 +72,12 @@ function modify_post_title( $data,  $postarr )
 	  }
 
     $data['post_title'] =  $title ; //Updates the post title to your new title.
+  }elseif($data['post_type'] == 'tribe_events'){
+	  	
+	  $option_name = 'events-to-update';
+	  	$current_array = get_option($option_name);
+		$current_array[$post_id] = mktime();
+		update_option( $option_name, $current_array );
   }
   return $data; // Returns the modified data.
 }

@@ -25,6 +25,15 @@ $done = array();
 
 
 if(isset($_REQUEST['acf'])){
+	
+	/* Si la variable existe, on ajoute le post à la liste des mises à jour à faire */
+	
+	$option_name = 'events-to-update';
+	$current_array = get_option($option_name);
+	$current_array[$event_id] = mktime();
+	update_option( $option_name, $current_array );
+	
+	
 	if(isset($_REQUEST['acf']['field_5939ced2dcd39'])){
 		if($_REQUEST['acf']['field_5939ced2dcd39']  == 1){
 
