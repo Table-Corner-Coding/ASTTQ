@@ -600,7 +600,7 @@ function foreignDbAction(){
 
 	$tempVar = $wpdb_new;
 
-	$retVal .= '<table><thead><tr><th>Type</th><th>Post</th><th>Time</th><th>Meta</th></tr></thead><tbody>';
+	$retVal .= '<table><thead><tr><th>Type</th><th>Post</th><th>Time</th></tr></thead><tbody>';
 	
 		foreach($posts_to_update as $current_post){
 			$the_post_obj = $current_post['postOBJ'];
@@ -610,7 +610,7 @@ function foreignDbAction(){
 				update_post_meta($the_post_obj->ID,$key,$value[0]);
 			}
 			wp_update_post($the_post_obj);
-			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td><td><pre>'.print_r($the_post_meta,true).'</pre></td></tr>';
+			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
 		}
 		$retVal .= '</tbody></table>';
 	
@@ -703,6 +703,8 @@ function update_pointages_shortcode() {
 	
 		jQuery("#update_btn").on("click",function(){
 		
+			jQuery("body").addClass("loading");
+		
 			 var my_data = {
                     action: \'update_point\', // This is required so WordPress knows which func to use
                     whatever: "yes it is" // Post any variables you want here
@@ -710,6 +712,7 @@ function update_pointages_shortcode() {
 		
 			jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
                     jQuery("#response").html("<div>"+response+"</div>");
+					jQuery("body").removeClass("loading");
                 });
 		
 		});
