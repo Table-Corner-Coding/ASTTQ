@@ -1,3 +1,20 @@
+var frame = jQuery('iframe#evenement_frame');
+var iframe = document.getElementById('evenement_frame');
+
+var unload = function(){
+	frame.parent().addClass('loading');
+};
+	
+var load = function(){
+	frame.parent().removeClass('loading');
+	
+	iframe.contentWindow.onbeforeunload = unload;
+	iframe.onload = load;
+};
+	
+unload();
+iframe.onload = load;
+iframe.src = "";
 
 function refreshStyles(){
 	jQuery('.acf-true-false > label').each(function(){
@@ -41,8 +58,9 @@ var iframe = document.getElementById('evenement_frame'),
 
 jQuery(document).ready(function(){
 
-    var frame = jQuery('iframe#evenement_frame');
-
+    
+	
+	
     //hide document default scroll-bar
     jQuery('iframe#evenement_frame body').css('overflow','hidden');
 	

@@ -15,7 +15,9 @@ function my_enqueue_assets() {
 	
 	wp_enqueue_script( 'tcc-scripts', get_stylesheet_directory_uri().'/includes/tcc.js', array('jquery','iframe-resizer') );
 	
-	
+	// in JavaScript, object properties are accessed as ajax_object.ajax_url, ajax_object.we_value
+	wp_localize_script( 'tcc-scripts', 'ajax_object',
+    array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'we_value' => 1234 ) );
 	
 
 } 
@@ -390,7 +392,7 @@ function edition_positions_page_shortcode($att) {
 	
 	$retVal .= '</select></div>';
 	
-	$retVal .= '<iframe scrolling="no" onLoad="" src="'.$firstUrl.'" class="evenement_frame" id="evenement_frame"></iframe>';
+	$retVal .= '<div class="iframe_container"><iframe scrolling="no" onLoad="" src="'.$firstUrl.'" class="evenement_frame" id="evenement_frame"></iframe></div>';
 	
 	wp_deregister_style( 'wp-admin' );
 
@@ -607,7 +609,13 @@ function foreignDbAction(){
 			$the_post_meta = $current_post['postMeta'];
 			
 			foreach($the_post_meta as $key=>$value){
-				update_post_meta($the_post_obj->ID,$key,$value[0]);
+				if(is_array($value))
+				{
+					update_post_meta($the_post_obj->ID,$key,$value[0]);
+				}else{
+					update_post_meta($the_post_obj->ID,$key,$value);
+				}
+				
 			}
 			wp_update_post($the_post_obj);
 			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
@@ -819,6 +827,28 @@ function get_points_table_for_event($event_id, $refresh = false){
 	
 	return $classement;
 }
+
+
+
+function my_login_redirect( $redirect_to, $request, $user ) {
+	//is there a user to check?
+	if ( isset( $user->roles ) && is_array( $user->roles ) ) {
+		//check for admins
+		if ( in_array( 'administrator', $user->roles ) ) {
+			// redirect them to the default place
+			
+			return home_url().'/gestion';
+			//return $redirect_to;
+		} else {
+			return home_url().'/gestion';
+		}
+	} else {
+		return $redirect_to;
+	}
+}
+
+add_filter( 'login_redirect', 'my_login_redirect', 10, 3 );
+
 
 
 ?>
