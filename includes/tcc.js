@@ -14,7 +14,7 @@ var load = function(){
 	
 unload();
 iframe.onload = load;
-iframe.src = "";
+//iframe.src = "";
 
 function refreshStyles(){
 	jQuery('.acf-true-false > label').each(function(){
@@ -26,6 +26,10 @@ function refreshStyles(){
 }
 
 jQuery(document).ready(function(){
+	
+	frame.on('load',function(){
+		
+	});
 	
 	jQuery('#evenements').on('change',function(){
 		
