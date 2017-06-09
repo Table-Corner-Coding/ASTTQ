@@ -607,7 +607,7 @@ function foreignDbAction(){
 			$the_post_meta = $current_post['postMeta'];
 			
 			foreach($the_post_meta as $key=>$value){
-				update_post_meta($the_post_meta->ID,$key,$value);
+				update_post_meta($the_post_meta->ID,$key,$value[0]);
 			}
 			wp_update_post($the_post_obj);
 			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td><td><pre>'.print_r($the_post_meta,true).'</pre></td></tr>';
