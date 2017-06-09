@@ -1,12 +1,12 @@
-var frame = jQuery('iframe#evenement_frame');
-var iframe = document.getElementById('evenement_frame');
+
+var iframe = '';
 
 var unload = function(){
-	frame.parent().addClass('loading');
+	iframe.parent().addClass('loading');
 };
 	
 var load = function(){
-	frame.parent().removeClass('loading');
+	iframe.parent().removeClass('loading');
 	
 	iframe.contentWindow.onbeforeunload = unload;
 	iframe.onload = load;
@@ -25,7 +25,8 @@ function refreshStyles(){
 }
 
 jQuery(document).ready(function(){
-	
+	var frame = jQuery('iframe#evenement_frame');
+	iframe = document.getElementById('evenement_frame');
 	unload();
 	iframe.onload = load;
 	
