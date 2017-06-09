@@ -33,17 +33,19 @@ jQuery(document).ready(function(){
 	
 	
 	unload();
+	iframe.onload = load;
+	
 	if(iframe != null){		
 		iframe.onload = load;
 	}else{
 		jQuery(document).ready(function(){
-			jQuery('.gestion-content > div:first-child').removeClass('loading');
+			//jQuery('.gestion-content > div:first-child').removeClass('loading');
 		});
 	}
 	
 	
 		jQuery(document).ready(function(){
-			jQuery('.gestion-content > div:first-child').removeClass('loading');
+			//jQuery('.gestion-content > div:first-child').removeClass('loading');
 		});
 	
 	
