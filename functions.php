@@ -32,7 +32,7 @@ function multisite_body_classes($classes) {
 		}
 	
 	if(is_user_logged_in() || is_page(3214)){
-		$classes[] = 'et_header_style_fullscreen';
+		//$classes[] = 'et_header_style_fullscreen';
 	}
 
         return $classes;
