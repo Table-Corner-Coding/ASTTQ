@@ -66,7 +66,7 @@ $output .= '<div class="'.$post_type.' '.$the_class.'">';
 		$output .= $tg_el->get_html_element(array('html' => '<div class=&quot;tg-button-overlay&quot; style=&quot;background-color:#color:overlay-background#&quot;></div>
 '), 'tg-element-10');
 		
-		$output .= '<a class="tcc-media-button" href="'.$post_link.'"></a>';
+		$output .= '<a class="tcc-media-button tg-media-button" href="'.$post_link.'"></a>';
 		
 		//$output .= $tg_el->get_media_button(array('icons' => array('image' => '<i class="tg-icon-arrows-out"></i>', 'audio' => '<i class="tg-icon-play"></i>', 'video' => '<i class="tg-icon-play"></i>', 'pause' => ''), 'action' => array('type' => 'lightbox')), 'tg-element-9');
 		
