@@ -70,10 +70,11 @@ $output .= '<div class="'.$post_type.' '.$the_class.'">';
 		
 		$output .= $tg_el->get_media_button(array('icons' => array('image' => '<i class="tg-icon-arrows-out"></i>', 'audio' => '<i class="tg-icon-play"></i>', 'video' => '<i class="tg-icon-play"></i>', 'pause' => ''), 'action' => array('type' => 'lightbox')), 'tg-element-9');
 		
-		$output .= '</a>';
+		
 		
 		// Media content holder end
 		$output .= $tg_el->get_media_content_end();
+		$output .= '</a>';
 
 	}
 $output .= '</div>';
