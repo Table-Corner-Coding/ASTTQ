@@ -852,5 +852,11 @@ function my_login_redirect( $redirect_to, $request, $user ) {
 add_filter( 'login_redirect', 'my_login_redirect', 10, 3 );
 
 
+function translate_date_format($format) {
+	if (function_exists('icl_translate'))
+	  $format = icl_translate('Formats', $format, $format);
+return $format;
+}
+add_filter('option_date_format', 'translate_date_format');
 
 ?>
