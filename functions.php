@@ -54,14 +54,24 @@ function modify_post_title( $data,  $postarr )
 	  
 	  if(isset($_POST['acf'])){
 		  $nomProfil = $_POST['acf']['field_59348bdad3bcc'];
+		  $vehicule = $_POST['acf']['field_591d0b5cbeb04'];
 	  }
 	  else{
 		  $nomProfil = get_field('field_59348bdad3bcc', $post_id);
+		  $vehicule = get_field('field_591d0b5cbeb04',$post_id);
 	  }
+	  
+	  $vehicule = get_field('field_591d0b5cbeb04',$post_id);
 	  
 	  if(empty($nomProfil)){
 		  $post_obj = get_post($post_id);
-		  $nomProfil = ucwords(str_replace('-',' ',$post_obj->post_name));
+		  if(!empty($vehicule)){
+			  $nomProfil = $vehicule;
+		  }else{
+			  $nomProfil = ucwords(str_replace('-',' ',$post_obj->post_name));
+		  }
+		  
+		  
 	  }
 	
 	$classes = wp_get_post_terms( $post_id, $taxonomy = 'classes' );
