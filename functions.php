@@ -1045,7 +1045,7 @@ function edition_tireurs_shortcode() {
 					
 				}
 	
-	return do_shortcode($tabs);
+	return do_shortcode($tabs).$scripts;
 
 }
 add_shortcode( 'edition_tireurs', 'edition_tireurs_shortcode' );
