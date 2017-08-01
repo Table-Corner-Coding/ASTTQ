@@ -884,7 +884,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 					$points = 5+$bonus_position[$itt]+$bonus_inscription;	
 				}
 				
-				$classement .=  '<tr><td> '.$itt.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' (FP)</td><td> '.$points.' </td></tr>';
+				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' (FP)</td><td> '.$points.' </td></tr>';
 			}
 			
 			foreach($grille as $tireur){
@@ -898,7 +898,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 					$points = 5+$bonus_position[$itt]+$bonus_inscription;	
 				}
 
-				$classement .=  '<tr><td> '.$itt.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' </td><td> '.$points.' </td></tr>';
+				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' </td><td> '.$points.' </td></tr>';
 			}
 		
 			
