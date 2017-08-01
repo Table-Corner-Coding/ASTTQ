@@ -1004,10 +1004,14 @@ function edition_tireurs_shortcode() {
 							
 							$tabs .=  '<tr data-Tireur-ID="'.$tireur_id.'"><td data-content="'.$vehicule.'" class="vehicule">'.$vehicule.'</td><td class="nom_profil" data-content="'.$nom_profil.'">'.$nom_profil.'</td><td class="conducteur">';
 							
-							
-							foreach($conducteurs as $conducteur){
-								$tabs .= '<div data-content="'.$conducteur['nom'].'">'.$conducteur['nom'].'</div>';
+							if(count($conducteurs)){
+								foreach($conducteurs as $conducteur){
+									$tabs .= '<div data-content="'.$conducteur['nom'].'">'.$conducteur['nom'].'</div>';
+								}
+							}else{
+								$tabs .= '<div data-content=""></div>';
 							}
+							
 							
 							$tabs .= '</td><td><span title="Éditer" class="dashicons dashicons-welcome-write-blog"></span></td></tr>';
 						}
@@ -1035,7 +1039,11 @@ function edition_tireurs_shortcode() {
 							var nom_profil = theLine.find(".nom_profil").attr("data-content");
 							theLine.find(".nom_profil").html("<input name=\'nom_profil\' type=\'text\' value=\'"+nom_profil+"\' />");
 							
+							theLine.find(".conducteur > div").each(function(){
+								var theValue = jQuery(this).attr("data-content");
+								jQuery(this).html("<input name=\'conducteur[]\' type=\'text\' value=\'"+theValue+"\' />");
 							
+							});
 						
 						});
 					
