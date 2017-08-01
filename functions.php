@@ -871,8 +871,12 @@ function get_points_table_for_event($event_id, $refresh = false){
 			$classement .= '<table><thead><tr><th>'.__('Rang','asttq').'</th><th>'.__('Véhicule','asttq').'</th><th>'.__('Compétiteur','asttq').'</th><th>'.__('Distance','asttq').'</th><th>'.__('Points','asttq').'</th></tr></thead><tbody>';
 
 			$itt = 0;
+			$itt2 = 0;
+			
 			
 			foreach($fullPull as $tireur){
+				$itt2++;
+				
 				if($tireur['non-membre']){
 					$points = '*';
 				}else{
@@ -884,6 +888,9 @@ function get_points_table_for_event($event_id, $refresh = false){
 			}
 			
 			foreach($grille as $tireur){
+				
+				$itt2++;
+				
 				if($tireur['non-membre']){
 					$points = '*';
 				}else{
