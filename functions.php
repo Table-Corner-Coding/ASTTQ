@@ -960,7 +960,11 @@ function edition_tireurs_shortcode() {
 	
 	if(is_user_logged_in() && current_user_can('manage_options')){
 					
-					$terms = get_the_terms( get_the_ID(), 'classes' );
+		$args = array(
+		'taxonomy' => 'classes'
+		);
+		
+					$terms = get_terms( $args );
 					
 					$tabs = '
 					[tabs slidertype="left tabs"] 
