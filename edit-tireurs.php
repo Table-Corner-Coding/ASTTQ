@@ -10,12 +10,12 @@ get_header();
 if(isset($_REQUEST['acf'])){
 	
 	/* Si la variable existe, on ajoute le post à la liste des mises à jour à faire */
-	
+	/*
 	$option_name = 'tireurs-to-update';
 	$current_array = get_option($option_name);
 	$current_array[$post->ID] = mktime();
 	update_option( $option_name, $current_array );
-	
+	*/
 	
 
 }
@@ -85,7 +85,7 @@ if(isset($_REQUEST['acf'])){
 					
 					
 					
-					$classement .= '</tbody></table>';
+					$tabs .= '</tbody></table>';
 					
 					$tabs .= '[/tab] ';
 				}
