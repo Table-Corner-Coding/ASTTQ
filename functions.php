@@ -791,17 +791,43 @@ function get_points_table_for_event($event_id, $refresh = false){
 			$classement .= '<h3>'.$term->name.'</h3>';
 
 			$grille = array();
-
+			$fullPull = array();
+			$fullPullNM = array();
+			
 			foreach($competition['competiteur'] as $competiteur){
 				$tireur_id = $competiteur['tireur'];
-				$distance = $competiteur['distance'];
 				$tireur = get_post($tireur_id);
 				$vehicule = get_field('nom_du_vehicule', $tireur_id);
 				$nom_tireur = $tireur->post_title;
-
-				$grille[] = array(	'nom_tireur'=>$nom_tireur,
-									'vehicule'=>$vehicule,
-									'distance'=>$distance);
+				
+				$distances = $competiteur['distances'];
+				
+				$highest = 0;
+				$fp = false;
+				
+				foreach($distances as $current_distance){
+					if($current_distance['distance']>$highest){
+						$highest = $current_distance['distance'];
+					}
+					if($current_distance['statut'] == 'FP'){
+						$fp = true;
+					}
+				}
+				
+				if($fp){
+					$fullPull[] = array(	'nom_tireur'=>$nom_tireur,
+											'vehicule'=>$vehicule,
+											'distance'=>$highest,
+									   		'non-membre' => false);
+				}
+				else{
+					$grille[] = array(	'nom_tireur'=>$nom_tireur,
+										'vehicule'=>$vehicule,
+										'distance'=>$highest,
+									  	'non-membre' => false
+									 );
+				}
+				
 			}
 
 			foreach($competition['non-membre'] as $nonmembre){
@@ -809,19 +835,62 @@ function get_points_table_for_event($event_id, $refresh = false){
 				$vehicule = $nonmembre['vehicule'];
 				$nom_tireur = $nonmembre['nom_du_tireur'];
 
-				$grille[] = array(	'nom_tireur'=>$nom_tireur,
-									'vehicule'=>$vehicule,
-									'distance'=>$distance);
+				
+				$distances = $nonmembre['distances'];
+				
+				$highest = 0;
+				$fp = false;
+				
+				foreach($distances as $current_distance){
+					if($current_distance['distance']>$highest){
+						$highest = $current_distance['distance'];
+					}
+					if($current_distance['statut'] == 'FP'){
+						$fp = true;
+					}
+				}
+				
+				if($fp){
+					$fullPull[] = array(	'nom_tireur'=>$nom_tireur,
+											'vehicule'=>$vehicule,
+											'distance'=>$highest,
+									   		'non-membre' => true);
+				}
+				else{
+					$grille[] = array(	'nom_tireur'=>$nom_tireur,
+										'vehicule'=>$vehicule,
+										'distance'=>$highest,
+									   	'non-membre' => true);
+				}
+				
 			}
-
+			
+			$fullPull = array_orderby($fullPull, 'distance', SORT_DESC);
 			$grille = array_orderby($grille, 'distance', SORT_DESC);
 
 			$classement .= '<table><thead><tr><th>'.__('Rang','asttq').'</th><th>'.__('Véhicule','asttq').'</th><th>'.__('Compétiteur','asttq').'</th><th>'.__('Distance','asttq').'</th><th>'.__('Points','asttq').'</th></tr></thead><tbody>';
 
 			$itt = 0;
+			
+			foreach($fullPull as $tireur){
+				if($tireur['non-membre']){
+					$points = '*';
+				}else{
+					$itt++;
+					$points = 5+$bonus_position[$itt]+$bonus_inscription;	
+				}
+				
+				$classement .=  '<tr><td> '.$itt.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' (FP)</td><td> '.$points.' </td></tr>';
+			}
+			
 			foreach($grille as $tireur){
-				$itt++;
-				$points = 5+$bonus_position[$itt]+$bonus_inscription;
+				if($tireur['non-membre']){
+					$points = '*';
+				}else{
+					$itt++;
+					$points = 5+$bonus_position[$itt]+$bonus_inscription;	
+				}
+
 				$classement .=  '<tr><td> '.$itt.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' </td><td> '.$points.' </td></tr>';
 			}
 		
