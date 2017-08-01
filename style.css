@@ -505,6 +505,6 @@ iframe body .et_slide_in_menu_container{
 
 
 
-.editable_table{
-	background-color:#2f2f2f;
+.entry-content table.editable_table{
+	background-color:#2f2f2f !important;
 }
