@@ -961,7 +961,8 @@ function edition_tireurs_shortcode() {
 	if(is_user_logged_in() && current_user_can('manage_options')){
 					
 		$args = array(
-		'taxonomy' => 'classes'
+			'taxonomy' => 'classes',
+			'hide_empty' => false
 		);
 		
 					$terms = get_terms( $args );
