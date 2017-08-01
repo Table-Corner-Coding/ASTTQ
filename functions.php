@@ -1000,7 +1000,7 @@ function edition_tireurs_shortcode() {
 							$conducteurs = get_field('conducteur', $tireur_id);
 	
 							
-							$tabs .=  '<tr><td>'.$vehicule.'</td><td>'.$nom_profil.'</td><td>';
+							$tabs .=  '<tr data-Tireur-ID="'.$tireur_id.'"><td>'.$vehicule.'</td><td>'.$nom_profil.'</td><td>';
 							'</td><td>';
 							
 							foreach($conducteurs as $conducteur){
