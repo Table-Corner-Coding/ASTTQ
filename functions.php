@@ -1013,7 +1013,7 @@ function edition_tireurs_shortcode() {
 							}
 							
 							
-							$tabs .= '</td><td><span title="Éditer" class="dashicons dashicons-welcome-write-blog"></span></td></tr>';
+							$tabs .= '</td><td class="actions"><span title="Éditer" class="dashicons dashicons-welcome-write-blog"></span></td></tr>';
 						}
 						
 						
@@ -1045,8 +1045,16 @@ function edition_tireurs_shortcode() {
 							
 							});
 						
+							theLine.append("<span class=\'dashicons dashicons-plus-alt\'></span>");
+							
+							theLine.find("actions").html("<span class=\'dashicons dashicons-yes\'></span><span class=\'dashicons dashicons-trash\'></span>");
 						});
 					
+					
+						jQuery(".conducteur span.dashicons-plus-alt").on("click",function(){
+							jQuery(this).before("<div data-content=\'\'><input name=\'conducteur[]\' type=\'text\' /></div>");
+						});
+						
 					});
 					
 					</script>';
