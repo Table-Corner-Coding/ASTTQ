@@ -506,5 +506,8 @@ iframe body .et_slide_in_menu_container{
 
 
 .entry-content table.editable_table{
-	background-color:#2f2f2f !important;
+	background-color:#f2f2f2 !important;
+}
+.entry-content table.editable_table tbody tr:nth-child(odd) td{
+	background: #cccccc;
 }
