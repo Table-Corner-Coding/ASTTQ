@@ -92,7 +92,7 @@ if(isset($_REQUEST['acf'])){
 				$tabs .= '[/tabcontent]
 				[/tabs]'; 
 				
-				
+				echo do_shortcode($tabs);
 				
 			}else{
 				the_content();
