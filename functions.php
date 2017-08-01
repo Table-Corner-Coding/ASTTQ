@@ -990,6 +990,8 @@ function edition_tireurs_shortcode() {
 										)
 									  )
 									));
+						
+						$tabs .= '<form id="form_edition_'.$term->term_id.'">';
 						$tabs .= '<table class="editable_table"><thead><tr><th>'.__('Véhicule','asttq').'</th><th>'.__('Nom du profil','asttq').'</th><th>'.__('Conducteurs','asttq').'</th><th>Actions</th></tr></thead><tbody>';
 						
 						foreach($tireurs as $tireur){
@@ -1000,11 +1002,11 @@ function edition_tireurs_shortcode() {
 							$conducteurs = get_field('conducteur', $tireur_id);
 	
 							
-							$tabs .=  '<tr data-Tireur-ID="'.$tireur_id.'"><td>'.$vehicule.'</td><td>'.$nom_profil.'</td><td>';
-							'</td><td>';
+							$tabs .=  '<tr data-Tireur-ID="'.$tireur_id.'"><td data-content="'.$vehicule.'" class="vehicule">'.$vehicule.'</td><td class="nom_profil" data-content="'.$nom_profil.'">'.$nom_profil.'</td><td class="conducteur">';
+							
 							
 							foreach($conducteurs as $conducteur){
-								$tabs .= '<div>'.$conducteur['nom'].'</div>';
+								$tabs .= '<div data-content="'.$conducteur['nom'].'">'.$conducteur['nom'].'</div>';
 							}
 							
 							$tabs .= '</td><td><span title="Éditer" class="dashicons dashicons-welcome-write-blog"></span></td></tr>';
@@ -1012,14 +1014,34 @@ function edition_tireurs_shortcode() {
 						
 						
 						
-						$tabs .= '</tbody></table>';
+						$tabs .= '</tbody></table> </form>';
 						
 						$tabs .= '[/tab] ';
 					}
 					$tabs .= '[/tabcontent]
 					[/tabs]'; 
 					
+					$scripts = '<script>
 					
+					jQuery(document).ready(function(){
+					
+						jQuery("span.dashicons-welcome-write-blog").on("click",function(){
+						
+							var theLine = jQuery(this).parent().parent();
+							
+							var vehicule = theLine.find(".vehicule").attr("data-content");
+							theLine.find(".vehicule").html("<input name=\'vehicule\' type=\'text\' value=\'"+vehicule+"\' />");
+							
+							var nom_profil = theLine.find(".nom_profil").attr("data-content");
+							theLine.find(".nom_profil").html("<input name=\'nom_profil\' type=\'text\' value=\'"+nom_profil+"\' />");
+							
+							
+						
+						});
+					
+					});
+					
+					</script>';
 					
 				}
 	
