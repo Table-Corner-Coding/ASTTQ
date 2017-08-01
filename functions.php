@@ -952,4 +952,75 @@ function append_language_class($classes){
   return $classes;
 }
 
+
+// Add Shortcode
+function edition_tireurs_shortcode() {
+
+	$tabs = '';
+	
+	if(is_user_logged_in() && current_user_can('manage_options')){
+					
+					$terms = get_the_terms( get_the_ID(), 'classes' );
+					
+					$tabs = '
+					[tabs slidertype="left tabs"] 
+						[tabcontainer]';
+					foreach($terms as $term){
+						$tabs .= '[tabtext]'.$term->name.'[/tabtext]';
+					}
+					$tabs .= '[/tabcontainer]';			
+					$tabs .= '[tabcontent]'; 
+					foreach($terms as $term){
+						$tabs .= '[tab]';
+						
+						$tireurs = get_posts(array(
+									  'post_type' => 'tireurs',
+									  'numberposts' => -1,
+									  'tax_query' => array(
+										array(
+										  'taxonomy' => 'classes',
+										  'field' => 'id',
+										  'terms' => $term->term_id, // Where term_id of Term 1 is "1".
+										  'include_children' => false
+										)
+									  )
+									));
+						$tabs .= '<table><thead><tr><th>'.__('Véhicule','asttq').'</th><th>'.__('Nom du profil','asttq').'</th><th>'.__('Conducteurs','asttq').'</th></tr></thead><tbody>';
+						
+						foreach($tireurs as $tireur){
+							
+							$tireur_id = $tireur->ID;
+							$vehicule = get_field('nom_du_vehicule', $tireur_id);
+							$nom_profil = get_field('nom_du_profil', $tireur_id);
+							$conducteurs = get_field('conducteur', $tireur_id);
+	
+							
+							$tabs .=  '<tr><td>'.$vehicule.'</td><td>'.$nom_profil.'</td><td>';
+							'</td><td>';
+							
+							foreach($conducteurs as $conducteur){
+								$tabs .= '<div>'.$conducteur['nom'].'</div>';
+							}
+							
+							$tabs .= '</td></tr>';
+						}
+						
+						
+						
+						$tabs .= '</tbody></table>';
+						
+						$tabs .= '[/tab] ';
+					}
+					$tabs .= '[/tabcontent]
+					[/tabs]'; 
+					
+					
+					
+				}
+	
+	return do_shortcode($tabs);
+
+}
+add_shortcode( 'edition_tireurs', 'edition_tireurs_shortcode' );
+
 ?>
