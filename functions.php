@@ -1047,7 +1047,7 @@ function edition_tireurs_shortcode() {
 						
 							theLine.append("<span class=\'dashicons dashicons-plus-alt\'></span>");
 							
-							theLine.find("actions").html("<span class=\'dashicons dashicons-yes\'></span><span class=\'dashicons dashicons-trash\'></span>");
+							theLine.find("actions").html("<span class=\'dashicons dashicons-yes\' title=\'Enregistrer les modifications\'></span><span class=\'dashicons dashicons-trash\' title=\'Supprimer le tireur\'></span>");
 						});
 					
 					
