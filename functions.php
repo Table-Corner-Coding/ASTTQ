@@ -990,7 +990,7 @@ function edition_tireurs_shortcode() {
 										)
 									  )
 									));
-						$tabs .= '<table><thead><tr><th>'.__('Véhicule','asttq').'</th><th>'.__('Nom du profil','asttq').'</th><th>'.__('Conducteurs','asttq').'</th></tr></thead><tbody>';
+						$tabs .= '<table class="editable_table"><thead><tr><th>'.__('Véhicule','asttq').'</th><th>'.__('Nom du profil','asttq').'</th><th>'.__('Conducteurs','asttq').'</th></tr></thead><tbody>';
 						
 						foreach($tireurs as $tireur){
 							

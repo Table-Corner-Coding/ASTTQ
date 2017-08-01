@@ -502,3 +502,9 @@ iframe body .et_slide_in_menu_container{
 .iframe > #page-container > div:first-child{
 	display:none !important;
 }
+
+
+
+.editable_table{
+	background-color:#2f2f2f;
+}
