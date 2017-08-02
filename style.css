@@ -512,8 +512,7 @@ iframe body .et_slide_in_menu_container{
 	background: #cccccc;
 }
 
-table.editable_table .tireur_line .actions .save,
-table.editable_table .tireur_line .actions .delete{
+table.editable_table .tireur_line .actions .save{
 	display: none;
 }
 
@@ -521,11 +520,24 @@ table.editable_table .tireur_line .actions .edit{
 	display: inline-block;
 }
 
-table.editable_table .tireur_line.edit_line .actions .save,
-table.editable_table .tireur_line.edit_line .actions .delete{
+table.editable_table .tireur_line.edit_line .actions .save{
 	display: inline-block;
 }
 
 table.editable_table .tireur_line.edit_line .actions .edit{
 	display: none;
+}
+
+.tireur_line input[type="text"] {
+    width: 100%;
+}
+
+table.editable_table .multi_field .dashicons.dashicons-plus-alt{
+	display: block;
+	text-align: center;
+}
+
+
+table.editable_table .dashicons:before{
+	cursor: pointer;
 }
