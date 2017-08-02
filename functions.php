@@ -1051,7 +1051,7 @@ function update_post_fields() {
 	$allData = json_decode(stripslashes($_POST['data']),true);
 	
 	
-	/*
+	
 	if(!empty($objID)){
 		foreach($allData as $key => $value){
 			if(!is_array($value)){
@@ -1067,10 +1067,10 @@ function update_post_fields() {
 		}
 		
 	}
-	*/
+	/**/
 	
 	echo 'Done!';
-	var_dump($allData);
+	//var_dump($allData);
 	//echo foreignDbAction();
 	wp_die();
 }
