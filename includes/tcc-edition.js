@@ -74,7 +74,13 @@ jQuery(document).ready(function(){
 	jQuery('.editable_table').on('click','td.actions > .dashicons-trash.delete',function(){
 		var theLine = jQuery(this).parent().parent();
 		var objID = theLine.attr('data-tireur-id');
-		var nom_profil = theLine.find('.nom_profil > input').val();
+		var nom_profil = '';
+		if(theLine.hasClass('edit_line')){
+			nom_profil = theLine.find('.nom_profil > input').val();
+		}else{
+			nom_profil = theLine.find('.nom_profil').attr('data-content');
+		}
+		
 		//alert('!!!');
 		jQuery.confirm({
 			title: 'Confirmation requise!',
