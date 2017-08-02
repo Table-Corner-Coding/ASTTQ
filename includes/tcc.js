@@ -163,7 +163,7 @@ jQuery(document).ready(function(){
 				objID: objID
 			};
 
-			jQuery.post(adminAjax, my_data, function(response) { // This will make an AJAX request upon page load
+			jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
 				var rData = jQuery.parseJSON(response);
 				jQuery(this).before(rData.message);
 
@@ -182,7 +182,7 @@ jQuery(document).ready(function(){
 				objID: objID
 			};
 
-			jQuery.post(adminAjax, my_data, function(response) { // This will make an AJAX request upon page load
+			jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
 				var rData = jQuery.parseJSON(response);
 				jQuery(this).before(rData.message);
 
