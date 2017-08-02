@@ -1048,7 +1048,7 @@ function update_post_fields() {
 	global $wpdb;
 	
 	$objID = $_POST['objID'];
-	$allData = json_decode(stripslashes($_POST['data'],true));
+	$allData = json_decode(stripslashes($_POST['data']),true);
 	
 	
 	/*
