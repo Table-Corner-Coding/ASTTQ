@@ -31,6 +31,7 @@ jQuery(document).ready(function(){
 	});
 	
 	jQuery(".edit_line").on('click','.save',function(){
+		alert('Going to save!');
 		
 		var theLine = jQuery(this).parent().parent();
 		var objID = theLine.attr('data-tireur-id');
