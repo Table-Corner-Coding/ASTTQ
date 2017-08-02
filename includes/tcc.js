@@ -165,6 +165,9 @@ jQuery(document).ready(function(){
 
 			jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
 				var rData = jQuery.parseJSON(response);
+				
+				alert(rData.message);
+				
 				jQuery(this).before(rData.message);
 
 			});
@@ -184,6 +187,8 @@ jQuery(document).ready(function(){
 
 			jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
 				var rData = jQuery.parseJSON(response);
+				
+				alert(rData.message);
 				jQuery(this).before(rData.message);
 
 			});
