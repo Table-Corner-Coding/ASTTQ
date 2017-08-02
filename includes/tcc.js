@@ -154,8 +154,12 @@ jQuery(document).ready(function(){
 		jQuery(this).parent().parent().parent().parent().find('div[data-name=classe_id]').find('input').val(classeID);
 	});
 	
-	
-	
+	/*
+	jQuery('#acf-form div[data-name=classe_id]').each(function(){
+		var theGroup = jQuery(this).parent().parent().parent().parent();
+		var theSelect = theGroup.find('div[data-name=classe]').find('input[type=hidden]').select2('data', {id:103});
+	});
+	*/
 });
 
 

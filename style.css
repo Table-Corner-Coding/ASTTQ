@@ -472,9 +472,13 @@ input:checked + .slider:before {
 
 div.last_updated:before{
 	content: 'Dernière mise à jour: ';
+	padding-right: 15px;
 	display: inline-block;
 }
 
+body.en div.last_updated:before{
+	content: 'Last Update: ';
+}
 
 .loading{
 	position:relative;

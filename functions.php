@@ -905,10 +905,12 @@ function get_points_table_for_event($event_id, $refresh = false){
 			}
 		
 			
-			$classement .= '</tbody></table><br /><div class="last_updated">'.strftime('%d/%m/%y - %H:%M').'</div>';
+			$classement .= '</tbody></table><br />';
 		
 		
 		}
+		
+		$classement .= '<div class="last_updated"> '.strftime('%d/%m/%y - %H:%M').'</div>';
 		
 		delete_transient($transient_name);
 		set_transient( $transient_name, $classement, YEAR_IN_SECONDS );
