@@ -20,9 +20,9 @@ jQuery(document).ready(function(){
 
 		});
 
-		theLine.append("<span class='dashicons dashicons-plus-alt'></span>");
+		theLine.find(".conducteur").append("<span class='dashicons dashicons-plus-alt'></span>");
 
-		theLine.find("actions").html("");
+		//theLine.find("actions").html("");
 	});
 
 
