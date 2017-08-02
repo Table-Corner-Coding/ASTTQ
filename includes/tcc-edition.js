@@ -57,7 +57,7 @@ jQuery(document).ready(function(){
                     data: jsonString // Post any variables you want here
                 };
 		
-			jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
+			jQuery.post(adminAjax, my_data, function(response) { // This will make an AJAX request upon page load
                     //jQuery("#response").html("<div>"+response+"</div>");
 					//jQuery("body").removeClass("loading");
 					alert(response);
