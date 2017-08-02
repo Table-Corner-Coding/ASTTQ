@@ -16,8 +16,7 @@ function my_enqueue_assets() {
 	wp_enqueue_script( 'tcc-scripts', get_stylesheet_directory_uri().'/includes/tcc.js', array('jquery','iframe-resizer') );
 	
 	// in JavaScript, object properties are accessed as ajax_object.ajax_url, ajax_object.we_value
-	wp_localize_script( 'tcc-scripts', 'ajax_object',
-    array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'we_value' => 1234 ) );
+	wp_localize_script( 'tcc-scripts', 'ajax_url', admin_url( 'admin-ajax.php' ) );
 	
 
 } 
