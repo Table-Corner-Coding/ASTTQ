@@ -349,16 +349,16 @@ form.acf-form{
 	padding-bottom: 5px;
 }
 
-th.acf-th {
+td[data-name=distance] th.acf-th {
     padding: 0 !important;
 }
 
-ul.acf-actions.acf-hl {
+td[data-name=distance] ul.acf-actions.acf-hl {
     padding: 0 !important;
 	display: none !important;
 }
 
-a.acf-button[data-event=add-row] {
+td[data-name=distance] a.acf-button[data-event=add-row] {
     width: 25px;
     padding: 5px;
     height: 25px;
@@ -368,17 +368,17 @@ a.acf-button[data-event=add-row] {
     color: transparent;
 }
 
-td.acf-row-handle.remove {
+td[data-name=distance] td.acf-row-handle.remove {
     min-width: 50px;
 }
 
-td.acf-row-handle.remove .acf-icon{
+td[data-name=distance] td.acf-row-handle.remove .acf-icon{
     position: static !important;
     display: inline-block !important;
     margin: 0 !important;
 }
 
-a.acf-button[data-event=add-row]:after {
+td[data-name=distance] a.acf-button[data-event=add-row]:after {
     content: ' + ';
     display: block;
     padding-left: 0px;
