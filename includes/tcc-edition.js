@@ -29,5 +29,40 @@ jQuery(document).ready(function(){
 	jQuery(".conducteur").on("click","span.dashicons-plus-alt",function(){
 		jQuery(this).before("<div data-content=''><input name='conducteur[]' type='text' /></div>");
 	});
+	
+	jQuery(".edit_line").on('click','.save',function(){
+		
+		var theLine = jQuery(this).parent().parent();
+		var objID = theLine.attr('data-tireur-id');
+		var vehicule = theLine.find('.vehicule > input').val();
+		var nom_profil = theLine.find('.nom_profil > input').val();
+		//var conducteur = [];
+		var nom = [];
+		
+		
+		theLine.find('.conducteur > div > input').each(function(){
+			nom.push(jQuery(this).val());
+		});
+		
+		var conducteur = {nom: nom};
+		
+		var dataString = {vehicule: vehicule, nom_profil: nom_profil, conducteur: conducteur};
+		var jsonString = JSON.stringify(dataString);
+		
+		
+		var my_data = {
+                    action: 'update_post_fields', // This is required so WordPress knows which func to use
+					objID: objID,
+                    data: jsonString // Post any variables you want here
+                };
+		
+			jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
+                    //jQuery("#response").html("<div>"+response+"</div>");
+					//jQuery("body").removeClass("loading");
+					alert(response);
+                });
+		
+	});
+	
 
 });

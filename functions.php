@@ -959,7 +959,12 @@ function edition_tireurs_shortcode() {
 	$tabs = '';
 	
 	if(is_user_logged_in() && current_user_can('manage_options')){
-		wp_enqueue_script( 'tcc-edittion', get_stylesheet_directory_uri().'/includes/tcc-edition.js', array('jquery') );			
+		wp_enqueue_script( 'tcc-edition', get_stylesheet_directory_uri().'/includes/tcc-edition.js', array('jquery') );
+		
+		wp_localize_script( 'tcc-edition', 'ajax_object',
+    	array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'we_value' => 1234 ) );
+		
+		
 		$args = array(
 			'taxonomy' => 'classes',
 			'hide_empty' => false
@@ -1037,5 +1042,38 @@ function edition_tireurs_shortcode() {
 
 }
 add_shortcode( 'edition_tireurs', 'edition_tireurs_shortcode' );
+
+
+
+function update_post_fields() {
+	global $wpdb;
+	
+	$objID = $_POST['objID'];
+	$allData = json_decode(stripslashes($_POST['data']));
+	
+	
+	if(!empty($objID)){
+		foreach($allData as $key => $value){
+			if(!is_array($value)){
+				update_field($key, $value, $objID);
+			}else{
+				
+				$field_value = array();
+				foreach($value as $subkey=>$subvalue){
+					$field_value[] = array($subkey=>$subvalue);
+				}
+				update_field( $key, $field_value, $objID );
+			}
+		}
+		
+	}
+	
+	echo 'Done!';
+	//echo foreignDbAction();
+	wp_die();
+}
+add_action( 'wp_ajax_update_post_fields', 'update_post_fields' );
+add_action( 'wp_ajax_nopriv_update_post_fields', 'update_post_fields' );
+
 
 ?>
