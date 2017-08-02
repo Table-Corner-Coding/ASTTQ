@@ -26,7 +26,7 @@ jQuery(document).ready(function(){
 	});
 
 
-	jQuery(".conducteur").on("click","span.dashicons-plus-alt",function(){
+	jQuery(".editable_table").on("click",".conducteur span.dashicons-plus-alt",function(){
 		jQuery(this).before("<div data-content=''><input name='conducteur[]' type='text' /></div>");
 	});
 	
