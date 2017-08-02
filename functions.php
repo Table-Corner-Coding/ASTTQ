@@ -1062,7 +1062,7 @@ function update_post_fields() {
 				foreach($value as $subkey=>$subvalue){
 					
 					$cleanValue = str_replace(array('"','[',']'),array('','',''),$subvalue);
-					$field_value[] = array($subkey=>$cleanValue);
+					$field_value[] = array($subkey => $cleanValue);
 				}
 				update_field( $key, $field_value, $objID );
 			}
@@ -1072,7 +1072,7 @@ function update_post_fields() {
 	/**/
 	
 	echo 'Done!';
-	//var_dump($allData);
+	var_dump($allData);
 	//echo foreignDbAction();
 	wp_die();
 }
