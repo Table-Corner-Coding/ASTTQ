@@ -47,7 +47,7 @@ jQuery(document).ready(function(){
 		
 		var conducteur = {nom: nom};
 		
-		var dataString = {vehicule: vehicule, nom_profil: nom_profil, conducteur: conducteur};
+		var dataString = {nom_du_vehicule: vehicule, nom_du_profil: nom_profil, conducteur: conducteur};
 		var jsonString = JSON.stringify(dataString);
 		
 		
