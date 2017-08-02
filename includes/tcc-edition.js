@@ -61,14 +61,14 @@ jQuery(document).ready(function(){
                     //jQuery("#response").html("<div>"+response+"</div>");
 					//jQuery("body").removeClass("loading");
 				alert(response);
-				editonDone(theLine);
+				editionDone(theLine);
             });
 	});
 	
 
 });
 
-function editonDone(theLine){
+function editionDone(theLine){
 	theLine.removeClass('edit_line');
 		var vehicule = theLine.find(".vehicule").attr("data-content",theLine.find(".vehicule input").val());
 		theLine.find(".vehicule").html(theLine.find(".vehicule").attr("data-content"));
