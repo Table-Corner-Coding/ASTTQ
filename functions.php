@@ -964,7 +964,9 @@ function edition_tireurs_shortcode() {
 	if(is_user_logged_in() && current_user_can('manage_options')){
 		wp_enqueue_script( 'tcc-edition', get_stylesheet_directory_uri().'/includes/tcc-edition.js', array('jquery') );
 		wp_localize_script( 'tcc-edition', 'adminAjax', admin_url( 'admin-ajax.php' ) );
-
+		
+		wp_enqueue_script( 'jquery-confirm', get_stylesheet_directory_uri().'/includes/jquery-confirm/js/jquery-confirm.js', array('jquery') );
+		wp_enqueue_style( 'jquery-confirm-style', get_stylesheet_directory_uri().'/includes/jquery-confirm/css/jquery-confirm.css' );
 		
 		
 		$args = array(
@@ -1109,12 +1111,33 @@ function update_post_fields() {
 	//echo $worker;
 	
 	echo json_encode(array('message'=>'Les changement ont été sauvegardés','objID'=>$objID));
-	//var_dump($allData);
-	//echo foreignDbAction();
+	
+	
+	
 	wp_die();
 }
 add_action( 'wp_ajax_update_post_fields', 'update_post_fields' );
 add_action( 'wp_ajax_nopriv_update_post_fields', 'update_post_fields' );
+
+function ajax_delete_post(){
+	$objID = $_POST['objID'];
+	
+	if(!empty($objID)){
+		$retVal = wp_delete_post($objID);
+	}
+	//var_dump($allData);
+	//echo foreignDbAction();
+	
+	if(!$retVal){
+		echo 'Il y a eu une erreur...';
+	}else{
+		echo $retVal->post_title.' a été supprimé avec succès.';
+	}
+	
+	wp_die();
+}
+add_action( 'wp_ajax_ajax_delete_post', 'ajax_delete_post' );
+add_action( 'wp_ajax_nopriv_ajax_delete_post', 'ajax_delete_post' );
 
 
 ?>

@@ -71,6 +71,51 @@ jQuery(document).ready(function(){
             });
 	});
 	
+	jQuery('.edit_table').on('click','.edit_line .delete',function(){
+		var theLine = jQuery(this).parent().parent();
+		var objID = theLine.attr('data-tireur-id');
+		var nom_profil = theLine.find('.nom_profil > input').val();
+		
+		jQuery.confirm({
+			title: 'Confirmation requise!',
+			content: 'Êtes-vous certain de vouloir supprimer '+nom_profil+'?',
+			buttons: {
+				confirm: {
+					text: "Oui",
+					action: function () {
+						
+						var my_data = {
+						action: 'ajax_delete_post', // This is required so WordPress knows which func to use
+						objID: objID
+						};
+
+						jQuery.post(adminAjax, my_data, function(response) { // This will make an AJAX request upon page load
+								//jQuery("#response").html("<div>"+response+"</div>");
+								//jQuery("body").removeClass("loading");
+
+							var rData = jQuery.parseJSON(response);
+							alert(rData.message);
+							theLine.attr('data-tireur-id',rData.objID);
+							editionDone(theLine);
+						});
+						
+						
+					}
+				},
+				cancel: { 
+					text: "Non, c'est une erreur...",
+					action: function(){
+								//$.alert('Canceled!');
+							}
+				}
+			}
+		});
+		
+		
+		
+		
+	});
+	
 	jQuery('.add_tireur_line').on('click','.dashicons-plus-alt',function(){
 		jQuery(this).parent().parent().before('<tr class="tireur_line edit_line" data-tireur-id="0"><td data-content="" class="vehicule"><input name="vehicule" type="text" value=""></td><td class="nom_profil" data-content=""><input name="nom_profil" type="text" value=""></td><td class="conducteur multi_field"><div data-content=""><input name="conducteur[]" type="text" value=""></div><span class="dashicons dashicons-plus-alt"></span></td><td class="actions"><span title="Éditer" class="dashicons dashicons-welcome-write-blog edit"></span><span class="dashicons dashicons-yes save" title="Enregistrer les modifications"></span><span class="dashicons dashicons-trash delete" title="Supprimer le tireur"></span></td></tr>');
 	});
