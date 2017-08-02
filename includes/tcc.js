@@ -164,9 +164,6 @@ jQuery(document).ready(function(){
 			};
 
 			jQuery.post(adminAjax, my_data, function(response) { // This will make an AJAX request upon page load
-					//jQuery("#response").html("<div>"+response+"</div>");
-					//jQuery("body").removeClass("loading");
-
 				var rData = jQuery.parseJSON(response);
 				jQuery(this).before(rData.message);
 
@@ -174,6 +171,23 @@ jQuery(document).ready(function(){
 
 		});
 
+	
+	jQuery('#acf-form td[data-name=nom_du_tireur] .acf-input input[type=text]').each(function(){
+		
+		var theLine = jQuery(this).parent().parent().parent().parent();
+			var objID = theLine.find('td[data-name=tireur] input[type=hidden]').val();
+
+			var my_data = {
+				action: 'ajax_get_conducteurs', // This is required so WordPress knows which func to use
+				objID: objID
+			};
+
+			jQuery.post(adminAjax, my_data, function(response) { // This will make an AJAX request upon page load
+				var rData = jQuery.parseJSON(response);
+				jQuery(this).before(rData.message);
+
+			});
+	});
 	
 	/*
 	jQuery('#acf-form div[data-name=classe_id]').each(function(){
