@@ -179,7 +179,7 @@ jQuery(document).ready(function(){
 		
 		var theLine = jQuery(this).parent().parent().parent().parent();
 			var objID = theLine.find('td[data-name=tireur] input[type=hidden]').val();
-
+			var hiddenField = jQuery(this);
 			var my_data = {
 				action: 'ajax_get_conducteurs', // This is required so WordPress knows which func to use
 				objID: objID
@@ -189,7 +189,7 @@ jQuery(document).ready(function(){
 				var rData = jQuery.parseJSON(response);
 				
 				alert(rData.message);
-				jQuery(this).before(jQuery(rData.message));
+				hiddenField.before(jQuery(rData.message));
 
 			});
 	});
