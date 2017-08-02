@@ -960,9 +960,8 @@ function edition_tireurs_shortcode() {
 	
 	if(is_user_logged_in() && current_user_can('manage_options')){
 		wp_enqueue_script( 'tcc-edition', get_stylesheet_directory_uri().'/includes/tcc-edition.js', array('jquery') );
-		
-		wp_localize_script( 'tcc-edition', 'ajax_object',
-    	array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'we_value' => 1234 ) );
+		wp_localize_script( 'tcc-edition', 'adminAjax', admin_url( 'admin-ajax.php' ) );
+
 		
 		
 		$args = array(
