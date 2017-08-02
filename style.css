@@ -470,6 +470,10 @@ input:checked + .slider:before {
 }
 
 
+div.last_updated{
+	margin-bottom: 1em;
+}
+
 div.last_updated:before{
 	content: 'Dernière mise à jour: ';
 	padding-right: 15px;
