@@ -100,7 +100,7 @@ jQuery(document).ready(function(){
 								//jQuery("body").removeClass("loading");
 
 							var rData = jQuery.parseJSON(response);
-							alert(rData.message);
+							//alert(rData.message);
 							theLine.fadeOut(300,function(){
 								theLine.remove();
 							});

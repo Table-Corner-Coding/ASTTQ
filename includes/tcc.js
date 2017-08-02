@@ -145,6 +145,16 @@ jQuery(document).ready(function(){
 	}, 200);
 	*/
 	
+	
+	// on Select change:
+	
+	jQuery('#acf-form').on('change','.acf-taxonomy-field.acf-soh > input[type=hidden]', function(){
+		alert('La classe a été changée!');
+		jQuery(this).parent().parent().parent().next('div[data-name="classe_id"]').find('input').val(jQuery(this).val());
+	});
+	
+	
+	
 });
 
 
