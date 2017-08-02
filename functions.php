@@ -959,7 +959,7 @@ function edition_tireurs_shortcode() {
 	$tabs = '';
 	
 	if(is_user_logged_in() && current_user_can('manage_options')){
-					
+		wp_enqueue_script( 'tcc-edittion', get_stylesheet_directory_uri().'/includes/tcc-edition.js', array('jquery') );			
 		$args = array(
 			'taxonomy' => 'classes',
 			'hide_empty' => false
@@ -1002,7 +1002,7 @@ function edition_tireurs_shortcode() {
 							$conducteurs = get_field('conducteur', $tireur_id);
 	
 							
-							$tabs .=  '<tr data-Tireur-ID="'.$tireur_id.'"><td data-content="'.$vehicule.'" class="vehicule">'.$vehicule.'</td><td class="nom_profil" data-content="'.$nom_profil.'">'.$nom_profil.'</td><td class="conducteur">';
+							$tabs .=  '<tr class="tireur_line" data-Tireur-ID="'.$tireur_id.'"><td data-content="'.$vehicule.'" class="vehicule">'.$vehicule.'</td><td class="nom_profil" data-content="'.$nom_profil.'">'.$nom_profil.'</td><td class="conducteur">';
 							
 							if(count($conducteurs)){
 								foreach($conducteurs as $conducteur){
@@ -1013,7 +1013,7 @@ function edition_tireurs_shortcode() {
 							}
 							
 							
-							$tabs .= '</td><td class="actions"><span title="Éditer" class="dashicons dashicons-welcome-write-blog"></span></td></tr>';
+							$tabs .= '</td><td class="actions"><span title="Éditer" class="dashicons dashicons-welcome-write-blog edit"></span></td></tr>';
 						}
 						
 						
@@ -1027,35 +1027,7 @@ function edition_tireurs_shortcode() {
 					
 					$scripts = '<script>
 					
-					jQuery(document).ready(function(){
 					
-						jQuery("span.dashicons-welcome-write-blog").on("click",function(){
-						
-							var theLine = jQuery(this).parent().parent();
-							
-							var vehicule = theLine.find(".vehicule").attr("data-content");
-							theLine.find(".vehicule").html("<input name=\'vehicule\' type=\'text\' value=\'"+vehicule+"\' />");
-							
-							var nom_profil = theLine.find(".nom_profil").attr("data-content");
-							theLine.find(".nom_profil").html("<input name=\'nom_profil\' type=\'text\' value=\'"+nom_profil+"\' />");
-							
-							theLine.find(".conducteur > div").each(function(){
-								var theValue = jQuery(this).attr("data-content");
-								jQuery(this).html("<input name=\'conducteur[]\' type=\'text\' value=\'"+theValue+"\' />");
-							
-							});
-						
-							theLine.append("<span class=\'dashicons dashicons-plus-alt\'></span>");
-							
-							theLine.find("actions").html("<span class=\'dashicons dashicons-yes\' title=\'Enregistrer les modifications\'></span><span class=\'dashicons dashicons-trash\' title=\'Supprimer le tireur\'></span>");
-						});
-					
-					
-						jQuery(".conducteur span.dashicons-plus-alt").on("click",function(){
-							jQuery(this).before("<div data-content=\'\'><input name=\'conducteur[]\' type=\'text\' /></div>");
-						});
-						
-					});
 					
 					</script>';
 					

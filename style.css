@@ -511,3 +511,21 @@ iframe body .et_slide_in_menu_container{
 .entry-content table.editable_table tbody tr:nth-child(odd) td{
 	background: #cccccc;
 }
+
+table.editable_table .tireur_line .actions .save,
+table.editable_table .tireur_line .actions .delete{
+	display: none;
+}
+
+table.editable_table .tireur_line .actions .edit{
+	display: inline-block;
+}
+
+table.editable_table .tireur_line.edit_line .actions .save,
+table.editable_table .tireur_line.edit_line .actions .delete{
+	display: inline-block;
+}
+
+table.editable_table .tireur_line.edit_line .actions .edit{
+	display: none;
+}
