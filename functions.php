@@ -1061,9 +1061,13 @@ function update_post_fields() {
 				$worker .= '\r'.'Updating field: '.$key.' to: '.print_r($value,true).' in post: '.$objID;
 				$field_value = array();
 				foreach($value as $subkey=>$subvalue){
+					if(is_array($subvalue)){
+						foreach($subvalue as $val){
+							$cleanValue = str_replace(array('"','[',']'),array('','',''),$val);
+							$field_value[] = array($subkey => $cleanValue);
+						}
+					}
 					
-					$cleanValue = str_replace(array('"','[',']'),array('','',''),$subvalue);
-					$field_value[] = array($subkey => $cleanValue);
 				}
 				update_field( $key, $field_value, $objID );
 			}
