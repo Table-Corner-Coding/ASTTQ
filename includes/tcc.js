@@ -156,8 +156,8 @@ jQuery(document).ready(function(){
 	
 	jQuery('#acf-form').on('change','td[data-name=tireur] input[type=hidden]', function(){
 		//alert('La classe a été changée! Elle est maintenant: '+jQuery(this).val());
-		alert('tireur changé!');
-		var sender = jQuery(this).parent().parent().parent().parent().find('td[data-name=nom_du_tireur] input[type=text]');
+		//alert('tireur changé!');
+		var sender = jQuery(this).parent().parent().parent().find('td[data-name=nom_du_tireur] input[type=text]');
 		//jQuery(this).parent().parent().parent().parent().find('div[data-name=classe_id]').find('input').val(classeID);
 		
 		updateConducteurs(sender,0);
