@@ -62,7 +62,6 @@ jQuery(document).ready(function(){
 					//jQuery("body").removeClass("loading");
 					alert(response);
                 });
-		
 	});
 	
 
