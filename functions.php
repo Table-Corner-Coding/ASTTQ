@@ -82,8 +82,11 @@ function modify_post_title( $data,  $postarr )
 	}else{
 		  $title = '[] - '.$nomProfil;
 	  }
-
-    $data['post_title'] =  $title ; //Updates the post title to your new title.
+	
+	if($title != '[] - '){
+		$data['post_title'] =  $title ; //Updates the post title to your new title.
+	}
+    
   }elseif($data['post_type'] == 'tribe_events'){
 	  	
 	  $option_name = 'events-to-update';

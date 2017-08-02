@@ -4,7 +4,7 @@ jQuery(document).ready(function(){
 	
 	jQuery('.actions').append("<span class='dashicons dashicons-yes save' title='Enregistrer les modifications'></span><span class='dashicons dashicons-trash delete' title='Supprimer le tireur'></span>");
 	
-	jQuery("span.dashicons-welcome-write-blog").on("click",function(){
+	jQuery(".editable_table").on("click",'span.dashicons-welcome-write-blog',function(){
 
 		var theLine = jQuery(this).parent().parent();
 		theLine.addClass('edit_line');
