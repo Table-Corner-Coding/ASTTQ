@@ -1050,14 +1050,15 @@ function update_post_fields() {
 	$objID = $_POST['objID'];
 	$allData = json_decode(stripslashes($_POST['data']),true);
 	
-	
+	$worker = '';
 	
 	if(!empty($objID)){
 		foreach($allData as $key => $value){
 			if(!is_array($value)){
 				update_field($key, $value, $objID);
+				$worker .= '\r'.'Updating field: '.$key.' to: '.$value.' in post: '.$objID;
 			}else{
-				
+				$worker .= '\r'.'Updating field: '.$key.' to: '.print_r($value,true).' in post: '.$objID;
 				$field_value = array();
 				foreach($value as $subkey=>$subvalue){
 					
@@ -1070,6 +1071,8 @@ function update_post_fields() {
 		
 	}
 	/**/
+	
+	echo $worker;
 	
 	echo 'Done!';
 	var_dump($allData);
