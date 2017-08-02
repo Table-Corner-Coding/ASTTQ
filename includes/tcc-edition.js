@@ -71,7 +71,7 @@ jQuery(document).ready(function(){
             });
 	});
 	
-	jQuery('.edit_table').on('click','.edit_line .delete',function(){
+	jQuery('.edit_table').on('click','tr .delete',function(){
 		var theLine = jQuery(this).parent().parent();
 		var objID = theLine.attr('data-tireur-id');
 		var nom_profil = theLine.find('.nom_profil > input').val();
