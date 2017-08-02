@@ -373,9 +373,9 @@ td.acf-row-handle.remove {
 }
 
 td.acf-row-handle.remove .acf-icon{
-    position: static;
-    display: inline-block;
-    margin: 0;
+    position: static !important;
+    display: inline-block !important;
+    margin: 0 !important;
 }
 
 a.acf-button[data-event=add-row]:after {
