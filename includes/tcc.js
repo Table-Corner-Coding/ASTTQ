@@ -152,7 +152,7 @@ jQuery(document).ready(function(){
 		//alert('La classe a été changée! Elle est maintenant: '+jQuery(this).val());
 		var classeID = jQuery(this).val();
 		jQuery(this).parent().parent().parent().parent().find('div[data-name=classe_id]').find('input').val(classeID);
-		jQuery(this).parent().remove('.acf-button.button.button-primary.load-members');
+		jQuery(this).parent().find('.load-members').remove();
 		jQuery(this).parent().append('<a class="acf-button button button-primary load-members">Charger les membres de cette classe</a>');
 	});
 	
@@ -184,7 +184,7 @@ jQuery(document).ready(function(){
 			action: 'ajax_get_conducteurs', // This is required so WordPress knows which func to use
 			objID: objID
 		};
-
+		
 		jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
 			var rData = jQuery.parseJSON(response);
 
