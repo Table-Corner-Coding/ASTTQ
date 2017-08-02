@@ -152,6 +152,8 @@ jQuery(document).ready(function(){
 		//alert('La classe a été changée! Elle est maintenant: '+jQuery(this).val());
 		var classeID = jQuery(this).val();
 		jQuery(this).parent().parent().parent().parent().find('div[data-name=classe_id]').find('input').val(classeID);
+		
+		jQuery(this).parent().append('<a class="acf-button button button-primary">Charger les membres de cette classe</a>');
 	});
 	
 	jQuery('#acf-form').on('change','td[data-name=tireur] input[type=hidden]', function(){
