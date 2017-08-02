@@ -31,7 +31,7 @@ jQuery(document).ready(function(){
 	});
 	
 	jQuery(".editable_table").on('click','.edit_line .save',function(){
-		alert('Going to save!');
+		//alert('Going to save!');
 		
 		var theLine = jQuery(this).parent().parent();
 		var objID = theLine.attr('data-tireur-id');
