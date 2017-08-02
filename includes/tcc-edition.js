@@ -30,7 +30,7 @@ jQuery(document).ready(function(){
 		jQuery(this).before("<div data-content=''><input name='conducteur[]' type='text' /></div>");
 	});
 	
-	jQuery(".edit_line").on('click','.save',function(){
+	jQuery(".editable_table").on('click','.edit_line .save',function(){
 		alert('Going to save!');
 		
 		var theLine = jQuery(this).parent().parent();
