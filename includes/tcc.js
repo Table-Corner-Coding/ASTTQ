@@ -154,6 +154,14 @@ jQuery(document).ready(function(){
 		jQuery(this).parent().parent().parent().parent().find('div[data-name=classe_id]').find('input').val(classeID);
 	});
 	
+	jQuery('#acf-form').on('change','td[data-name=tireur] > input[type=hidden]', function(){
+		//alert('La classe a été changée! Elle est maintenant: '+jQuery(this).val());
+		var sender = jQuery(this).parent().parent().parent().parent().find('td[dataname=nom_du_tireur] input[type=text]');
+		//jQuery(this).parent().parent().parent().parent().find('div[data-name=classe_id]').find('input').val(classeID);
+		
+		updateConducteurs(sender,0);
+	});
+	
 	jQuery('#acf-form').on('change','.conducteurs_select',function(){
 		jQuery(this).next('input[type=text]').val(jQuery(this).val());
 	});
@@ -181,24 +189,32 @@ jQuery(document).ready(function(){
 	
 	jQuery('#acf-form td[data-name=nom_du_tireur] .acf-input input[type=text]').each(function(){
 		
-		var theLine = jQuery(this).parent().parent().parent().parent();
-			var objID = theLine.find('td[data-name=tireur] input[type=hidden]').val();
-			var hiddenField = jQuery(this);
-			var my_data = {
-				action: 'ajax_get_conducteurs', // This is required so WordPress knows which func to use
-				objID: objID
-			};
-
-			jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
-				var rData = jQuery.parseJSON(response);
-				
-				//alert(rData.message);
-				var theSelect = jQuery(rData.message);
-				hiddenField.before(theSelect);
-				theSelect.trigger('change');
-			});
+		updateConducteurs(jQuery(this),1);
 	});
 	
+	function updateConducteurs(hiddenField,triggerChange){
+		
+		var theLine = hiddenField.parent().parent().parent().parent();
+		var objID = theLine.find('td[data-name=tireur] input[type=hidden]').val();
+		//var hiddenField = sender;
+		var my_data = {
+			action: 'ajax_get_conducteurs', // This is required so WordPress knows which func to use
+			objID: objID
+		};
+
+		jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
+			var rData = jQuery.parseJSON(response);
+
+			//alert(rData.message);
+			var theSelect = jQuery(rData.message);
+			hiddenField.parent().find('select').remove();
+			hiddenField.before(theSelect);
+			if(triggerChange == 1){
+				theSelect.trigger('change');
+			}
+
+		});
+	}
 	
 	
 	/*
