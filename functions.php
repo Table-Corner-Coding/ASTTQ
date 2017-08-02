@@ -1066,7 +1066,11 @@ function update_post_fields() {
 					if(is_array($subvalue)){
 						foreach($subvalue as $val){
 							$cleanValue = str_replace(array('"','[',']'),array('','',''),$val);
-							$field_value[] = array($subkey => $cleanValue);
+							
+							if(!empty($cleanValue)){
+								$field_value[] = array($subkey => $cleanValue);
+							}
+							
 						}
 					}
 					
@@ -1078,10 +1082,10 @@ function update_post_fields() {
 	}
 	/**/
 	
-	echo $worker;
+	//echo $worker;
 	
-	echo 'Done!';
-	var_dump($allData);
+	echo 'Les changement ont été sauvegardés';
+	//var_dump($allData);
 	//echo foreignDbAction();
 	wp_die();
 }

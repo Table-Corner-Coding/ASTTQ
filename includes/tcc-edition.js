@@ -60,9 +60,33 @@ jQuery(document).ready(function(){
 			jQuery.post(adminAjax, my_data, function(response) { // This will make an AJAX request upon page load
                     //jQuery("#response").html("<div>"+response+"</div>");
 					//jQuery("body").removeClass("loading");
-					alert(response);
-                });
+				alert(response);
+				editonDone(theLine);
+            });
 	});
 	
 
 });
+
+function editonDone(theLine){
+	theLine.removeClass('edit_line');
+		var vehicule = theLine.find(".vehicule").attr("data-content",theLine.find(".vehicule input").val());
+		theLine.find(".vehicule").html(theLine.find(".vehicule").attr("data-content"));
+	
+		var nom_profil = theLine.find(".nom_profil").attr("data-content",theLine.find(".nom_profil input").val());
+		theLine.find(".nom_profil").html(theLine.find(".nom_profil").attr("data-content"));
+	
+
+		theLine.find(".conducteur > div").each(function(){
+			jQuery(this).attr("data-content",jQuery(this).find('input').val());
+			
+			if(jQuery(this).attr("data-content") != ""){
+				jQuery(this).html(jQuery(this).attr("data-content"));
+			}else{
+				jQuery(this).remove();
+			}
+		});
+
+		theLine.find(".conducteur .dashicons.dashicons-plus-alt").remove();
+	
+}
