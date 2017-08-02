@@ -349,16 +349,16 @@ form.acf-form{
 	padding-bottom: 5px;
 }
 
-td[data-name=distance] th.acf-th {
+td[data-name=distances] th.acf-th {
     padding: 0 !important;
 }
 
-td[data-name=distance] ul.acf-actions.acf-hl {
+td[data-name=distances] ul.acf-actions.acf-hl {
     padding: 0 !important;
 	display: none !important;
 }
 
-td[data-name=distance] a.acf-button[data-event=add-row] {
+td[data-name=distances] a.acf-button[data-event=add-row] {
     width: 25px;
     padding: 5px;
     height: 25px;
@@ -368,17 +368,17 @@ td[data-name=distance] a.acf-button[data-event=add-row] {
     color: transparent;
 }
 
-td[data-name=distance] td.acf-row-handle.remove {
+td[data-name=distances] td.acf-row-handle.remove {
     min-width: 50px;
 }
 
-td[data-name=distance] td.acf-row-handle.remove .acf-icon{
+td[data-name=distances] td.acf-row-handle.remove .acf-icon{
     position: static !important;
     display: inline-block !important;
     margin: 0 !important;
 }
 
-td[data-name=distance] a.acf-button[data-event=add-row]:after {
+td[data-name=distances] a.acf-button[data-event=add-row]:after {
     content: ' + ';
     display: block;
     padding-left: 0px;
