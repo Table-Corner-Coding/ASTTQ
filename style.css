@@ -349,6 +349,10 @@ form.acf-form{
 	padding-bottom: 5px;
 }
 
+td[data-name=tireur]{
+	vertical-align: middle !important;
+}
+
 td[data-name=distances] th.acf-th {
     padding: 0 !important;
 }
