@@ -150,7 +150,8 @@ jQuery(document).ready(function(){
 	
 	jQuery('#acf-form').on('change','.acf-taxonomy-field.acf-soh > input[type=hidden]', function(){
 		alert('La classe a été changée! Elle est maintenant: '+jQuery(this).val());
-		jQuery(this).parent().parent().parent().next('div[data-name="classe_id"]').find('input').val(jQuery(this).val());
+		var classeID = jQuery(this).val();
+		jQuery(this).parent().parent().parent().parent().find('div[data-name="classe_id"]').find('input').val(classeID);
 	});
 	
 	
