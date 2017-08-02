@@ -349,7 +349,8 @@ form.acf-form{
 	padding-bottom: 5px;
 }
 
-td[data-name=tireur]{
+td[data-name=tireur],
+td[data-name=nom_du_tireur]{
 	vertical-align: middle !important;
 }
 

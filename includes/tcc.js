@@ -154,6 +154,10 @@ jQuery(document).ready(function(){
 		jQuery(this).parent().parent().parent().parent().find('div[data-name=classe_id]').find('input').val(classeID);
 	});
 	
+	jQuery('#acf-form').on('change','.conducteurs_select',function(){
+		jQuery(this).next('input[type=text]').val(jQuery(this).val());
+	});
+	
 		jQuery('#acf-form').on('load','td[data-name=nom_du_tireur] .acf-input input[type=text]',function(){
 			var theLine = jQuery(this).parent().parent().parent().parent();
 			var objID = theLine.find('td[data-name=tireur] input[type=hidden]').val();
@@ -188,11 +192,14 @@ jQuery(document).ready(function(){
 			jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
 				var rData = jQuery.parseJSON(response);
 				
-				alert(rData.message);
-				hiddenField.before(jQuery(rData.message));
-
+				//alert(rData.message);
+				var theSelect = jQuery(rData.message);
+				hiddenField.before(theSelect);
+				theSelect.trigger('change');
 			});
 	});
+	
+	
 	
 	/*
 	jQuery('#acf-form div[data-name=classe_id]').each(function(){
