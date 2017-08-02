@@ -1060,7 +1060,9 @@ function update_post_fields() {
 				
 				$field_value = array();
 				foreach($value as $subkey=>$subvalue){
-					$field_value[] = array($subkey=>$subvalue);
+					
+					$cleanValue = str_replace(array('"','[',']'),array('','',''),$subvalue);
+					$field_value[] = array($subkey=>$cleanValue);
 				}
 				update_field( $key, $field_value, $objID );
 			}
