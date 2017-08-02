@@ -70,12 +70,12 @@ jQuery(document).ready(function(){
 				editionDone(theLine);
             });
 	});
-	
-	jQuery('.edit_table').on('click','td.actions > .dashicons-trash.delete',function(){
+
+	jQuery('.editable_table').on('click','td.actions > .dashicons-trash.delete',function(){
 		var theLine = jQuery(this).parent().parent();
 		var objID = theLine.attr('data-tireur-id');
 		var nom_profil = theLine.find('.nom_profil > input').val();
-		alert('!!!');
+		//alert('!!!');
 		jQuery.confirm({
 			title: 'Confirmation requise!',
 			content: 'Êtes-vous certain de vouloir supprimer '+nom_profil+'?',
