@@ -980,7 +980,11 @@ function edition_tireurs_shortcode() {
 					$tabs .= '[/tabcontainer]';			
 					$tabs .= '[tabcontent]'; 
 					foreach($terms as $term){
-						$tabs .= '[tab]';
+						$tabs .= '[tab]
+						
+						<h2>'.$term->name.'</h2>
+						
+						';
 						
 						$tireurs = get_posts(array(
 									  'post_type' => 'tireurs',
@@ -996,7 +1000,7 @@ function edition_tireurs_shortcode() {
 									));
 						
 						$tabs .= '<form id="form_edition_'.$term->term_id.'">';
-						$tabs .= '<table class="editable_table"><thead><tr><th>'.__('Véhicule','asttq').'</th><th>'.__('Nom du profil','asttq').'</th><th>'.__('Conducteurs','asttq').'</th><th>Actions</th></tr></thead><tbody>';
+						$tabs .= '<table data-term-id="'.$term->term_id.'" class="editable_table"><thead><tr><th>'.__('Véhicule','asttq').'</th><th>'.__('Nom du profil','asttq').'</th><th>'.__('Conducteurs','asttq').'</th><th>Actions</th></tr></thead><tbody>';
 						
 						foreach($tireurs as $tireur){
 							
@@ -1022,7 +1026,7 @@ function edition_tireurs_shortcode() {
 						
 						
 						
-						$tabs .= '</tbody></table> </form>';
+						$tabs .= '<tr class="add_tireur_line"><td colspan="4"><span class=\'dashicons dashicons-plus-alt\'></span></td></tr></tbody></table> </form>';
 						
 						$tabs .= '[/tab] ';
 					}
