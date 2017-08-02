@@ -1056,9 +1056,11 @@ function update_post_fields() {
 		foreach($allData as $key => $value){
 			if(!is_array($value)){
 				update_field($key, $value, $objID);
-				$worker .= '\r'.'Updating field: '.$key.' to: '.$value.' in post: '.$objID;
+				$worker .= '<br>
+'.'Updating field: '.$key.' to: '.$value.' in post: '.$objID;
 			}else{
-				$worker .= '\r'.'Updating field: '.$key.' to: '.print_r($value,true).' in post: '.$objID;
+				$worker .= '<br>
+'.'Updating field: '.$key.' to: '.print_r($value,true).' in post: '.$objID;
 				$field_value = array();
 				foreach($value as $subkey=>$subvalue){
 					if(is_array($subvalue)){
