@@ -101,8 +101,10 @@ jQuery(document).ready(function(){
 
 							var rData = jQuery.parseJSON(response);
 							alert(rData.message);
-							theLine.attr('data-tireur-id',rData.objID);
-							editionDone(theLine);
+							theLine.fadeOut(300,function(){
+								theLine.remove();
+							});
+							
 						});
 						
 						

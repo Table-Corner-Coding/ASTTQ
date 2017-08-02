@@ -1129,9 +1129,10 @@ function ajax_delete_post(){
 	//echo foreignDbAction();
 	
 	if(!$retVal){
-		echo 'Il y a eu une erreur...';
+		echo json_encode(array('message'=>'Il y a eu une erreur...','objID'=>$objID));
+		
 	}else{
-		echo $retVal->post_title.' a été supprimé avec succès.';
+		echo json_encode(array('message'=>$retVal->post_title.' a été supprimé avec succès.','objID'=>$objID));
 	}
 	
 	wp_die();
