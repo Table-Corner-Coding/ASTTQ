@@ -545,3 +545,7 @@ table.editable_table .dashicons:before{
 .add_tireur_line{
 	text-align: center;
 }
+
+div[data-name=classe_id]{
+	display: none;
+}
