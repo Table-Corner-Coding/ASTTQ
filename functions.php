@@ -1142,5 +1142,30 @@ function ajax_delete_post(){
 add_action( 'wp_ajax_ajax_delete_post', 'ajax_delete_post' );
 add_action( 'wp_ajax_nopriv_ajax_delete_post', 'ajax_delete_post' );
 
+function ajax_get_conducteurs(){
+	$objID = $_POST['objID'];
+	
+	$conducteurs = get_field('conducteur', $objID, [$format_value]);
+	
+	$retVal = '<select class="conducteurs_select">';
+	
+	foreach($conducteurs as $conducteur){
+		$retVal .= '<option value="'.$conducteur['nom'].'">'.$conducteur['nom'].'</option>';
+	}
+	
+	$retVal .= '</select>';
+	
+	//var_dump($allData);
+	//echo foreignDbAction();
+	
+
+	echo json_encode(array('message'=>$retVal,'objID'=>$objID));
+	
+	
+	wp_die();
+}
+add_action( 'wp_ajax_ajax_get_conducteurs', 'ajax_get_conducteurs' );
+add_action( 'wp_ajax_nopriv_ajax_get_conducteurs', 'ajax_get_conducteurs' );
+
 
 ?>
