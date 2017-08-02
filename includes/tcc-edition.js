@@ -34,6 +34,8 @@ jQuery(document).ready(function(){
 		//alert('Going to save!');
 		
 		var theLine = jQuery(this).parent().parent();
+		var theTable = theLine.parent().parent();
+		var term_id = theTable.attr('data-term-id');
 		var objID = theLine.attr('data-tireur-id');
 		var vehicule = theLine.find('.vehicule > input').val();
 		var nom_profil = theLine.find('.nom_profil > input').val();
@@ -54,13 +56,17 @@ jQuery(document).ready(function(){
 		var my_data = {
                     action: 'update_post_fields', // This is required so WordPress knows which func to use
 					objID: objID,
+					term_id : term_id,
                     data: jsonString // Post any variables you want here
                 };
 		
 			jQuery.post(adminAjax, my_data, function(response) { // This will make an AJAX request upon page load
                     //jQuery("#response").html("<div>"+response+"</div>");
 					//jQuery("body").removeClass("loading");
-				alert(response);
+				
+				var rData = jQuery.parseJSON(response);
+				alert(rData.message);
+				theLine.attr('data-tireur-id',rData.objID);
 				editionDone(theLine);
             });
 	});

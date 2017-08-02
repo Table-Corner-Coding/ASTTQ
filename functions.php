@@ -1052,11 +1052,28 @@ function update_post_fields() {
 	global $wpdb;
 	
 	$objID = $_POST['objID'];
+	$term_id = $_POST['term_id'];
 	$allData = json_decode(stripslashes($_POST['data']),true);
 	
 	$worker = '';
 	
-	if(!empty($objID)){
+	if($objID == 0){
+		$my_post = array(
+		'post_title'	=> $allData['nom_du_profil'],
+		'post_type'		=> 'tireurs',
+		'post_status'	=> 'publish'
+	);
+
+
+	// insert the post into the database
+		$objID = wp_insert_post( $my_post );
+		wp_set_post_terms( $objID, $term_id, 'classes', false );
+		update_field( 'classe', $term_id, $objID );
+	}	// vars
+
+	
+	
+	if($objID != 0){
 		foreach($allData as $key => $value){
 			if(!is_array($value)){
 				update_field($key, $value, $objID);
@@ -1088,7 +1105,7 @@ function update_post_fields() {
 	
 	//echo $worker;
 	
-	echo 'Les changement ont été sauvegardés';
+	echo json_encode(array('message'=>'Les changement ont été sauvegardés','objID'=>$objID));
 	//var_dump($allData);
 	//echo foreignDbAction();
 	wp_die();
