@@ -168,7 +168,7 @@ jQuery(document).ready(function(){
 				
 				alert(rData.message);
 				
-				jQuery(this).before(rData.message);
+				jQuery(this).before(jQuery(rData.message));
 
 			});
 
@@ -189,7 +189,7 @@ jQuery(document).ready(function(){
 				var rData = jQuery.parseJSON(response);
 				
 				alert(rData.message);
-				jQuery(this).before(rData.message);
+				jQuery(this).before(jQuery(rData.message));
 
 			});
 	});
