@@ -185,11 +185,11 @@ jQuery(document).ready(function(){
 		};
 		//alert(objID);
 		jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
-			//var rData = jQuery.parseJSON(response);
+			var rData = jQuery.parseJSON(response);
 
 			//alert(rData.message);
 			//var tireursArray = jQuery(rData.tireurs);
-			alert(response);
+			alert(jQuery(rData.tireurs));
 
 		});
 		
