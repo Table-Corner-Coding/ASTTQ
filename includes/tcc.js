@@ -188,7 +188,7 @@ jQuery(document).ready(function(){
 			var rData = jQuery.parseJSON(response);
 
 			//alert(rData.message);
-			var tireursArray = jQuery(rData.tireurs);
+			var tireursArray = rData.tireurs;
 			
 			tireursArray.forEach(function(item, index){
 				alert(item);
