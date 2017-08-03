@@ -144,7 +144,10 @@ jQuery(document).ready(function(){
 		
 	}, 200);
 	*/
-	
+	jQuery('.acf-taxonomy-field.acf-soh > input[type=hidden]').each(function(){
+		
+		jQuery(this).parent().append('<a class="acf-button button button-primary load-members">Charger les membres de cette classe</a>');
+	});
 	
 	// on Select change:
 	
