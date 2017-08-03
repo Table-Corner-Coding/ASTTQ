@@ -194,7 +194,7 @@ jQuery(document).ready(function(){
 			
 			tireursArray.forEach(function(item, index){
 				//alert(item);
-				table.find('tbody tr:last-child td[data-name=tireur] select').select2('val',item);
+				table.find('tbody tr:last-child td[data-name=tireur] input[type=hidden]').select2('val',item);
 				addButton.click();
 			});
 
