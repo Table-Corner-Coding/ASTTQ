@@ -800,7 +800,9 @@ function get_points_table_for_event($event_id, $refresh = false){
 				$tireur_id = $competiteur['tireur'];
 				$tireur = get_post($tireur_id);
 				$vehicule = get_field('nom_du_vehicule', $tireur_id);
-				$nom_tireur = get_field('nom_du_profil', $tireur_id);
+				
+				//$nom_tireur = get_field('nom_du_profil', $tireur_id);
+				$nom_tireur = $competiteur['nom_du_tireur'];
 				
 				$distances = $competiteur['distances'];
 				
