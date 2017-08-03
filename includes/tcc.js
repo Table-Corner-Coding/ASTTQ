@@ -188,8 +188,12 @@ jQuery(document).ready(function(){
 			var rData = jQuery.parseJSON(response);
 
 			//alert(rData.message);
-			//var tireursArray = jQuery(rData.tireurs);
-			alert(JSON.stringify(rData.tireurs));
+			var tireursArray = jQuery(rData.tireurs);
+			
+			tireursArray.forEach(function(item, index){
+				alert(item);
+			});
+			//alert(JSON.stringify(rData.tireurs));
 			
 			jQuery(rData.tireurs).each(function(){
 				
@@ -199,7 +203,7 @@ jQuery(document).ready(function(){
 		});
 		
 	});
-	
+
 	function updateConducteurs(hiddenField,triggerChange){
 		
 		var theLine = hiddenField.parent().parent().parent().parent();
