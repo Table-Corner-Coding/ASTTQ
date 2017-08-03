@@ -158,7 +158,14 @@ jQuery(document).ready(function(){
 		jQuery(this).parent().find('.load-members').remove();
 		jQuery(this).parent().append('<a class="acf-button button button-primary load-members">Charger les membres de cette classe</a>');
 		
-		jQuery(this).parent().find('.load-members').trigger('click');
+		//jQuery(this).parent().find('.load-members').trigger('click');
+		var $allLines = jQuery(this).parent().find('.load-members');
+		
+		$allLines.forEach(function(item, index){
+			acf.fields.repeater.remove(item);
+		}
+		
+		
 	});
 	
 	jQuery('#acf-form').on('change','td[data-name=tireur] input[type=hidden]', function(){
