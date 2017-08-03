@@ -186,7 +186,7 @@ jQuery(document).ready(function(){
 		var table = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-table');
 		var addButton = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-actions > li > a.acf-button');
 		
-		table.find('tbody > tr > td > a[data-event=remove-row]').click();
+		table.find('tbody > tr+tr > td > a[data-event=remove-row]').click();
 		
 		//var hiddenField = sender;
 		var my_data = {
