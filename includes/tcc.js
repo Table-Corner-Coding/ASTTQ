@@ -178,6 +178,7 @@ jQuery(document).ready(function(){
 	jQuery('#acf-form').on('click','.load-members',function(){
 		
 		var objID = jQuery(this).parent().find('input[type=hidden]').val();
+		var table = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-table');
 		var addButton = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-actions > li > a.acf-button');
 		
 		//var hiddenField = sender;
@@ -193,6 +194,7 @@ jQuery(document).ready(function(){
 			
 			tireursArray.forEach(function(item, index){
 				//alert(item);
+				table.find('tbody tr:last-child td[data-name=tireur] select').select2('val',item);
 				addButton.click();
 			});
 
