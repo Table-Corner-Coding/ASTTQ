@@ -191,10 +191,12 @@ jQuery(document).ready(function(){
 			var rData = jQuery.parseJSON(response);
 			//alert(rData.message);
 			var tireursArray = rData.tireurs;
+			var tireursNom = rData.noms;
 			
 			tireursArray.forEach(function(item, index){
 				//alert(item);
-				table.find('tbody tr:last-child td[data-name=tireur] input[type=hidden]').select2('val',item);
+				table.find('tbody tr:last-child td[data-name=tireur] input[type=hidden]').val(item);
+				table.find('tbody tr:last-child td[data-name=tireur] span.select2-chosen').html(tireursNom[index]);
 				addButton.click();
 			});
 

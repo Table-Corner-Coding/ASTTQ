@@ -1183,13 +1183,14 @@ function ajax_load_tireurs_from_class(){
 									  )
 									));
 	$tireurArray = array();
+	$tireursNoms = array();
 	
 	foreach($tireurs as $tireur){
-		//$tireurArray[] = get_field('tireur',$tireur->ID);
+		$tireursNoms[] = get_field('nom_du_profil',$tireur->ID);
 		$tireurArray[] = $tireur->ID;
 	}
 
-	echo json_encode(array('tireurs'=>$tireurArray));
+	echo json_encode(array('tireurs'=>$tireurArray,'noms'=>$tireursNoms));
 	
 	wp_die();
 }
