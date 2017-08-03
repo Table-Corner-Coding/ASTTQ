@@ -157,6 +157,8 @@ jQuery(document).ready(function(){
 		jQuery(this).parent().parent().parent().parent().find('div[data-name=classe_id]').find('input').val(classeID);
 		jQuery(this).parent().find('.load-members').remove();
 		jQuery(this).parent().append('<a class="acf-button button button-primary load-members">Charger les membres de cette classe</a>');
+		
+		jQuery(this).parent().find('.load-members').trigger('click');
 	});
 	
 	jQuery('#acf-form').on('change','td[data-name=tireur] input[type=hidden]', function(){
@@ -184,6 +186,8 @@ jQuery(document).ready(function(){
 		var table = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-table');
 		var addButton = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-actions > li > a.acf-button');
 		
+		table.find('tbody tr').remove();
+		
 		//var hiddenField = sender;
 		var my_data = {
 			action: 'ajax_load_tireurs_from_class', // This is required so WordPress knows which func to use
@@ -206,7 +210,7 @@ jQuery(document).ready(function(){
 				addButton.trigger('click');
 				
 				var nomTireur = tireursNom[index];
-				var trueIndex = index-1;
+				var trueIndex = index;
 				setTimeout(function(){
 					
 						table.find('tbody tr:nth-child('+trueIndex+') td[data-name=tireur] input[type=hidden]').val(item);
@@ -217,6 +221,8 @@ jQuery(document).ready(function(){
 						table.find('tbody tr:nth-child('+trueIndex+')').attr('title',item);
    					}, 200);
 			});
+			
+			acf-icon -minus small
 			
 			tireursArray.forEach(function(item, index){
 				/*
