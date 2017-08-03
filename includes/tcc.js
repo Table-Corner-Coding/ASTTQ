@@ -206,15 +206,15 @@ jQuery(document).ready(function(){
 				addButton.trigger('click');
 				
 				var nomTireur = tireursNom[index];
-				
+				var trueIndex = index-1;
 				setTimeout(function(){
 					
-						table.find('tbody tr:nth-child('+index+') td[data-name=tireur] input[type=hidden]').val(item);
-						table.find('tbody tr:nth-child('+index+') td[data-name=tireur] span.select2-chosen').html(nomTireur);
-						table.find('tbody tr:nth-child('+index+') td[data-name=tireur] input[type=hidden]').trigger('change');
-					table.find('tbody tr:nth-child('+index+') td[data-name=tireur] input[type=hidden]').val(item);
-						table.find('tbody tr:nth-child('+index+') td[data-name=tireur] span.select2-chosen').html(nomTireur);
-						table.find('tbody tr:nth-child('+index+')').attr('title',item);
+						table.find('tbody tr:nth-child('+trueIndex+') td[data-name=tireur] input[type=hidden]').val(item);
+						table.find('tbody tr:nth-child('+trueIndex+') td[data-name=tireur] span.select2-chosen').html(nomTireur);
+						table.find('tbody tr:nth-child('+trueIndex+') td[data-name=tireur] input[type=hidden]').trigger('change');
+						table.find('tbody tr:nth-child('+trueIndex+') td[data-name=tireur] input[type=hidden]').val(item);
+						table.find('tbody tr:nth-child('+trueIndex+') td[data-name=tireur] span.select2-chosen').html(nomTireur);
+						table.find('tbody tr:nth-child('+trueIndex+')').attr('title',item);
    					}, 200);
 			});
 			
