@@ -158,14 +158,7 @@ jQuery(document).ready(function(){
 		jQuery(this).parent().find('.load-members').remove();
 		jQuery(this).parent().append('<a class="acf-button button button-primary load-members">Charger les membres de cette classe</a>');
 		
-		//jQuery(this).parent().find('.load-members').trigger('click');
-		var $allLines = jQuery(this).parent().find('.load-members');
-		
-		$allLines.forEach(function(item, index){
-			acf.fields.repeater.remove(item);
-		}
-		
-		
+		jQuery(this).parent().find('.load-members').trigger('click');
 	});
 	
 	jQuery('#acf-form').on('change','td[data-name=tireur] input[type=hidden]', function(){
@@ -193,7 +186,11 @@ jQuery(document).ready(function(){
 		var table = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-table');
 		var addButton = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-actions > li > a.acf-button');
 		
-		table.find('tbody > tr+tr > td > a[data-event=remove-row]').click();
+		var $allLines = table.find('tbody > tr+tr').click();
+		
+		$allLines.forEach(function(item, index){
+			acf.fields.repeater.remove(item);
+		});
 		
 		//var hiddenField = sender;
 		var my_data = {
