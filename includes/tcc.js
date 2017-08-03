@@ -185,11 +185,11 @@ jQuery(document).ready(function(){
 		var objID = jQuery(this).parent().find('input[type=hidden]').val();
 		var table = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-table');
 		var addButton = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-actions > li > a.acf-button');
+
 		
-		var $allLines = table.find('tbody > tr+tr');
-		
-		$allLines.forEach(function(item, index){
-			acf.fields.repeater.remove(item);
+		table.find('tbody > tr+tr').each(function(){
+			acf.fields.repeater.remove(jQuery(this));
+			
 		});
 		
 		//var hiddenField = sender;
