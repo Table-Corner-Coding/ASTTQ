@@ -204,9 +204,12 @@ jQuery(document).ready(function(){
 				//alert('Tireur: '+tireursNom[index]+' ('+item+')');	
 				
 				addButton.trigger('click',function(){
-					table.find('tbody tr:nth-child('+index+') td[data-name=tireur] input[type=hidden]').val(item);
-					table.find('tbody tr:nth-child('+index+') td[data-name=tireur] span.select2-chosen').html(tireursNom[index]);
-					table.find('tbody tr:nth-child('+index+') td[data-name=tireur] input[type=hidden]').trigger('change');
+					setTimeout(function(){
+						table.find('tbody tr:nth-child('+index+') td[data-name=tireur] input[type=hidden]').val(item);
+						table.find('tbody tr:nth-child('+index+') td[data-name=tireur] span.select2-chosen').html(tireursNom[index]);
+						table.find('tbody tr:nth-child('+index+') td[data-name=tireur] input[type=hidden]').trigger('change');
+   					}, 1000);
+					
 				});
 			});
 			
