@@ -178,7 +178,7 @@ jQuery(document).ready(function(){
 	jQuery('#acf-form').on('click','.load-members',function(){
 		
 		var objID = jQuery(this).parent().find('input[type=hidden]').val();
-		var addButton = jQuery(this).parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-actions > li > a.acf-button');
+		var addButton = jQuery(this).parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-actions > li > a.acf-button');
 		
 		//var hiddenField = sender;
 		var my_data = {
