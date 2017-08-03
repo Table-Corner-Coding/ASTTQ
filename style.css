@@ -351,7 +351,7 @@ form.acf-form{
 
 td[data-name=tireur],
 td[data-name=nom_du_tireur],
-td[data-name=nom_du_vehicule]
+td[data-name=vehicule]
 {
 	vertical-align: middle !important;
 }

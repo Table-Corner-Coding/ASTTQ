@@ -183,6 +183,7 @@ jQuery(document).ready(function(){
 	jQuery('#acf-form').on('click','.load-members',function(){
 		
 		var objID = jQuery(this).parent().find('input[type=hidden]').val();
+		var wholeList = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur]');
 		var table = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-table');
 		var addButton = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-actions > li > a.acf-button');
 
@@ -211,7 +212,8 @@ jQuery(document).ready(function(){
 				
 				//alert('Tireur: '+tireursNom[index]+' ('+item+')');	
 				
-				addButton.trigger('click');
+				//addButton.trigger('click');
+				acf.fields.repeater.add(wholeList);
 				
 				var nomTireur = tireursNom[index];
 				var trueIndex = index;
