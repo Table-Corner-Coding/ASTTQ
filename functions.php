@@ -1182,11 +1182,11 @@ function ajax_load_tireurs_from_class(){
 										)
 									  )
 									));
-	$tireurArray = array();
+	$tireurArray = '';
 	
 	foreach($tireurs as $tireur){
 		//$tireurArray[] = get_field('tireur',$tireur->ID);
-		$tireurArray[] = $tireur->ID;
+		$tireurArray .= '|'.$tireur->ID;
 	}
 
 	echo json_encode(array('tireurs'=>$tireurArray));
