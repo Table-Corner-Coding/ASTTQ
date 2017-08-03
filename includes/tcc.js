@@ -188,7 +188,7 @@ jQuery(document).ready(function(){
 
 		
 		table.find('tbody > tr+tr').each(function(){
-			acf.fields.repeater.remove(jQuery(this));
+			//acf.fields.repeater.remove(jQuery(this));
 			
 		});
 		
