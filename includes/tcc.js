@@ -173,7 +173,7 @@ jQuery(document).ready(function(){
 	});
 	
 	
-	jQuery('#acf-form td[data-name=nom_du_tireur] .acf-input input[type=text]').each(function(){
+	jQuery('#acf-form td[data-name=competiteur] td[data-name=nom_du_tireur] .acf-input input[type=text]').each(function(){
 		
 		updateConducteurs(jQuery(this),1);
 	});

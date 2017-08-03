@@ -354,7 +354,7 @@ td[data-name=nom_du_tireur]{
 	vertical-align: middle !important;
 }
 
-td[data-name=nom_du_tireur] .acf-input input[type=text]{
+td[data-name=competiteur] td[data-name=nom_du_tireur] .acf-input input[type=text]{
 	display: none;
 }
 
