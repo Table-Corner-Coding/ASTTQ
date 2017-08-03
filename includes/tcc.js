@@ -200,7 +200,7 @@ jQuery(document).ready(function(){
 				
 				//alert('Tireur: '+tireursNom[index]+' ('+item+')');	
 				
-				addButton.click();
+				addButton.trigger('click');
 			});
 			
 			tireursArray.forEach(function(item, index){
