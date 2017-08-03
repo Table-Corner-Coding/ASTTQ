@@ -1186,7 +1186,11 @@ function ajax_load_tireurs_from_class(){
 	$tireursNoms = array();
 	
 	foreach($tireurs as $tireur){
-		$tireursNoms[] = get_field('nom_du_profil',$tireur->ID);
+		$profil = get_field('nom_du_profil',$tireur->ID);
+		if(empty($profil)){
+			$profil = $tireur->post_title;
+		}
+		$tireursNoms[] = $profil;
 		$tireurArray[] = $tireur->ID;
 	}
 
