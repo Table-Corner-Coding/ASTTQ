@@ -178,6 +178,8 @@ jQuery(document).ready(function(){
 	jQuery('#acf-form').on('click','.load-members',function(){
 		
 		var objID = jQuery(this).parent().find('input[type=hidden]').val();
+		var addButton = jQuery(this).parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-actions > li > a.acf-button');
+		
 		//var hiddenField = sender;
 		var my_data = {
 			action: 'ajax_load_tireurs_from_class', // This is required so WordPress knows which func to use
@@ -186,19 +188,13 @@ jQuery(document).ready(function(){
 		//alert(objID);
 		jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
 			var rData = jQuery.parseJSON(response);
-
 			//alert(rData.message);
 			var tireursArray = rData.tireurs;
 			
 			tireursArray.forEach(function(item, index){
-				alert(item);
+				//alert(item);
+				addButton.click();
 			});
-			//alert(JSON.stringify(rData.tireurs));
-			
-			jQuery(rData.tireurs).each(function(){
-				
-			});
-			//jQuery(rData.tireurs)
 
 		});
 		
