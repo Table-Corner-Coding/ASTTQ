@@ -189,7 +189,10 @@ jQuery(document).ready(function(){
 
 			//alert(rData.message);
 			//var tireursArray = jQuery(rData.tireurs);
-			alert(jQuery(rData.tireurs));
+			jQuery(rData.tireurs).each(function(){
+				alert(jQuery(this));
+			});
+			//jQuery(rData.tireurs)
 
 		});
 		
