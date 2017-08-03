@@ -222,7 +222,7 @@ jQuery(document).ready(function(){
    					}, 200);
 			});
 			
-			acf-icon -minus small
+			
 			
 			tireursArray.forEach(function(item, index){
 				/*
