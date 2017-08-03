@@ -183,7 +183,7 @@ jQuery(document).ready(function(){
 			action: 'ajax_load_tireurs_from_class', // This is required so WordPress knows which func to use
 			objID: objID
 		};
-		
+		alert(objID);
 		jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
 			var rData = jQuery.parseJSON(response);
 
