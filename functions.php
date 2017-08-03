@@ -1167,4 +1167,33 @@ add_action( 'wp_ajax_ajax_get_conducteurs', 'ajax_get_conducteurs' );
 add_action( 'wp_ajax_nopriv_ajax_get_conducteurs', 'ajax_get_conducteurs' );
 
 
+function ajax_load_tireurs_from_class(){
+	$objID = $_POST['objID'];
+	
+	$tireurs = get_posts(array(
+									  'post_type' => 'tireurs',
+									  'numberposts' => -1,
+									  'tax_query' => array(
+										array(
+										  'taxonomy' => 'classes',
+										  'field' => 'id',
+										  'terms' => $objID, // Where term_id of Term 1 is "1".
+										  'include_children' => false
+										)
+									  )
+									));
+	$tireurArray = array();
+	
+	foreach($tireurs as $tireur){
+		$tireurArray[] = get_field('tireur',$tireur->ID);
+	}
+
+	echo json_encode(array('tireurs'=>$tireurArray));
+	
+	wp_die();
+}
+add_action( 'wp_ajax_ajax_load_tireurs_from_class', 'ajax_load_tireurs_from_class' );
+add_action( 'wp_ajax_nopriv_ajax_load_tireurs_from_class', 'ajax_load_tireurs_from_class' );
+
+
 ?>

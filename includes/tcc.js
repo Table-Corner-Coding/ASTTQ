@@ -175,6 +175,26 @@ jQuery(document).ready(function(){
 		updateConducteurs(jQuery(this),1);
 	});
 	
+	jQuery('#acf-form').on('click','.load-members',function(){
+		
+		var objID = jQuery(this).parent().find('input[type=hidden]').val();
+		//var hiddenField = sender;
+		var my_data = {
+			action: 'ajax_load_tireurs_from_class', // This is required so WordPress knows which func to use
+			objID: objID
+		};
+		
+		jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
+			var rData = jQuery.parseJSON(response);
+
+			//alert(rData.message);
+			var tireursArray = jQuery(rData.tireurs);
+			alert(tireursArray);
+
+		});
+		
+	});
+	
 	function updateConducteurs(hiddenField,triggerChange){
 		
 		var theLine = hiddenField.parent().parent().parent().parent();
