@@ -777,7 +777,9 @@ function get_points_table_for_event($event_id, $refresh = false){
 	$competitions = get_field('field_592da5f526f1e', $event_id);
 			
 	$bonus_position = array(0,15,12,10,9,8,7,6,5,4,3,2,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); 
-	$bonus_inscription = get_field('field_592e44df6e8c7', $event_id);	
+	
+	
+	
 
 //print_r($bonus_inscription);
 
@@ -789,6 +791,9 @@ function get_points_table_for_event($event_id, $refresh = false){
 	{
 	
 		foreach($competitions as $competition){
+			
+			$bonus_inscription = $competition['bonus_inscription'];	
+			
 			$term = get_term( $competition['classe'], 'classes' );
 			$classement .= '<h3>'.$term->name.'</h3>';
 
