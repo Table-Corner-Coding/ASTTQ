@@ -104,8 +104,8 @@ if(isset($_REQUEST['acf'])){
 	
 					$classementHeader = '[learn_more caption="Résultats"]';
 					
-					$event_id = icl_object_id($post->ID, 'tribe_events', true,'fr');
-					$page  = is_page($id);
+					$event_id = icl_object_id($event_id, 'tribe_events', true,'fr');
+					
 					$classementFinal = get_points_table_for_event($event_id);
 			
 					//var_dump($competitions);
