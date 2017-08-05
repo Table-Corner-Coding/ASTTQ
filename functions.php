@@ -396,7 +396,7 @@ function sommaire_shortcode( $atts ) {
 		$content .= get_points_table_for_event($current_event->ID);
 	}
 	
-	
+	return do_shortcode($content);
 	
 	
 }
