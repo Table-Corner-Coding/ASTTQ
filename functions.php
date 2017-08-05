@@ -363,6 +363,48 @@ function edition_positions_shortcode($att) {
 add_shortcode( 'edition_positions', 'edition_positions_shortcode' );
 
 
+// Add Shortcode
+function sommaire_shortcode( $atts ) {
+
+	// Attributes
+	$atts = shortcode_atts(
+		array(
+			'annee' => '',
+		),
+		$atts,
+		'sommaire'
+	);
+
+	$theYear = $atts['annee'];
+	
+	if(empty($theYear)){
+	/* Si l'année n'a pas été spécifiée, on prend l'année en cours */
+	$theYear = date('Y');
+	}
+	
+	/* On ramasse tout les événement de l'année voulue */
+	
+	$events = tribe_get_events( array(
+    'eventDisplay' => 'custom',
+    'start_date'   => $theYear.'-01-01 00:01',
+    'end_date'     => $theYear.'-12-31 23:59',
+		'posts_per_page' => '99999'
+	) );
+	
+	$content = '';
+	foreach($events as $current_event){
+		$content .= get_points_table_for_event($current_event->ID);
+	}
+	
+	
+	
+	
+}
+add_shortcode( 'sommaire', 'sommaire_shortcode' );
+
+
+
+
 function edition_positions_page_shortcode($att) {
 	global $post;
 	
@@ -768,15 +810,24 @@ add_action( 'wp_ajax_nopriv_update_point', 'update_point' );
 
 function get_points_table_for_event($event_id, $refresh = false){
 	
+	
+	
 	$done = array();
 	$transient_name = 'asttq_p_table_'.$event_id;
 	$current_table = get_transient($transient_name);
 	
-	
+	$current_points_t_name = 'asttq_points_'.$event_id;
 	
 	$competitions = get_field('field_592da5f526f1e', $event_id);
 			
 	$bonus_position = array(0,15,12,10,9,8,7,6,5,4,3,2,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); 
+	
+	$pointsTable = get_transient($current_points_t_name);
+	if(empty($points))
+	{
+		$points = array();
+		$pointsTable = true;
+	}
 	
 	
 	
@@ -874,6 +925,8 @@ function get_points_table_for_event($event_id, $refresh = false){
 				
 			}
 			
+			
+			
 			$fullPull = array_orderby($fullPull, 'distance', SORT_DESC);
 			$grille = array_orderby($grille, 'distance', SORT_DESC);
 
@@ -888,9 +941,12 @@ function get_points_table_for_event($event_id, $refresh = false){
 				
 				if($tireur['non-membre']){
 					$points = '*';
+					
+					
 				}else{
 					$itt++;
 					$points = 5+$bonus_position[$itt]+$bonus_inscription;	
+					$pointsTable[$tireur_id] = $points;
 				}
 				
 				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' (FP)</td><td> '.$points.' </td></tr>';
@@ -919,6 +975,8 @@ function get_points_table_for_event($event_id, $refresh = false){
 		$classement .= '<div class="last_updated"> '.strftime('%d/%m/%y - %H:%M').'</div>';
 		
 		delete_transient($transient_name);
+		
+		set_transient( $current_points_t_name,$pointsTable,YEAR_IN_SECONDS);
 		set_transient( $transient_name, $classement, YEAR_IN_SECONDS );
 	}else{
 		$classement = $current_table;
