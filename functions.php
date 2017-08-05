@@ -397,7 +397,7 @@ function sommaire_shortcode( $atts ) {
 	
 	
 	foreach($events as $current_event){
-		$content .= '<li><a href=#"'.str_replace(' ','_',$current_event->post_title).'" >'.$current_event->post_title.'</a></li>';
+		$content .= '<li><a href="#'.str_replace(' ','_',$current_event->post_title).'">'.$current_event->post_title.'</a></li>';
 	}
 	
 	$content.= '</ol>
