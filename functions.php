@@ -388,12 +388,26 @@ function sommaire_shortcode( $atts ) {
     'eventDisplay' => 'custom',
     'start_date'   => $theYear.'-01-01 00:01',
     'end_date'     => $theYear.'-12-31 23:59',
-		'posts_per_page' => '99999'
+	'posts_per_page' => '99999'
 	) );
 	
-	$content = '';
+	$content = '<h2>[wpml__ context=asttq]Table des matières[/wpml__]</h2><em>
+<ol class="toc">';
+
+	
+	
 	foreach($events as $current_event){
-		$content .= get_points_table_for_event($current_event->ID);
+		$content .= '<li><a href=#"'.str_replace(' ','_',$current_event->post_title).'" >'.$current_event->post_title.'</a></li>';
+	}
+	
+	$content.= '</ol>
+		</em>';
+
+	foreach($events as $current_event){
+		$content .= '<a name="'.str_replace(' ','_',$current_event->post_title).'"></a>'.get_points_table_for_event($current_event->ID).'
+		
+		<div><a href="#_top_">[ [wpml__ context=asttq]Retour en haut[/wpml__] ]</a></div><hr />
+		';
 	}
 	
 	return do_shortcode($content);
