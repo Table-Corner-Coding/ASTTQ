@@ -391,7 +391,7 @@ function sommaire_shortcode( $atts ) {
 	'posts_per_page' => '99999'
 	) );
 	
-	$content = '<h2>[wpml__ context=asttq]Table des matières[/wpml__]</h2><em>
+	$content = '<a name="_top_"></a><h2>[wpml__ context=asttq]Table des matières[/wpml__]</h2><em>
 <ol class="toc">';
 
 	
@@ -410,7 +410,7 @@ function sommaire_shortcode( $atts ) {
 		';
 	}
 	
-	return do_shortcode($content);
+	return do_shortcode('<div id="pointages">'.$content.'</div>');
 	
 	
 }
