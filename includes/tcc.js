@@ -186,7 +186,7 @@ jQuery(document).ready(function(){
 		
 		var objID = jQuery(this).parent().find('input[type=hidden]').next('select').val();
 		var wholeList = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur]');
-		var table = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-table > tbody');
+		var table = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-table');
 		var addButton = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-actions > li > a.acf-button');
 
 		
@@ -223,12 +223,12 @@ jQuery(document).ready(function(){
 				var trueIndex = index;
 				setTimeout(function(){
 					
-						table.find('tr:nth-child('+trueIndex+') td[data-name=tireur] input[type=hidden]').val(item);
-						table.find('tr:nth-child('+trueIndex+') td[data-name=tireur] span.select2-chosen').html(nomTireur);
-						table.find('tr:nth-child('+trueIndex+') td[data-name=tireur] input[type=hidden]').trigger('change');
-						table.find('tr:nth-child('+trueIndex+') td[data-name=tireur] input[type=hidden]').val(item);
-						table.find('tr:nth-child('+trueIndex+') td[data-name=tireur] span.select2-chosen').html(nomTireur);
-						table.find('tr:nth-child('+trueIndex+')').attr('title',item);
+						table.find('tbody tr:nth-child('+trueIndex+') td[data-name=tireur] input[type=hidden]').val(item);
+						table.find('tbody tr:nth-child('+trueIndex+') td[data-name=tireur] span.select2-chosen').html(nomTireur);
+						table.find('tbody tr:nth-child('+trueIndex+') td[data-name=tireur] input[type=hidden]').trigger('change');
+						table.find('tbody tr:nth-child('+trueIndex+') td[data-name=tireur] input[type=hidden]').val(item);
+						table.find('tbody tr:nth-child('+trueIndex+') td[data-name=tireur] span.select2-chosen').html(nomTireur);
+						table.find('tbody tr:nth-child('+trueIndex+')').attr('title',item);
    					}, 200);
 				
 			});
