@@ -217,7 +217,9 @@ jQuery(document).ready(function(){
 				
 				//addButton.trigger('click');
 				
-				acf.fields.repeater.add(table);
+				
+				var Line = table.find('tbody > tr:last-child');
+				acf.fields.repeater.add(Line);
 				
 				var nomTireur = tireursNom[index];
 				var trueIndex = index;
