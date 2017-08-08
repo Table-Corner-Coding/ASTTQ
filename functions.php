@@ -1281,4 +1281,6 @@ add_action( 'wp_ajax_ajax_load_tireurs_from_class', 'ajax_load_tireurs_from_clas
 add_action( 'wp_ajax_nopriv_ajax_load_tireurs_from_class', 'ajax_load_tireurs_from_class' );
 
 
+include_once('includes/dynamic-repeater-on-category.php');
+
 ?>

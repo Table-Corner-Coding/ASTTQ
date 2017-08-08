@@ -1,0 +1,594 @@
+[
+    {
+        "key": "group_592da47f0a218",
+        "title": "Pointages",
+        "fields": [
+            {
+                "key": "field_592e44df6e8c7",
+                "label": "Bonus de points d'inscription pour cet évènement",
+                "name": "bonus_inscription",
+                "type": "number",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 0,
+                "min": "",
+                "max": "",
+                "step": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_592da5f526f1e",
+                "label": "Compétition",
+                "name": "competition",
+                "type": "repeater",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "min": 0,
+                "max": 0,
+                "layout": "block",
+                "button_label": "Ajouter une compétition",
+                "collapsed": "",
+                "sub_fields": [
+                    {
+                        "key": "field_592da64426f1f",
+                        "label": "Classe",
+                        "name": "classe",
+                        "type": "taxonomy",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "taxonomy": "classes",
+                        "field_type": "select",
+                        "multiple": 0,
+                        "allow_null": 0,
+                        "return_format": "id",
+                        "add_term": 0,
+                        "load_terms": 0,
+                        "save_terms": 0
+                    },
+                    {
+                        "key": "field_5984d7649d248",
+                        "label": "Bonus de points d'inscription pour cet évènement",
+                        "name": "bonus_inscription",
+                        "type": "number",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": 0,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": 0,
+                        "max": "",
+                        "step": ""
+                    },
+                    {
+                        "key": "field_592da70526f20",
+                        "label": "Compétiteur",
+                        "name": "competiteur",
+                        "type": "repeater",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "100",
+                            "class": "",
+                            "id": ""
+                        },
+                        "min": 0,
+                        "max": 0,
+                        "layout": "table",
+                        "button_label": "Ajouter un compétiteur membre",
+                        "collapsed": "",
+                        "sub_fields": [
+                            {
+                                "key": "field_592da72626f21",
+                                "label": "Rang",
+                                "name": "rang",
+                                "type": "number",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "0",
+                                    "class": "case_calculee",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "min": "",
+                                "max": "",
+                                "step": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": ""
+                            },
+                            {
+                                "key": "field_592da79d26f22",
+                                "label": "Tireur",
+                                "name": "tireur",
+                                "type": "post_object",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "20",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "post_type": [
+                                    "tireurs"
+                                ],
+                                "taxonomy": [],
+                                "allow_null": 0,
+                                "multiple": 0,
+                                "return_format": "object",
+                                "ui": 1,
+                                "choices": {
+                                    "7888": "[Mini] - Chain Reaction (Chain Reaction)",
+                                    "7887": "[Mini] - Crazy Wimpy (Crazy Wimpy)",
+                                    "7886": "[Mini] - Spare Fun (Spare Fun)",
+                                    "7885": "[Mini] - Zodiac 2 (Zodiac 2)",
+                                    "7884": "[Mini] - Brutus (Brutus)",
+                                    "7882": "[TWD] - Destination 300 (Destination 300)",
+                                    "7881": "[TWD] - Bear Express (Bear Express)",
+                                    "7877": "[4X4] - Highland Pride (Highland Pride)",
+                                    "7876": "[4X4] - Feeling Froggy (Feeling Froggy)",
+                                    "7875": "[4X4] - Mega Ram (Mega Ram)",
+                                    "7839": "[PROFARM] - Toy Smoker (Toy Smoker)",
+                                    "7836": "[Semi] - Mathieu Boyer (Mathieu Boyer)",
+                                    "7833": "[Semi] - Réal Boyer (Réal Boyer)",
+                                    "7830": "[Semi] - Dominic Gauvreau (Dominic Gauvreau)",
+                                    "7826": "[Semi] - Stéphane Gosselin (Stéphane Gosselin)",
+                                    "7452": "[Mini] - M and M special (M and M special)",
+                                    "7449": "[Mini] - Rare Breed (Rare Breed)",
+                                    "7446": "[Mini] - War Admiral (War Admiral)",
+                                    "7443": "[Mini] - Ol’Mule (Ol’Mule)",
+                                    "7438": "[Mini] - Blue Mule (Blue Mule)",
+                                    "7435": "[Mini] - Bad Habit (Bad Habit)",
+                                    "3717": "[PROFARM] - Daniel Lussier (Ghost Rider)",
+                                    "520": "[MOD] - Famille-Simard (Sensation)",
+                                    "3081": "[PROFARM] - Michel Darsigny (GADGET)",
+                                    "3076": "[PROFARM] - Normand Messier (BLUE POWER)",
+                                    "1449": "[Mini] - The Eagle (The Eagle)",
+                                    "1446": "[PROFARM] - SÉBASTIEN DESFOSSÉS (DADDY’S WARRIOR)",
+                                    "1445": "[Semi] - MARCO LAMOUREUX ()",
+                                    "1443": "[Semi] - MARC BÉRARD (MARC BÉRARD)",
+                                    "1441": "[SST] - CHRISTIAN LAJOIE (LE 966)",
+                                    "1438": "[Semi] - MARC BLOUIN (MARC BLOUIN )",
+                                    "1435": "[PROFARM] - LUC TURMEL (EL DIABLO)",
+                                    "1432": "[Mini] - CHRIS BRADING (The General)",
+                                    "1428": "[Semi] - WILLIAM RACICOT (Méchant West)",
+                                    "1425": "[Mini] - JAYSON TOLHURST (The Judge)",
+                                    "1423": "[MOD] - GUY BOUCHER (Canadian FLYER)",
+                                    "1874": "[SST] - CAROL TREMBLAY (THE LONGHORN)",
+                                    "1872": "[PROFARM] - JEAN-NOEL CHAMPAGNE (RED NECK)",
+                                    "1418": "[TWD] - HANNAH  TAYLOR (PERDY IN THE PINK)",
+                                    "1416": "[Semi] - CAMILLE COUTU ()",
+                                    "1413": "[PROFARM] - MARIO LAFORCE (OLD NASTY DEERE)",
+                                    "1410": "[PROFARM] - ÉRIC THERRIEN (RED FEELING)",
+                                    "1406": "[SST] - PATRICE BEAUDRY (CRAZY CANUCK)",
+                                    "1404": "[PROFARM] - DAVE LAMONTAGNE (PRESS ON)",
+                                    "1401": "[Semi] - SYLVAIN NOËL (GROS MINET)",
+                                    "1377": "[PROFARM] - MAXIME CUSTEAU (MAD MAX)",
+                                    "1376": "[PROFARM] - TOY SMOKER (TOY SMOKER)",
+                                    "637": "[SST] - MAGNUM FORCE (MAGNUM FORCE)",
+                                    "633": "[SST] - PUMPING IRON (PUMPING IRON)",
+                                    "1398": "[SST] - STEEVEN LAGRANGE (THE GAMBLER)",
+                                    "1372": "[PROFARM] - STEEVEN LAGRANGE (GHOST RIDER)",
+                                    "632": "[SST] - THUNDER DEERE (THUNDER DEERE)",
+                                    "629": "[SST] - LE RETRAITÉ (LE RETRAITÉ)",
+                                    "626": "[SST] - RED SMOKER (RED SMOKER)",
+                                    "620": "[4X4] - No Rev Limit (No Rev Limit)",
+                                    "618": "[4X4] - Maybe Baby (Maybe Baby)",
+                                    "614": "[4X4] - Evolution (Evolution)",
+                                    "612": "[4X4] - Wild Thing (Wild Thing)",
+                                    "609": "[4X4] - Bad to the Bone (Bad to the Bone)",
+                                    "607": "[Mini] - Nightmare (Nightmare)",
+                                    "606": "[4X4] - Rat Face (Rat Face)",
+                                    "604": "[4X4] - Diablo (Diablo)",
+                                    "591": "[4X4] - No More (No More)",
+                                    "586": "[4X4] - Hell Raiser (Hell Raiser)",
+                                    "582": "[4X4] - Lucky Luke (Lucky Luke)",
+                                    "578": "[MOD] - CANADIAN THUNDER (CANADIAN THUNDER)",
+                                    "575": "[MOD] - LE COBRA (LE COBRA)",
+                                    "572": "[MOD] - COYOTE (COYOTE)",
+                                    "569": "[Semi] - Mario Racicot ()",
+                                    "565": "[TWD] - POPEYE (POPEYE)",
+                                    "1382": "[TWD] - RIPPED (RIPPED)",
+                                    "562": "[Mini] - General Lee (General Lee)",
+                                    "559": "[Mini] - Renegade Warrior (Renegade Warrior)",
+                                    "1387": "[] - David Minckler 2 ()",
+                                    "555": "[Mini] - Renegade (Renegade)",
+                                    "550": "[SST] - CP DREAM 2 (CP DREAM 2)",
+                                    "545": "[TWD] - STINGER (STINGER)",
+                                    "1393": "[SST] - Angers Brissette (BAD GENERATION)",
+                                    "540": "[TWD] - NEW GENERATION (NEW GENERATION)",
+                                    "535": "[Semi] - Normand Letiecq (Normand Letiecq)",
+                                    "531": "[Semi] - Mario Banville (Tweety Bird)",
+                                    "528": "[Semi] - Simon Chaunt (Simon Chaunt)",
+                                    "525": "[4X4] - On the road again (On the road again)",
+                                    "513": "[Mini] - Zodiac 1 (Zodiac 1)"
+                                }
+                            },
+                            {
+                                "key": "field_59822fe5ec5bb",
+                                "label": "Nom du conducteur",
+                                "name": "nom_du_tireur",
+                                "type": "text",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "20",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "maxlength": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": ""
+                            },
+                            {
+                                "key": "field_597f6f80414ef",
+                                "label": "Distances",
+                                "name": "distances",
+                                "type": "repeater",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "50",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "min": 1,
+                                "max": 0,
+                                "layout": "table",
+                                "button_label": "",
+                                "collapsed": "",
+                                "sub_fields": [
+                                    {
+                                        "key": "field_597f6fd5414f1",
+                                        "label": "Statut",
+                                        "name": "statut",
+                                        "type": "select",
+                                        "instructions": "",
+                                        "required": 0,
+                                        "conditional_logic": 0,
+                                        "wrapper": {
+                                            "width": "20",
+                                            "class": "",
+                                            "id": ""
+                                        },
+                                        "multiple": 0,
+                                        "allow_null": 0,
+                                        "choices": {
+                                            "Normal": "Normal",
+                                            "FP": "FP",
+                                            "DNS": "DNS",
+                                            "DQ": "DQ",
+                                            "BR": "BR"
+                                        },
+                                        "default_value": [],
+                                        "ui": 0,
+                                        "ajax": 0,
+                                        "placeholder": "",
+                                        "return_format": "value"
+                                    },
+                                    {
+                                        "key": "field_597f6fbd414f0",
+                                        "label": "Distance",
+                                        "name": "distance",
+                                        "type": "number",
+                                        "instructions": "",
+                                        "required": 0,
+                                        "conditional_logic": [
+                                            [
+                                                {
+                                                    "field": "field_597f6fd5414f1",
+                                                    "operator": "==",
+                                                    "value": "Normal"
+                                                }
+                                            ],
+                                            [
+                                                {
+                                                    "field": "field_597f6fd5414f1",
+                                                    "operator": "==",
+                                                    "value": "FP"
+                                                }
+                                            ]
+                                        ],
+                                        "wrapper": {
+                                            "width": "",
+                                            "class": "",
+                                            "id": ""
+                                        },
+                                        "default_value": "",
+                                        "min": "",
+                                        "max": "",
+                                        "step": "",
+                                        "placeholder": "",
+                                        "prepend": "",
+                                        "append": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "key": "field_592da7fc26f24",
+                                "label": "Points",
+                                "name": "points",
+                                "type": "number",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "0",
+                                    "class": "case_calculee",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "min": "",
+                                "max": "",
+                                "step": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": ""
+                            }
+                        ]
+                    },
+                    {
+                        "key": "field_592da83226f25",
+                        "label": "Non-membre",
+                        "name": "non-membre",
+                        "type": "repeater",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "min": 0,
+                        "max": 0,
+                        "layout": "table",
+                        "button_label": "Ajouter un compétiteur non-membre",
+                        "collapsed": "",
+                        "sub_fields": [
+                            {
+                                "key": "field_592da921bc1a1",
+                                "label": "Rang",
+                                "name": "rang",
+                                "type": "number",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "0",
+                                    "class": "case_calculee",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "min": "",
+                                "max": "",
+                                "step": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": ""
+                            },
+                            {
+                                "key": "field_592da85226f26",
+                                "label": "Véhicule",
+                                "name": "vehicule",
+                                "type": "text",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "25",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "maxlength": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": ""
+                            },
+                            {
+                                "key": "field_592da86c26f27",
+                                "label": "Nom du tireur",
+                                "name": "nom_du_tireur",
+                                "type": "text",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "25",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "maxlength": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": ""
+                            },
+                            {
+                                "key": "field_597f7cedc8692",
+                                "label": "Distances",
+                                "name": "distances",
+                                "type": "repeater",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "50",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "min": 1,
+                                "max": 0,
+                                "layout": "table",
+                                "button_label": "",
+                                "collapsed": "",
+                                "sub_fields": [
+                                    {
+                                        "key": "field_597f7cffc8693",
+                                        "label": "Statut",
+                                        "name": "statut",
+                                        "type": "select",
+                                        "instructions": "",
+                                        "required": 0,
+                                        "conditional_logic": 0,
+                                        "wrapper": {
+                                            "width": "20",
+                                            "class": "",
+                                            "id": ""
+                                        },
+                                        "multiple": 0,
+                                        "allow_null": 0,
+                                        "choices": {
+                                            "Normal": "Normal",
+                                            "FP": "FP",
+                                            "DNS": "DNS",
+                                            "DQ": "DQ",
+                                            "BR": "BR"
+                                        },
+                                        "default_value": [],
+                                        "ui": 0,
+                                        "ajax": 0,
+                                        "placeholder": "",
+                                        "return_format": "value"
+                                    },
+                                    {
+                                        "key": "field_597f7d49c8694",
+                                        "label": "Distance",
+                                        "name": "distance",
+                                        "type": "number",
+                                        "instructions": "",
+                                        "required": 0,
+                                        "conditional_logic": 0,
+                                        "wrapper": {
+                                            "width": "",
+                                            "class": "",
+                                            "id": ""
+                                        },
+                                        "default_value": "",
+                                        "min": "",
+                                        "max": "",
+                                        "step": "",
+                                        "placeholder": "",
+                                        "prepend": "",
+                                        "append": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "key": "field_592da88226f29",
+                                "label": "Points",
+                                "name": "points",
+                                "type": "number",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "0",
+                                    "class": "case_calculee",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "min": "",
+                                "max": "",
+                                "step": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": ""
+                            }
+                        ]
+                    },
+                    {
+                        "key": "field_5981f3276655d",
+                        "label": "classe_id",
+                        "name": "classe_id",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": ""
+                    }
+                ]
+            },
+            {
+                "key": "field_5939ced2dcd39",
+                "label": "Terminé",
+                "name": "termine",
+                "type": "true_false",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 0,
+                "message": "",
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "tribe_events"
+                }
+            ]
+        ],
+        "menu_order": 1,
+        "position": "acf_after_title",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    }
+]
