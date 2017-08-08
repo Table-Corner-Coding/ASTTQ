@@ -212,9 +212,9 @@ jQuery(document).ready(function(){
 				
 				//alert('Tireur: '+tireursNom[index]+' ('+item+')');	
 				
-				//addButton.trigger('click');
+				addButton.trigger('click');
 				
-				acf.fields.repeater.add(table);
+				//acf.fields.repeater.add(table);
 				
 				var nomTireur = tireursNom[index];
 				var trueIndex = index;
