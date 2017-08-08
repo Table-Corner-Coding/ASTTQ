@@ -227,6 +227,7 @@ jQuery(document).ready(function(){
 						table.find('tbody tr:nth-child('+trueIndex+') td[data-name=tireur] span.select2-chosen').html(nomTireur);
 						table.find('tbody tr:nth-child('+trueIndex+')').attr('title',item);
    					}, 200);
+				
 			});
 			
 			
