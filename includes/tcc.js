@@ -251,7 +251,7 @@ jQuery(document).ready(function(){
 	function updateConducteurs(hiddenField,triggerChange){
 		
 		var theLine = hiddenField.parent().parent().parent().parent();
-		var objID = theLine.find('td[data-name=tireur] input[type=hidden]').next('select').val();
+		var objID = theLine.find('td[data-name=tireur] input[type=hidden]').val();
 		//var hiddenField = sender;
 		var my_data = {
 			action: 'ajax_get_conducteurs', // This is required so WordPress knows which func to use
