@@ -68,7 +68,7 @@ jQuery(document).ready(function(){
 	
 	jQuery('td[data-key=field_592da79d26f22] select').on('change', function(){
 		
-		alert(jQuery(this).val());
+		//alert(jQuery(this).val());
 		
 	});
 	
@@ -182,7 +182,7 @@ jQuery(document).ready(function(){
 	
 	jQuery('#acf-form').on('click','.load-members',function(){
 		
-		alert('Add!');
+		//alert('Add!');
 		
 		var objID = jQuery(this).parent().find('input[type=hidden]').val();
 		var wholeList = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur]');
@@ -200,6 +200,7 @@ jQuery(document).ready(function(){
 			action: 'ajax_load_tireurs_from_class', // This is required so WordPress knows which func to use
 			objID: objID
 		};
+		
 		//alert(objID);
 		jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
 			var rData = jQuery.parseJSON(response);
@@ -214,9 +215,9 @@ jQuery(document).ready(function(){
 				
 				//alert('Tireur: '+tireursNom[index]+' ('+item+')');	
 				
-				addButton.trigger('click');
+				//addButton.trigger('click');
 				
-				//acf.fields.repeater.add(table);
+				acf.fields.repeater.add(table);
 				
 				var nomTireur = tireursNom[index];
 				var trueIndex = index;
@@ -250,7 +251,7 @@ jQuery(document).ready(function(){
 	function updateConducteurs(hiddenField,triggerChange){
 		
 		var theLine = hiddenField.parent().parent().parent().parent();
-		var objID = theLine.find('td[data-name=tireur] input[type=hidden]').val();
+		var objID = theLine.find('td[data-name=tireur] input[type=hidden]').next('select').val();
 		//var hiddenField = sender;
 		var my_data = {
 			action: 'ajax_get_conducteurs', // This is required so WordPress knows which func to use
