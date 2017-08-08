@@ -1223,7 +1223,7 @@ add_action( 'wp_ajax_nopriv_ajax_delete_post', 'ajax_delete_post' );
 function ajax_get_conducteurs(){
 	$objID = $_POST['objID'];
 	
-	$conducteurs = get_field('conducteur', $objID, [$format_value]);
+	$conducteurs = get_field('conducteur', $objID);
 	
 	$retVal = '<select class="conducteurs_select">';
 	
