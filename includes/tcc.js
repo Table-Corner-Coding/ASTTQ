@@ -209,20 +209,18 @@ jQuery(document).ready(function(){
 			var tireursNom = rData.noms;
 			
 			tireursArray.forEach(function(item, index){
-				//alert(item);
-				//table.find('tbody tr:last-child td[data-name=tireur] input[type=hidden]').val(item);
-				//table.find('tbody tr:last-child td[data-name=tireur] span.select2-chosen').html(tireursNom[index]);
-				
-				//alert('Tireur: '+tireursNom[index]+' ('+item+')');	
-				
-				//addButton.trigger('click');
+
 				
 				
 				var Line = table.find('tbody > tr:last-child');
+				
+				/*
 				acf.fields.repeater.add(Line);
 				
 				var nomTireur = tireursNom[index];
 				var trueIndex = index;
+				
+				
 				setTimeout(function(){
 					
 						table.find('tbody tr:nth-child('+trueIndex+') td[data-name=tireur] input[type=hidden]').val(item);
@@ -232,7 +230,7 @@ jQuery(document).ready(function(){
 						table.find('tbody tr:nth-child('+trueIndex+') td[data-name=tireur] span.select2-chosen').html(nomTireur);
 						table.find('tbody tr:nth-child('+trueIndex+')').attr('title',item);
    					}, 200);
-				
+				*/
 			});
 			
 			
