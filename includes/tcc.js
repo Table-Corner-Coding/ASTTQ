@@ -184,7 +184,7 @@ jQuery(document).ready(function(){
 		
 		//alert('Add!');
 		
-		var objID = jQuery(this).parent().find('input[type=hidden]').val();
+		var objID = jQuery(this).parent().find('input[type=hidden]').next('select').val();
 		var wholeList = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur]');
 		var table = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-table > tbody');
 		var addButton = jQuery(this).parent().parent().parent().parent().find('div[data-name=competiteur] > .acf-input > .acf-repeater > .acf-actions > li > a.acf-button');
