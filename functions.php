@@ -1191,8 +1191,9 @@ function edition_competitions_shortcode() {
 				}
 				$tabs .= '[/tabcontainer]';			
 				$tabs .= '[tabcontent]'; 
+				
 				foreach($events as $event){
-					$tabs .= '[et_pb_accordion admin_label="Accordion" use_border_color="off" border_color="#ffffff" border_style="solid"]';
+					$tabs .= '[tab][et_pb_accordion admin_label="Accordion" use_border_color="off" border_color="#ffffff" border_style="solid"]';
 					$classes = get_the_terms( $event->ID, 'classes' );
 
 					foreach($classes as $classe){
