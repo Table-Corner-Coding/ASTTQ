@@ -393,6 +393,10 @@ function sommaire_shortcode( $atts ) {
 	
 	$termine = 0;
 	
+	
+	$content = '';
+	
+	/* 
 	$content = '<a name="_top_"></a><h2>[wpml__ context=asttq]Table des matières[/wpml__]</h2><em>
 <ol class="toc">';
 
@@ -408,7 +412,7 @@ function sommaire_shortcode( $atts ) {
 	
 	$content.= '</ol>
 		</em>';
-
+*/
 	foreach($events as $current_event){
 		$termine = get_field('field_5939ced2dcd39',$current_event->ID);
 		if($termine){
