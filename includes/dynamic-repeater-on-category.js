@@ -1,5 +1,6 @@
 	
-	jQuery(document).ready(function($){
+var jsonOBJ = '';	
+jQuery(document).ready(function($){
 		
 		//alert('test');
 		
@@ -69,14 +70,14 @@
 				data.exists = [];
 				
 				// this the request is copied from ACF
-				this.request = $.ajax({
+				this.request = jQuery.ajax({
 					url:		acf.get('ajaxurl'),
 					data:		acf.prepare_for_ajax(data),
 					type:		'post',
 					dataType:	'json',
 					async: true,
 					success: function(json){
-						
+						jsonOBJ = json;
 						if (!json) {
 							return;
 						}
