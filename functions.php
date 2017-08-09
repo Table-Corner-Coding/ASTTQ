@@ -401,7 +401,7 @@ function sommaire_shortcode( $atts ) {
 	foreach($events as $current_event){
 		$termine = get_field('field_5939ced2dcd39',$current_event->ID);
 		if($termine){
-			$content .= '<li><a href="#'.str_replace(' ','_',$current_event->post_title).'">'.$current_event->post_title.'</a></li>';	
+			$content .= '<li>t: '.$termine.'<a href="#'.str_replace(' ','_',$current_event->post_title).'">'.$current_event->post_title.'</a></li>';	
 		}
 		
 	}
