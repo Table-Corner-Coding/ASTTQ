@@ -90,6 +90,8 @@ jQuery(document).ready(function($){
 							theSet.parent().find('div[data-key="field_592da70526f20"] > .acf-input > .acf-repeater > ul.acf-actions a[data-event="add-row"]').trigger('click');
 							//jQuery('div[data-key="field_592da70526f20"] ul.acf-actions a[data-event="add-row"]').trigger('click');
 						}
+						
+						alert(json);
 						// we need to get the entire list of fields for both
 						// of the fields we want to fill and we need to fill
 						// them from the bottom up, the reason for this is
