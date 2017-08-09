@@ -1,5 +1,8 @@
 	
 	jQuery(document).ready(function($){
+		
+		alert('test');
+		
 		// make sure acf is loaded, it should be, but just in case
 		if (typeof acf == 'undefined') { return; }
 		
@@ -11,16 +14,16 @@
 				// we want to trigger the change
 				// in this case, the taxonomy field is a Select2 field
 				// and we want the value of a hidden field and not the select field
-				'change [data-key="field_592da64426f1f"] input[type="hidden"]': '_change_term',
+				'change [data-key="field_592da64426f1f"] input[type="hidden"]+select': '_change_term',
 				// this entry is to cause the field to update on page load
-				'ready [data-key="field_592da64426f1f"] input[type="hidden"]': '_change_term',
+				'ready [data-key="field_592da64426f1f"] input[type="hidden"]+select': '_change_term',
 				
 				// for this example we also want to hide all of the "add row" buttons
 				// because we only want the user to be able to set existing values
 				// and not add new ones so we'll add another ready function
 				// that will do this maintenance, this is our own special action
 				// setup is not a real action, we're creating a new one
-				'setup [data-key="field_592da64426f1f"] input[type="hidden"]': '_setup',
+				'setup [data-key="field_592da64426f1f"] input[type="hidden"]+select': '_setup',
 			},
 			
 			// this is our function that will perform the
