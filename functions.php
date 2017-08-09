@@ -412,7 +412,10 @@ function sommaire_shortcode( $atts ) {
 	foreach($events as $current_event){
 		$termine = get_field('field_5939ced2dcd39',$current_event->ID);
 		if($termine){
-		$content .= '<a name="'.str_replace(' ','_',$current_event->post_title).'"></a>'.get_points_table_for_event($current_event->ID).'
+		$content .= '<a name="'.str_replace(' ','_',$current_event->post_title).'"></a>
+		<h2>'.$current_event->post_title.'</h2>
+		
+		'.get_points_table_for_event($current_event->ID).'
 		
 		<div><a href="#_top_">[ [wpml__ context=asttq]Retour en haut[/wpml__] ]</a></div><hr />
 		';
