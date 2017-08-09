@@ -1196,7 +1196,7 @@ function edition_competitions_shortcode() {
 					$classes = get_the_terms( $event->ID, 'classes' );
 					$tabs .= '[tabs][tabcontainer]';
 					foreach($classes as $classe){
-						
+						$tabs .= '[tabtext]'.$classe->name.'[/tabtext]';
 					}
 					$tabs .= '[/tabcontainer][tabcontent]';
 					foreach($classes as $classe){
@@ -1252,7 +1252,7 @@ function edition_competitions_shortcode() {
 			
 	
 	return do_shortcode($tabs).$scripts;
-
+			}
 }
 }
 add_shortcode( 'edition_competitions', 'edition_competitions_shortcode' );
