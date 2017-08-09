@@ -1,7 +1,7 @@
 	
 	jQuery(document).ready(function($){
 		
-		alert('test');
+		//alert('test');
 		
 		// make sure acf is loaded, it should be, but just in case
 		if (typeof acf == 'undefined') { return; }
@@ -33,7 +33,7 @@
 				// get the value of the taxonomy field
 				$value = e.$el.val();
 				
-				alert($value);
+				//alert($value);
 				
 				// remove any existing rows of the repeater, except the clone row
 				// by triggering each row's remove-row click event
