@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Édition des compéitions
+Template Name: Édition des tireurs
 */
 
 get_header();
@@ -34,7 +34,24 @@ if(isset($_REQUEST['acf'])){
 
 		<div class="entry-content">
 		<?php
-			
+
+	$theYear = $_REQUEST['annee'];
+	
+	if(empty($theYear)){
+	/* Si l'année n'a pas été spécifiée, on prend l'année en cours */
+	$theYear = date('Y');
+	}
+	
+	/* On ramasse tout les événement de l'année voulue */
+	
+	$events = tribe_get_events( array(
+    'eventDisplay' => 'custom',
+    'start_date'   => $theYear.'-01-01 00:01',
+    'end_date'     => $theYear.'-12-31 23:59',
+	'posts_per_page' => '99999'
+	) );
+	
+	$termine = 0;
 			
 			if(is_user_logged_in() && current_user_can('manage_options')){
 				
@@ -43,14 +60,28 @@ if(isset($_REQUEST['acf'])){
 				$tabs = '
 				[tabs slidertype="left tabs"] 
 					[tabcontainer]';
-				foreach($terms as $term){
-					$tabs .= '[tabtext]'.$term->name.'[/tabtext]';
+				foreach($events as $event){
+					$tabs .= '[tabtext]'.$event->post_title.'[/tabtext]';
 				}
 				$tabs .= '[/tabcontainer]';			
 				$tabs .= '[tabcontent]'; 
-				foreach($terms as $term){
+				foreach($events as $event){
 					$tabs .= '[tab]';
+					$classes = get_the_terms( $event->ID, 'classes' );
+					$tabs .= '[tabs][tabcontainer]';
+					foreach($classes as $classe){
+						
+					}
+					$tabs .= '[/tabcontainer][tabcontent]';
+					foreach($classes as $classe){
+						$tabs .= '[tab]';
+						
+						$tabs .= '<h3>'.$classe->name.'</h3>';
+						$tabs .= '[/tab]';
+					}
 					
+					$tabs .= '[/tabcontent][/tabs]';
+					/*
 					$tireurs = get_posts(array(
 								  'post_type' => 'tireurs',
 								  'numberposts' => -1,
@@ -86,7 +117,7 @@ if(isset($_REQUEST['acf'])){
 					
 					
 					$tabs .= '</tbody></table>';
-					
+					*/
 					$tabs .= '[/tab] ';
 				}
 				$tabs .= '[/tabcontent]
