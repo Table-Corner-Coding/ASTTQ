@@ -33,7 +33,7 @@ jQuery(document).ready(function($){
 				
 				// get the value of the taxonomy field
 				$value = e.$el.val();
-				var theLine = $el.closest('.acf-row');
+				var theLine = e.$el.closest('.acf-row');
 				var theSet = theLine.closest('div[data-key="field_592da70526f20"]');
 				//alert($value);
 				
