@@ -1254,6 +1254,7 @@ function edition_competitions_shortcode() {
 	return do_shortcode($tabs).$scripts;
 
 }
+}
 add_shortcode( 'edition_competitions', 'edition_competitions_shortcode' );
 
 
