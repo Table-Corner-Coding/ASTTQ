@@ -1192,14 +1192,52 @@ function edition_competitions_shortcode() {
 				$tabs .= '[/tabcontainer]';			
 				$tabs .= '[tabcontent]'; 
 				
+				
+				
 				foreach($events as $event){
 					$tabs .= '[tab][et_pb_accordion admin_label="Accordion" use_border_color="off" border_color="#ffffff" border_style="solid"]';
 					$classes = get_the_terms( $event->ID, 'classes' );
-
+					$competitions = get_field('competition',$event->ID);
+					
+					
+					
+					
 					foreach($classes as $classe){
+						
+						/*
+						$objID = $classe->term_id;
+	
+						$tireurs = get_posts(array(
+														  'post_type' => 'tireurs',
+														  'numberposts' => -1,
+														  'tax_query' => array(
+															array(
+															  'taxonomy' => 'classes',
+															  'field' => 'id',
+															  'terms' => $objID, // Where term_id of Term 1 is "1".
+															  'include_children' => false
+															)
+														  )
+														));
+						$tireurArray = array();
+						$tireursNoms = array();
+
+						foreach($tireurs as $tireur){
+							$profil = get_field('nom_du_profil',$tireur->ID);
+							if(empty($profil)){
+								$profil = $tireur->post_title;
+							}
+							$tireursNoms[] = $profil;
+							$tireurArray[] = $tireur->ID;
+						}
+						
+						*/
+						
+						$competitions = get_field('competition',$event->ID);
+						
 						$tabs .= '[et_pb_accordion_item title="'.$classe->name.'"]';
 						
-						$tabs .= '<h3>'.$classe->name.'</h3>';
+						$tabs .= '<h3>'.$classe->name.'</h3>'.print_r($competitions,true);
 						$tabs .= '[/et_pb_accordion_item]';
 					}
 					
