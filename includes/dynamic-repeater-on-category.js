@@ -24,7 +24,7 @@ jQuery(document).ready(function($){
 				// and not add new ones so we'll add another ready function
 				// that will do this maintenance, this is our own special action
 				// setup is not a real action, we're creating a new one
-				'setup [data-key="field_592da64426f1f"] input[type="hidden"]+select': '_setup',
+				'setup [data-key="field_592da64426f1f"] input[type="hidden"]': '_setup',
 			},
 			
 			// this is our function that will perform the
