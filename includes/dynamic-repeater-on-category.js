@@ -33,7 +33,8 @@ jQuery(document).ready(function($){
 				
 				// get the value of the taxonomy field
 				$value = e.$el.val();
-				
+				var theLine = $el.closest('.acf-row');
+				var theSet = theLine.closest('div[data-key="field_592da70526f20"]');
 				//alert($value);
 				
 				// remove any existing rows of the repeater, except the clone row
@@ -86,7 +87,8 @@ jQuery(document).ready(function($){
 						for (i=0; i<len; i++) {
 							// trigger the add-row action for the repeater
 							// data-key = field key of the repeater
-							jQuery('div[data-key="field_592da70526f20"] ul.acf-actions a[data-event="add-row"]').trigger('click');
+							theSet.parent().find('div[data-key="field_592da70526f20"] > .acf-input > .acf-repeater > ul.acf-actions a[data-event="add-row"]').trigger('click');
+							//jQuery('div[data-key="field_592da70526f20"] ul.acf-actions a[data-event="add-row"]').trigger('click');
 						}
 						// we need to get the entire list of fields for both
 						// of the fields we want to fill and we need to fill
@@ -97,7 +99,7 @@ jQuery(document).ready(function($){
 						
 						// first get all of the repeater rows, except the clone row
 						// the first data key is the repeater key
-						var feature_list = jQuery('div[data-key="field_592da70526f20"] tr.acf-row').not('div[data-key="field_592da70526f20"] tr.acf-clone');
+						var feature_list = theSet.parent().find('div[data-key="field_592da70526f20"] > .acf-input > .acf-repeater > .acf-table > tbody > tr.acf-row').not(theSet.parent().find('div[data-key="field_592da70526f20"] > .acf-input > .acf-repeater > .acf-table > tbody > tr.acf-clone'));
 						
 						// start at the end
 						var json_item = len - 1;
