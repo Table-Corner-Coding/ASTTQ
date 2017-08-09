@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Édition des tireurs
+Template Name: Édition des compétitions
 */
 
 get_header();
