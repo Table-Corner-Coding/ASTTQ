@@ -1148,6 +1148,115 @@ function edition_tireurs_shortcode() {
 add_shortcode( 'edition_tireurs', 'edition_tireurs_shortcode' );
 
 
+// Add Shortcode
+function edition_competitions_shortcode() {
+
+	$tabs = '';
+	
+	if(is_user_logged_in() && current_user_can('manage_options')){
+		wp_enqueue_script( 'tcc-edition', get_stylesheet_directory_uri().'/includes/tcc-edition.js', array('jquery') );
+		wp_localize_script( 'tcc-edition', 'adminAjax', admin_url( 'admin-ajax.php' ) );
+		
+		wp_enqueue_script( 'jquery-confirm', get_stylesheet_directory_uri().'/includes/jquery-confirm/js/jquery-confirm.js', array('jquery') );
+		wp_enqueue_style( 'jquery-confirm-style', get_stylesheet_directory_uri().'/includes/jquery-confirm/css/jquery-confirm.css' );
+		
+		
+		$theYear = $_REQUEST['annee'];
+	
+	if(empty($theYear)){
+	/* Si l'année n'a pas été spécifiée, on prend l'année en cours */
+	$theYear = date('Y');
+	}
+	
+	/* On ramasse tout les événement de l'année voulue */
+	
+	$events = tribe_get_events( array(
+    'eventDisplay' => 'custom',
+    'start_date'   => $theYear.'-01-01 00:01',
+    'end_date'     => $theYear.'-12-31 23:59',
+	'posts_per_page' => '99999'
+	) );
+	
+	$termine = 0;
+			
+			if(is_user_logged_in() && current_user_can('manage_options')){
+				
+				$terms = get_the_terms( get_the_ID(), 'classes' );
+				
+				$tabs = '
+				[tabs slidertype="left tabs"] 
+					[tabcontainer]';
+				foreach($events as $event){
+					$tabs .= '[tabtext]'.$event->post_title.'[/tabtext]';
+				}
+				$tabs .= '[/tabcontainer]';			
+				$tabs .= '[tabcontent]'; 
+				foreach($events as $event){
+					$tabs .= '[tab]';
+					$classes = get_the_terms( $event->ID, 'classes' );
+					$tabs .= '[tabs][tabcontainer]';
+					foreach($classes as $classe){
+						
+					}
+					$tabs .= '[/tabcontainer][tabcontent]';
+					foreach($classes as $classe){
+						$tabs .= '[tab]';
+						
+						$tabs .= '<h3>'.$classe->name.'</h3>';
+						$tabs .= '[/tab]';
+					}
+					
+					$tabs .= '[/tabcontent][/tabs]';
+					/*
+					$tireurs = get_posts(array(
+								  'post_type' => 'tireurs',
+								  'numberposts' => -1,
+								  'tax_query' => array(
+									array(
+									  'taxonomy' => 'classes',
+									  'field' => 'id',
+									  'terms' => $term->term_id, // Where term_id of Term 1 is "1".
+									  'include_children' => false
+									)
+								  )
+								));
+					$tabs .= '<table><thead><tr><th>'.__('Véhicule','asttq').'</th><th>'.__('Nom du profil','asttq').'</th><th>'.__('Conducteurs','asttq').'</th></tr></thead><tbody>';
+					
+					foreach($tireurs as $tireur){
+						
+						$tireur_id = $tireur->ID;
+						$vehicule = get_field('nom_du_vehicule', $tireur_id);
+						$nom_profil = get_field('nom_du_profil', $tireur_id);
+						$conducteurs = get_field('conducteur', $tireur_id);
+
+						
+						$tabs .=  '<tr><td>'.$vehicule.'</td><td>'.$nom_profil.'</td><td>';
+						'</td><td>';
+						
+						foreach($conducteurs as $conducteur){
+							$tabs .= '<div>'.$conducteur['nom'].'</div>';
+						}
+						
+						$tabs .= '</td></tr>';
+					}
+					
+					
+					
+					$tabs .= '</tbody></table>';
+					*/
+					$tabs .= '[/tab] ';
+				}
+				$tabs .= '[/tabcontent]
+				[/tabs]'; 
+				
+			
+	
+	return do_shortcode($tabs).$scripts;
+
+}
+add_shortcode( 'edition_competitions', 'edition_competitions_shortcode' );
+
+
 
 function update_post_fields() {
 	global $wpdb;
