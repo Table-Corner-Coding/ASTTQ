@@ -108,6 +108,7 @@ jQuery(document).ready(function($){
 							// get the ID of this item
 							var id = feature_list[i].getAttribute('data-id');
 							// populate the featur
+							alert(json[json_item]['field_592da79d26f22'].ID);
 							jQuery('div[data-key="field_592da70526f20"] tr[data-id="'+id+'"] td[data-key="field_592da79d26f22"] input').val(json[json_item]['field_592da79d26f22'].ID);
 							// populate the value
 							//jQuery('div[data-key="field_592da70526f20"] tr[data-id="'+id+'"] td[data-key="field_57c99515d8ee8"] input').val(json[json_item]['field_57c99515d8ee8']);
