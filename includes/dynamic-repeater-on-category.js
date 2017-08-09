@@ -30,10 +30,12 @@
 				// get the value of the taxonomy field
 				$value = e.$el.val();
 				
+				alert($value);
+				
 				// remove any existing rows of the repeater, except the clone row
 				// by triggering each row's remove-row click event
 				// the data-key is the field key of the repeater
-				$('div[data-key="field_592da70526f20"] tr a[data-event="remove-row"]').not('div[data-key="field_592da70526f20"] tr.acf-clone a[data-event="remove-row"]').trigger('click');
+				jQuery('div[data-key="field_592da70526f20"] tr a[data-event="remove-row"]').not('div[data-key="field_592da70526f20"] tr.acf-clone a[data-event="remove-row"]').trigger('click');
 				
 				
 				
@@ -80,7 +82,7 @@
 						for (i=0; i<len; i++) {
 							// trigger the add-row action for the repeater
 							// data-key = field key of the repeater
-							$('div[data-key="field_592da70526f20"] ul.acf-actions a[data-event="add-row"]').trigger('click');
+							jQuery('div[data-key="field_592da70526f20"] ul.acf-actions a[data-event="add-row"]').trigger('click');
 						}
 						// we need to get the entire list of fields for both
 						// of the fields we want to fill and we need to fill
@@ -91,7 +93,7 @@
 						
 						// first get all of the repeater rows, except the clone row
 						// the first data key is the repeater key
-						var feature_list = $('div[data-key="field_592da70526f20"] tr.acf-row').not('div[data-key="field_592da70526f20"] tr.acf-clone');
+						var feature_list = jQuery('div[data-key="field_592da70526f20"] tr.acf-row').not('div[data-key="field_592da70526f20"] tr.acf-clone');
 						
 						// start at the end
 						var json_item = len - 1;
@@ -100,14 +102,14 @@
 							// get the ID of this item
 							var id = feature_list[i].getAttribute('data-id');
 							// populate the featur
-							$('div[data-key="field_592da70526f20"] tr[data-id="'+id+'"] td[data-key="field_592da79d26f22"] input').val(json[json_item]['field_592da79d26f22']);
+							jQuery('div[data-key="field_592da70526f20"] tr[data-id="'+id+'"] td[data-key="field_592da79d26f22"] input').val(json[json_item]['field_592da79d26f22']);
 							// populate the value
-							//$('div[data-key="field_592da70526f20"] tr[data-id="'+id+'"] td[data-key="field_57c99515d8ee8"] input').val(json[json_item]['field_57c99515d8ee8']);
+							//jQuery('div[data-key="field_592da70526f20"] tr[data-id="'+id+'"] td[data-key="field_57c99515d8ee8"] input').val(json[json_item]['field_57c99515d8ee8']);
 							// decrease json item
 							json_item-=1;
 						}
 						// last thing to do is trigger setup to make sure we keep the add/remvove buttons hidden
-						$('[data-key="field_592da64426f1f"] input').trigger('setup');
+						jQuery('[data-key="field_592da64426f1f"] input').trigger('setup');
 					}
 				});
 			}, // end _change_term
@@ -116,11 +118,11 @@
 			_setup: function(e) {
 				// hide all add/delete row links
 				// this data key is the key for the repeater field
-				$('div[data-key="field_592da70526f20"] a[data-event="remove-row"]').css('display', 'none');
-				$('div[data-key="field_592da70526f20"] a[data-event="add-row"]').css('display', 'none');
+				jQuery('div[data-key="field_592da70526f20"] a[data-event="remove-row"]').css('display', 'none');
+				jQuery('div[data-key="field_592da70526f20"] a[data-event="add-row"]').css('display', 'none');
 			}, // end _setup
 		});
 		
 		// triger the setup action on page load
-		$('[data-key="field_592da64426f1f"] input').trigger('setup');
+		jQuery('[data-key="field_592da64426f1f"] input').trigger('setup');
 	});
