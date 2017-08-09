@@ -391,23 +391,32 @@ function sommaire_shortcode( $atts ) {
 	'posts_per_page' => '99999'
 	) );
 	
+	$termine = 0;
+	
 	$content = '<a name="_top_"></a><h2>[wpml__ context=asttq]Table des matières[/wpml__]</h2><em>
 <ol class="toc">';
 
 	
 	
 	foreach($events as $current_event){
-		$content .= '<li><a href="#'.str_replace(' ','_',$current_event->post_title).'">'.$current_event->post_title.'</a></li>';
+		$termine = get_field('field_5939ced2dcd39',$current_event->ID);
+		if($termine){
+			$content .= '<li><a href="#'.str_replace(' ','_',$current_event->post_title).'">'.$current_event->post_title.'</a></li>';	
+		}
+		
 	}
 	
 	$content.= '</ol>
 		</em>';
 
 	foreach($events as $current_event){
+		$termine = get_field('field_5939ced2dcd39',$current_event->ID);
+		if($termine){
 		$content .= '<a name="'.str_replace(' ','_',$current_event->post_title).'"></a>'.get_points_table_for_event($current_event->ID).'
 		
 		<div><a href="#_top_">[ [wpml__ context=asttq]Retour en haut[/wpml__] ]</a></div><hr />
 		';
+		}
 	}
 	
 	return do_shortcode('<div id="pointages">'.$content.'</div>');
