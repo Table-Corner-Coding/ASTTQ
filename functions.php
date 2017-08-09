@@ -1192,21 +1192,17 @@ function edition_competitions_shortcode() {
 				$tabs .= '[/tabcontainer]';			
 				$tabs .= '[tabcontent]'; 
 				foreach($events as $event){
-					$tabs .= '[tab]';
+					$tabs .= '[et_pb_accordion admin_label="Accordion" use_border_color="off" border_color="#ffffff" border_style="solid"]';
 					$classes = get_the_terms( $event->ID, 'classes' );
-					$tabs .= '[tabs][tabcontainer]';
+
 					foreach($classes as $classe){
-						$tabs .= '[tabtext]'.$classe->name.'[/tabtext]';
-					}
-					$tabs .= '[/tabcontainer][tabcontent]';
-					foreach($classes as $classe){
-						$tabs .= '[tab]';
+						$tabs .= '[et_pb_accordion_item title="'.$classe->name.'"]';
 						
 						$tabs .= '<h3>'.$classe->name.'</h3>';
-						$tabs .= '[/tab]';
+						$tabs .= '[/et_pb_accordion_item]';
 					}
 					
-					$tabs .= '[/tabcontent][/tabs]';
+					$tabs .= '[/et_pb_accordion]';
 					/*
 					$tireurs = get_posts(array(
 								  'post_type' => 'tireurs',
