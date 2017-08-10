@@ -262,8 +262,13 @@ jQuery(document).ready(function(){
 			buttons: {
 				confirm: {
 					text: "Oui",
-					action: function () {
+					action: function (){
 							var tbody = theLine.closest('tbody');
+							
+							theLine.nextAll('tr').each(function(){
+								jQuery(this).first('td').html(parseInt(jQuery(this).first('td').html())-1);
+							});
+						
 							theLine.fadeOut(300,function(){
 								theLine.remove();
 							});
