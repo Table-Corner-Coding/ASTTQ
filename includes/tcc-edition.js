@@ -69,6 +69,7 @@ jQuery(document).ready(function(){
 		jQuery(this).parent().find('select.conducteur').show();
 		jQuery(this).parent().find('div').remove();
 		jQuery(this).removeClass('dashicons-undo').addClass('dashicons-plus-alt');
+		jQuery(this).parent().find('.dashicons.dashicons-yes.save-conducteur').remove();
 	});
 	
 	jQuery(".editable_table.comp_table").on("click",".dashicons.dashicons-yes.save-conducteur",function(){

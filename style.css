@@ -635,7 +635,7 @@ table.comp_table thead tr th{
 }
 
 table.comp_table .multi_field .dashicons{
-	display:inline-block;
+	display:inline-block !important;
 }
 
 .mfieldClone{
