@@ -3,7 +3,7 @@
 jQuery(document).ready(function(){
 	
 	jQuery('select[data-selection]').each(function(){
-		jQuery(this).val(this.attr('data-selection'));
+		jQuery(this).val(jQuery(this).attr('data-selection'));
 		
 	});
 	
