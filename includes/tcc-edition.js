@@ -4,8 +4,10 @@ jQuery(document).ready(function(){
 	
 	jQuery('select[data-selection]').each(function(){
 		jQuery(this).val(jQuery(this).attr('data-selection'));
-		
+		jQuery(this).prop('disabled', true);
 	});
+	
+	//jQuery('.editable_table.comp_table input').prop('disabled', true);
 	
 	jQuery('.actions').append("<span class='dashicons dashicons-yes save' title='Enregistrer les modifications'></span><span class='dashicons dashicons-trash delete' title='Supprimer le tireur'></span>");
 	
