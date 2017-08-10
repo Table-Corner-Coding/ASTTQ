@@ -1290,7 +1290,7 @@ function edition_competitions_shortcode() {
 								</div>';
 
 
-								$tabs .= '</td><td class="actions"><span title="Éditer" class="dashicons dashicons-welcome-write-blog edit"></span></td></tr>';
+								$tabs .= '</td><td class="actions"><!-- <span title="Éditer" class="dashicons dashicons-welcome-write-blog edit"></span> --></td></tr>';
 							}
 
 

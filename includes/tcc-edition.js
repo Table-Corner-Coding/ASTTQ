@@ -133,7 +133,7 @@ jQuery(document).ready(function(){
 	});
 	
 	
-	jQuery('.editable_table').on('click','td.actions > .dashicons-trash.delete',function(){
+	jQuery('.editable_table.table_tireurs').on('click','td.actions > .dashicons-trash.delete',function(){
 		var theLine = jQuery(this).parent().parent();
 		var objID = theLine.attr('data-tireur-id');
 		var nom_profil = '';
@@ -186,6 +186,40 @@ jQuery(document).ready(function(){
 		
 	});
 	
+	jQuery('.editable_table.comp_table').on('click','td.actions > .dashicons-trash.delete',function(){
+		
+		var theLine = jQuery(this).parent().parent();
+		var objID = theLine.attr('data-tireur-id');
+		var nom_profil = '';
+		nom_profil = theLine.find('.tireur option:selected').text();
+
+		
+		jQuery.confirm({
+			title: 'Confirmation requise!',
+			content: 'Êtes-vous certain de vouloir supprimer '+nom_profil+'?',
+			buttons: {
+				confirm: {
+					text: "Oui",
+					action: function () {
+
+							theLine.fadeOut(300,function(){
+								theLine.remove();
+							});
+			
+						
+					}
+				},
+				cancel: { 
+					text: "Non, c'est une erreur...",
+					action: function(){
+								//$.alert('Canceled!');
+							}
+				}
+			}
+		});
+	});
+	
+	
 	jQuery('.add_tireur_line').on('click','.dashicons-plus-alt',function(){
 		jQuery(this).parent().parent().before('<tr class="tireur_line edit_line" data-tireur-id="0"><td data-content="" class="vehicule"><input name="vehicule" type="text" value=""></td><td class="nom_profil" data-content=""><input name="nom_profil" type="text" value=""></td><td class="conducteur multi_field"><div data-content=""><input name="conducteur[]" type="text" value=""></div><span class="dashicons dashicons-plus-alt"></span></td><td class="actions"><span title="Éditer" class="dashicons dashicons-welcome-write-blog edit"></span><span class="dashicons dashicons-yes save" title="Enregistrer les modifications"></span><span class="dashicons dashicons-trash delete" title="Supprimer le tireur"></span></td></tr>');
 	});
@@ -221,8 +255,8 @@ function updateProfil(nom,vehicule,nom_profil,objID,term_id,theLine){
 	var conducteur = {nom: nom};
 	var dataString = {conducteur: conducteur};
 	
-	alert('Nom: '+nom);
-	alert('Conducteur: '+conducteur);
+	//alert('Nom: '+nom);
+	//alert('Conducteur: '+conducteur);
 	
 	if(vehicule != false){
 		dataString['nom_du_vehicule'] = vehicule;
