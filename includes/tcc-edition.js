@@ -223,7 +223,7 @@ jQuery(document).ready(function(){
 	});
 	
 	jQuery('.editable_table.comp_table').on('click','.dashicons-randomize',function(){
-		
+		var theTable = jQuery(this).parent().parent().parent().parent();
 		jQuery.confirm({
 			title: 'Confirmation requise!',
 			content: 'Êtes-vous certain de vouloir mélanger toutes les lignes?',
@@ -232,7 +232,7 @@ jQuery(document).ready(function(){
 					text: "Oui",
 					action: function () {
 
-							jQuery(this).closest('.editable_table.comp_table').shuffleRows();
+							theTable.shuffleRows();
 			
 						
 					}
