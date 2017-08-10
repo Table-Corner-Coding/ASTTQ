@@ -1264,7 +1264,7 @@ function edition_competitions_shortcode() {
 									$tabs .= '<div data-content=""></div>';
 								}
 								
-								$tabs .= '</td><td class="distances multi_field"><div class="container">
+								$tabs .= '</td><td class="distances multi_field"><div class="mfield_container">
 								<select id="" class="" name="" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Choisir" data-allow_null="0">
 								<option value="Normal" class="">Normal</option>
 								<option value="FP">FP</option>
