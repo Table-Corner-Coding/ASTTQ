@@ -7,6 +7,23 @@ jQuery(document).ready(function(){
 		jQuery(this).prop('disabled', true);
 	});
 	
+	jQuery('.editable_table.comp_table').on('change','.mfield_container select.distance_type',function(){
+		
+		if(jQuery(this).val() == 'FP'){
+			if(jQuery(this).parent().is(':last-child')){
+				var theCell = jQuery(this).parent().parent();
+				var theClone = theCell.find('.mfield_container.mfieldClone').clone().appendTo(theCell);
+				theClone.removeClass('mfieldClone');
+			}
+			
+		}else{
+			if(jQuery(this).parent().not(':last-child')){
+				jQuery(this).nextAll('.mfield_container').remove();
+			}
+		}
+		
+	});
+	
 	//jQuery('.editable_table.comp_table input').prop('disabled', true);
 	
 	jQuery('.actions').append("<span class='dashicons dashicons-yes save' title='Enregistrer les modifications'></span><span class='dashicons dashicons-trash delete' title='Supprimer le tireur'></span>");

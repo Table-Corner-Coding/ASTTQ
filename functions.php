@@ -1262,13 +1262,24 @@ function edition_competitions_shortcode() {
 									foreach($conducteurs as $conducteur){
 										$tabs .= '<option data-content="'.$conducteur['nom'].'">'.$conducteur['nom'].'</option>';
 									}
-										$tabs .= '</select>';
+										$tabs .= '</select><span class="dashicons dashicons-plus-alt addConducteur"></span>';
 								}else{
 									$tabs .= '<div data-content=""></div>';
 								}
 								
-								$tabs .= '</td><td class="distances multi_field"><div class="mfield_container">
-								<select id="" class="" name="" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Choisir" data-allow_null="0">
+								$tabs .= '</td><td class="distances multi_field">
+								<div class="mfield_container mfieldClone">
+								<select id="" class="distance_type" name="" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Choisir" data-allow_null="0">
+								<option value="Normal" class="">Normal</option>
+								<option value="FP">FP</option>
+								<option value="DNS">DNS</option>
+								<option value="DQ">DQ</option>
+								<option value="BR">BR</option>
+								</select>
+								<input type="number" id="" class="" name="" value="" min="" max="" step="any" placeholder="">
+								</div>
+								<div class="mfield_container">
+								<select id="" class="distance_type" name="" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Choisir" data-allow_null="0">
 								<option value="Normal" class="">Normal</option>
 								<option value="FP">FP</option>
 								<option value="DNS">DNS</option>
