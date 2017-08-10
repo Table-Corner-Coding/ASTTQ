@@ -1,11 +1,11 @@
 // JavaScript Document
 
-(function($){
+(function(jQuery){
     //Shuffle all rows, while keeping the first column
     //Requires: Shuffle
- $.fn.shuffleRows = function(){
+ jQuery.fn.shuffleRows = function(){
      return this.each(function(){
-        var main = $(/table/i.test(this.tagName) ? this.tBodies[0] : this);
+        var main = jQuery(/table/i.test(this.tagName) ? this.tBodies[0] : this);
         var firstElem = [], counter=0;
         main.children().each(function(){
              firstElem.push(this.firstChild);
@@ -17,16 +17,16 @@
      });
    }
   /* Shuffle is required */
-  $.fn.shuffle = function() {
+  jQuery.fn.shuffle = function() {
     return this.each(function(){
-      var items = $(this).children();
+      var items = jQuery(this).children();
       return (items.length)
-        ? $(this).html($.shuffle(items))
+        ? jQuery(this).html(jQuery.shuffle(items))
         : this;
     });
   }
 
-  $.shuffle = function(arr) {
+  jQuery.shuffle = function(arr) {
     for(
       var j, x, i = arr.length; i;
       j = parseInt(Math.random() * i),

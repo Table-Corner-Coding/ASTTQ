@@ -568,7 +568,9 @@ iframe body .et_slide_in_menu_container{
 	display:none !important;
 }
 
-
+.et_slidertype_left_tabs .et-tabs-control li a{
+	line-height: normal !important;
+}
 
 .entry-content table.editable_table{
 	background-color:#f2f2f2 !important;
