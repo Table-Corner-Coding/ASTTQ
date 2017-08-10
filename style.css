@@ -619,3 +619,13 @@ table.editable_table .dashicons:before{
 div[data-name=classe_id]{
 	display: none;
 }
+
+table.comp_table input[type=number]{
+	width: 135px;
+    position: relative;
+    top: -2px;
+}
+
+table.comp_table tbody tr td{
+	padding: 0 5px;
+}
