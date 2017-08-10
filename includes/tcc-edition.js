@@ -263,13 +263,13 @@ jQuery(document).ready(function(){
 				confirm: {
 					text: "Oui",
 					action: function () {
-
+							var tbody = theLine.closest('tbody');
 							theLine.fadeOut(300,function(){
 								theLine.remove();
 							});
 							
 							var theCount = 0;
-							theLine.closest('tbody').each('tr > td:first-child',function(){
+							tbody.find('tr > td:first-child').each(function(){
 								theCount += 1;
 								jQuery(this).text(theCount);
 							});
