@@ -218,7 +218,7 @@ function editionDone(theLine){
 
 function updateProfil(nom,vehicule,nom_profil,objID,term_id,theLine){
 	
-	var conducteur = {nom: nom};
+	//var conducteur = {nom: nom};
 	var dataString = [];
 	
 	alert(nom);
@@ -232,7 +232,7 @@ function updateProfil(nom,vehicule,nom_profil,objID,term_id,theLine){
 	}
 	
 	
-		dataString['conducteur'] = conducteur;
+		dataString['conducteur'] = nom;
 	
 	
 	var jsonString = JSON.stringify(dataString);
