@@ -1240,8 +1240,8 @@ function edition_competitions_shortcode() {
 									));
 							
 							
-							$tabs .= '<form id="form_edition_'.$term->term_id.'">';
-							$tabs .= '<table data-term-id="'.$term->term_id.'" class="editable_table comp_table"><thead><tr><th>'.__('Véhicule','asttq').'</th><th>'.__('Conducteur','asttq').'</th><th>'.__('Distances','asttq').'</th><th>Actions</th></tr></thead><tbody>';
+							$tabs .= '<form id="form_edition_'.$classe->term_id.'">';
+							$tabs .= '<table data-term-id="'.$classe->term_id.'" class="editable_table comp_table"><thead><tr><th>'.__('Véhicule','asttq').'</th><th>'.__('Conducteur','asttq').'</th><th>'.__('Distances','asttq').'</th><th>Actions</th></tr></thead><tbody>';
 
 							foreach($tireurs as $tireur){
 
@@ -1253,7 +1253,7 @@ function edition_competitions_shortcode() {
 
 								$tabs .=  '<tr class="tireur_line" data-Tireur-ID="'.$tireur_id.'"><td data-content="'.$vehicule.'" class="vehicule">';
 								
-								$tabs .= get_tireurs_select($term->term_id,$tireur_id);
+								$tabs .= get_tireurs_select($classe->term_id,$tireur_id);
 									
 								$tabs .= '</td><td class="conducteur multi_field">';
 
@@ -1360,9 +1360,9 @@ add_shortcode( 'edition_competitions', 'edition_competitions_shortcode' );
 function get_tireurs_select($classeID = 0,$selection = ''){
 	
 	$transient_name = 'tireurs_options_'.$classeID;
-	delete_transient($transient_name);
+	//delete_transient($transient_name);
 	$options_array = get_transient($transient_name);
-	$options_array = '';
+	//$options_array = '';
 	
 	
 	$retVal = '<select class="tireur" data-selection="'.$selection.'">';
@@ -1392,6 +1392,7 @@ function get_tireurs_select($classeID = 0,$selection = ''){
 		}
 		set_transient($transient_name, $options_array);
 	}else{
+
 		$retVal .= $options_array;
 	}
 	
