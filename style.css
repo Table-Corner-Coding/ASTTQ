@@ -578,6 +578,10 @@ iframe body .et_slide_in_menu_container{
 	color: #000000;
 }
 
+.entry-content table.editable_table tbody tr:nth-child(even) td{
+	color: #000000;
+}
+
 table.editable_table .tireur_line .actions .save{
 	display: none;
 }
