@@ -286,11 +286,7 @@ jQuery(document).ready(function(){
 			}
 		});
 		
-		var theCount = 0;
-							tbody.find('td:first-child').each(function(){
-								theCount += 1;
-								jQuery(this).html(theCount);
-							});
+		reorderRows(tbody.parent());
 		
 	});
 	
@@ -300,6 +296,14 @@ jQuery(document).ready(function(){
 	});
 	
 });
+
+function reorderRows(theTable){
+	var theCount = 0;
+	theTable.find('td:first-child').each(function(){
+													theCount += 1;
+													jQuery(this).html(theCount);
+													});
+}
 
 function editionDone(theLine){
 	theLine.removeClass('edit_line');
