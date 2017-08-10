@@ -254,7 +254,7 @@ jQuery(document).ready(function(){
 		var objID = theLine.attr('data-tireur-id');
 		var nom_profil = '';
 		nom_profil = theLine.find('.tireur option:selected').text();
-
+		var tbody = theLine.closest('tbody');
 		
 		jQuery.confirm({
 			title: 'Confirmation requise!',
@@ -263,21 +263,17 @@ jQuery(document).ready(function(){
 				confirm: {
 					text: "Oui",
 					action: function (){
-							var tbody = theLine.closest('tbody');
 							
-							theLine.nextAll('tr').each(function(){
+							/*
+							tbody.children('tr').each(function(){
 								jQuery(this).first('td').html(parseInt(jQuery(this).first('td').html())-1);
 							});
-						
+						*/
 							theLine.fadeOut(300,function(){
 								theLine.remove();
 							});
 							
-							var theCount = 0;
-							tbody.find('td:first-child').each(function(){
-								theCount += 1;
-								jQuery(this).html(theCount);
-							});
+							
 						
 					}
 				},
@@ -289,6 +285,13 @@ jQuery(document).ready(function(){
 				}
 			}
 		});
+		
+		var theCount = 0;
+							tbody.find('td:first-child').each(function(){
+								theCount += 1;
+								jQuery(this).html(theCount);
+							});
+		
 	});
 	
 	
