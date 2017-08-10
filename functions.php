@@ -1377,7 +1377,6 @@ function get_tireurs_select($classeID = 0,$selection = ''){
 	$options_array = get_transient($transient_name);
 	//$options_array = '';
 	
-	
 	$retVal = '<select class="tireur" data-selection="'.$selection.'">';
 	
 	if(empty($options_array)){
