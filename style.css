@@ -641,6 +641,11 @@ table.comp_table .multi_field .dashicons{
 	display:inline-block !important;
 }
 
+td.pos:before{
+	content: counter(rowNumber);
+	display: inline-block;
+}
+
 .mfieldClone{
 	display:none;
 }
