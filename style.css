@@ -614,6 +614,7 @@ table.editable_table .dashicons:before{
 
 .add_tireur_line{
 	text-align: center;
+	color: #000000 !important;
 }
 
 div[data-name=classe_id]{

@@ -232,7 +232,7 @@ jQuery(document).ready(function(){
 					text: "Oui",
 					action: function () {
 
-							jQuery(this).closest('table').shuffleRows();
+							jQuery(this).closest('.editable_table.comp_table').shuffleRows();
 			
 						
 					}
