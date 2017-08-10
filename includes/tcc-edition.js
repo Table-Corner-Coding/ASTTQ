@@ -17,8 +17,10 @@ jQuery(document).ready(function(){
 			}
 			
 		}else{
-			if(jQuery(this).parent().not(':last-child')){
-				jQuery(this).nextAll('.mfield_container').remove();
+			if(jQuery(this).parent().is(':last-child')){
+				
+			}else{
+				jQuery(this).parent().nextAll('.mfield_container').remove();
 			}
 		}
 		
