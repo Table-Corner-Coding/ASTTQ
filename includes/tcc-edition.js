@@ -267,7 +267,12 @@ jQuery(document).ready(function(){
 							theLine.fadeOut(300,function(){
 								theLine.remove();
 							});
-			
+							
+							var theCount = 0;
+							theLine.closest('tbody').each('tr > td:first-child',function(){
+								theCount += 1;
+								jQuery(this).text(theCount);
+							});
 						
 					}
 				},
