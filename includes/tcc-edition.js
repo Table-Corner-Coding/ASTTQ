@@ -221,15 +221,15 @@ function updateProfil(nom,vehicule,nom_profil,objID,term_id,theLine){
 	var dataString = [];
 	
 	if(vehicule != false){
-		dataString.nom_du_vehicule = vehicule;
+		dataString['nom_du_vehicule'] = vehicule;
 	}
 	
 	if(nom_profil != false){
-		dataString.nom_du_profil = nom_profil;
+		dataString['nom_du_profil'] = nom_profil;
 	}
 	
 	if(nom != false){
-		dataString.conducteur = conducteur;
+		dataString['conducteur'] = conducteur;
 	}
 	
 	var jsonString = JSON.stringify(dataString);
