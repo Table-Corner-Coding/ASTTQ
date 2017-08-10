@@ -1381,12 +1381,12 @@ function get_tireurs_select($classeID = 0,$selection = ''){
 									  )
 									));
 		foreach($tireurs as $tireur){
-			$profil = get_field('nom_du_profil',$tireur->ID);
+			$vehicule = get_field('nom_du_vehicule',$tireur->ID);
 			$theSelection = '';
 			if($selection == $tireur->ID){
 				$theSelection = ' selected="selected"';
 			}
-			$line = '<option'.$theSelection.' value="'.$tireur->ID.'">'.$profil.'</option>';
+			$line = '<option'.$theSelection.' value="'.$tireur->ID.'">'.$vehicule.'</option>';
 			$options_array .= str_replace($theSelection,'',$line);
 			$retVal .= $line;
 		}
