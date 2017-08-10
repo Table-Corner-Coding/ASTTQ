@@ -52,8 +52,36 @@ jQuery(document).ready(function(){
 	});
 
 
-	jQuery(".editable_table").on("click",".conducteur span.dashicons-plus-alt",function(){
+	jQuery(".editable_table.table_tireurs").on("click",".conducteur span.dashicons-plus-alt",function(){
 		jQuery(this).before("<div data-content=''><input name='conducteur[]' type='text' /></div>");
+	});
+	
+	jQuery(".editable_table.comp_table").on("click",".conducteur span.dashicons-plus-alt",function(){
+		jQuery(this).before("<div data-content=''><input name='conducteur[]' type='text' /></div>");
+		jQuery(this).parent().find('select.conducteur').hide();
+		
+		jQuery(this).after('<span class="dashicons dashicons-yes save-conducteur" title="Enregistrer les modifications"></span>');
+		
+		jQuery(this).removeClass('dashicons-plus-alt').addClass('dashicons-undo');
+	});
+	
+	jQuery(".editable_table.comp_table").on("click",".conducteur span.dashicons-undo",function(){
+		jQuery(this).parent().find('select.conducteur').show();
+		jQuery(this).parent().find('div').remove();
+		jQuery(this).removeClass('dashicons-undo').addClass('dashicons-plus-alt');
+	});
+	
+	jQuery(".editable_table.comp_table").on("click",".dashicons.dashicons-yes.save-conducteur",function(){
+		var theSelect = jQuery(this).parent().find('select');
+		var theNewOne = jQuery(this).parent().find('input').val();
+		theSelect.prepend('<option value="'+theNewOne+'">'+theNewOne+'</option>').val(theNewOne);
+		jQuery(this).parent().find('div').remove();
+		
+		jQuery(this).parent().find('dashicons-undo').removeClass('dashicons-undo').addClass('dashicons-plus-alt');
+		theSelect.show();
+		jQuery(this).remove();
+		
+		
 	});
 	
 	jQuery(".editable_table").on('click','.edit_line .save',function(){

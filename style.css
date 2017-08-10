@@ -634,6 +634,10 @@ table.comp_table thead tr th{
 	padding-left:5px;
 }
 
+table.comp_table .multi_field .dashicons{
+	display:inline-block;
+}
+
 .mfieldClone{
 	display:none;
 }
