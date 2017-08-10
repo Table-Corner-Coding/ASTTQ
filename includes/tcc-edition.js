@@ -232,13 +232,13 @@ function updateProfil(nom,vehicule,nom_profil,objID,term_id,theLine){
 		dataString['nom_du_profil'] = nom_profil;
 	}
 	
-		dataString.test = 'test value';
+		//dataString.test = 'test value';
 		//dataString['conducteur'] = nom;
 	
-	alert(dataString);
+	//alert(dataString);
 	var jsonString = JSON.stringify(dataString);
 
-	alert(jsonString);
+	//alert(jsonString);
 	
 	var my_data = {
 				action: 'update_post_fields', // This is required so WordPress knows which func to use
