@@ -100,7 +100,7 @@ jQuery(document).ready(function(){
 				nom.push(jQuery(this).val());
 			});
 		
-			alert(nom);
+			//alert(nom);
 			updateProfil(nom,false,false,objID,term_id,false);				
 			
 			jQuery(this).remove();
@@ -221,6 +221,8 @@ function updateProfil(nom,vehicule,nom_profil,objID,term_id,theLine){
 	var conducteur = {nom: nom};
 	var dataString = [];
 	
+	alert(nom);
+	
 	if(vehicule != false){
 		dataString['nom_du_vehicule'] = vehicule;
 	}
@@ -235,7 +237,8 @@ function updateProfil(nom,vehicule,nom_profil,objID,term_id,theLine){
 	
 	var jsonString = JSON.stringify(dataString);
 
-
+	alert(jsonString);
+	
 	var my_data = {
 				action: 'update_post_fields', // This is required so WordPress knows which func to use
 				objID: objID,
