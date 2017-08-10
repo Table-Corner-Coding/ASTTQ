@@ -299,7 +299,7 @@ jQuery(document).ready(function(){
 
 function reorderRows(theTable){
 	var theCount = 0;
-	theTable.find('td:first-child').each(function(){
+	theTable.find('td.pos').each(function(){
 													theCount += 1;
 													jQuery(this).html(theCount);
 													});
