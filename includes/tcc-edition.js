@@ -233,7 +233,7 @@ function updateProfil(nom,vehicule,nom_profil,objID,term_id,theLine){
 	}
 	
 		dataString.test = 'test value';
-		dataString['conducteur'] = nom;
+		//dataString['conducteur'] = nom;
 	
 	alert(dataString);
 	var jsonString = JSON.stringify(dataString);
