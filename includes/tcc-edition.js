@@ -95,7 +95,7 @@ jQuery(document).ready(function(){
 		});
 		
 		
-		updateProfil(nom,vehicule,nom_profil,nom,objID,term_id,theLine);
+		
 			
 			theSelect.prepend('<option value="'+theNewOne+'">'+theNewOne+'</option>').val(theNewOne);
 			jQuery(this).parent().find('div').remove();
@@ -107,7 +107,7 @@ jQuery(document).ready(function(){
 				nom.push(jQuery(this).val());
 			});
 		
-			updateProfil(false,false,false,nom,objID,term_id,'');				
+			updateProfil(false,false,false,objID,term_id,false);				
 			
 			jQuery(this).remove();
 		}
@@ -134,7 +134,7 @@ jQuery(document).ready(function(){
 		});
 		
 		
-		updateProfil(nom,vehicule,nom_profil,nom,objID,term_id,theLine);
+		updateProfil(nom,vehicule,nom_profil,objID,term_id,theLine);
 		
 	});
 	
@@ -222,7 +222,7 @@ function editionDone(theLine){
 }
 
 
-function updateProfil(nom,vehicule,nom_profil,nom,objID,term_id,theLine){
+function updateProfil(nom,vehicule,nom_profil,objID,term_id,theLine){
 	
 	var conducteur = {nom: nom};
 	var dataString = [];
@@ -255,7 +255,7 @@ function updateProfil(nom,vehicule,nom_profil,nom,objID,term_id,theLine){
 
 			var rData = jQuery.parseJSON(response);
 			alert(rData.message);
-			if(theLine != ''){
+			if(theLine != false){
 				theLine.attr('data-tireur-id',rData.objID);
 				editionDone(theLine);
 			}
