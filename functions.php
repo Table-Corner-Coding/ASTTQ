@@ -1219,7 +1219,7 @@ function edition_competitions_shortcode() {
 						
 						$tabs .= '[et_pb_accordion_item title="'.$classe->name.'"]';
 						
-						$tabs .= '<h3>'.$classe->name.'</h3><pre>'.print_r($competitions,true).'</pre>';
+						$tabs .= '<h3>'.$classe->name.'</h3>';
 						
 						if(!empty($compArr[$objID])){
 							
