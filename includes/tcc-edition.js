@@ -286,7 +286,7 @@ jQuery(document).ready(function(){
 			}
 		});
 		
-		reorderRows(tbody.parent());
+		setTimeout(function(){reorderRows(tbody.parent());},200);
 		
 	});
 	
