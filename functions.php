@@ -1242,7 +1242,7 @@ function edition_competitions_shortcode() {
 							
 							
 							$tabs .= '<form id="form_edition_'.$term->term_id.'">';
-							$tabs .= '<table data-term-id="'.$term->term_id.'" class="editable_table"><thead><tr><th>'.__('Véhicule','asttq').'</th><th>'.__('Conducteur','asttq').'</th><th>Actions</th></tr></thead><tbody>';
+							$tabs .= '<table data-term-id="'.$term->term_id.'" class="editable_table"><thead><tr><th>'.__('Véhicule','asttq').'</th><th>'.__('Conducteur','asttq').'</th><th>'.__('Distances','asttq').'</th><th>Actions</th></tr></thead><tbody>';
 
 							foreach($tireurs as $tireur){
 
@@ -1263,6 +1263,17 @@ function edition_competitions_shortcode() {
 								}else{
 									$tabs .= '<div data-content=""></div>';
 								}
+								
+								$tabs .= '</td><td class="distances multi_field"><div class="container">
+								<select id="" class="" name="" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Choisir" data-allow_null="0">
+								<option value="Normal" class="">Normal</option>
+								<option value="FP">FP</option>
+								<option value="DNS">DNS</option>
+								<option value="DQ">DQ</option>
+								<option value="BR">BR</option>
+								</select>
+								<input type="number" id="" class="" name="" value="" min="" max="" step="any" placeholder="">
+								</div>';
 
 
 								$tabs .= '</td><td class="actions"><span title="Éditer" class="dashicons dashicons-welcome-write-blog edit"></span></td></tr>';
