@@ -218,10 +218,11 @@ function editionDone(theLine){
 
 function updateProfil(nom,vehicule,nom_profil,objID,term_id,theLine){
 	
-	//var conducteur = {nom: nom};
+	var conducteur = {nom: nom};
 	var dataString = [];
 	
-	alert(nom);
+	alert('Nom: '+nom);
+	alert('Conducteur: '+conducteur);
 	
 	if(vehicule != false){
 		dataString['nom_du_vehicule'] = vehicule;
