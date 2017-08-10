@@ -1227,7 +1227,17 @@ function edition_competitions_shortcode() {
 							
 							// Si la compétition n'existe pas, on peuple le tableau avec tous les tireurs de la classe.
 							
-							
+							$tireurs = get_posts(array(	'post_type' => 'tireurs',
+									'numberposts' => -1,
+									'tax_query' => array(
+									array(
+										  'taxonomy' => 'classes',
+										  'field' => 'id',
+										  'terms' => $objID, // Where term_id of Term 1 is "1".
+										  'include_children' => false
+										)
+									  )
+									));
 							
 							
 							$tabs .= '<form id="form_edition_'.$term->term_id.'">';
