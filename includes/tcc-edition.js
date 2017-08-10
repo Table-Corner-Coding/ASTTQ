@@ -269,9 +269,9 @@ jQuery(document).ready(function(){
 							});
 							
 							var theCount = 0;
-							tbody.find('tr > td:first-child').each(function(){
+							tbody.find('td:first-child').each(function(){
 								theCount += 1;
-								jQuery(this).text(theCount);
+								jQuery(this).html(theCount);
 							});
 						
 					}
