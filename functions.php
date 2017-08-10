@@ -1374,7 +1374,7 @@ function get_tireurs_select($classeID = 0,$selection = ''){
 									array(
 										  'taxonomy' => 'classes',
 										  'field' => 'id',
-										  'terms' => $objID, // Where term_id of Term 1 is "1".
+										  'terms' => $classeID, // Where term_id of Term 1 is "1".
 										  'include_children' => false
 										)
 									  )
