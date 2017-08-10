@@ -89,13 +89,6 @@ jQuery(document).ready(function(){
 		//var conducteur = [];
 		var nom = [];
 		
-		
-		theLine.find('.conducteur > div > input').each(function(){
-			nom.push(jQuery(this).val());
-		});
-		
-		
-		
 			
 			theSelect.prepend('<option value="'+theNewOne+'">'+theNewOne+'</option>').val(theNewOne);
 			jQuery(this).parent().find('div').remove();
@@ -107,7 +100,7 @@ jQuery(document).ready(function(){
 				nom.push(jQuery(this).val());
 			});
 		
-			updateProfil(false,false,false,objID,term_id,false);				
+			updateProfil(nom,false,false,objID,term_id,false);				
 			
 			jQuery(this).remove();
 		}
