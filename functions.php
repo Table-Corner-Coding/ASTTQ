@@ -1381,7 +1381,7 @@ function get_tireurs_select($classeID = 0,$selection = ''){
 									  )
 									));
 		foreach($tireurs as $tireur){
-			$profil = get_field('nom_profil',$tireur->ID);
+			$profil = get_field('nom_du_profil',$tireur->ID);
 			$theSelection = '';
 			if($selection == $tireur->ID){
 				$theSelection = ' selected="selected"';
