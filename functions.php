@@ -1197,17 +1197,37 @@ function edition_competitions_shortcode() {
 				foreach($events as $event){
 					$tabs .= '[tab][et_pb_accordion admin_label="Accordion" use_border_color="off" border_color="#ffffff" border_style="solid"]';
 					$classes = get_the_terms( $event->ID, 'classes' );
+					
 					$competitions = get_field('competition',$event->ID);
-					
-					
+						$compArr = array();
+						
+						foreach($competitions as $competition){
+							$compArr[$competition['classe']] = $competition;
+						}
 					
 					
 					foreach($classes as $classe){
-						
-						/*
 						$objID = $classe->term_id;
+						/*
+						
 	
-						$tireurs = get_posts(array(
+						
+						
+						*/
+						
+						
+						
+						$tabs .= '[et_pb_accordion_item title="'.$classe->name.'"]';
+						
+						$tabs .= '<h3>'.$classe->name.'</h3><pre>'.print_r($competitions,true).'</pre>';
+						
+						if(!empty($compArr[$objID])){
+							
+						}else{
+							
+							// Si la compétition n'existe pas, on peuple le tableau avec tous les tireurs de la classe.
+							
+							$tireurs = get_posts(array(
 														  'post_type' => 'tireurs',
 														  'numberposts' => -1,
 														  'tax_query' => array(
@@ -1219,25 +1239,56 @@ function edition_competitions_shortcode() {
 															)
 														  )
 														));
-						$tireurArray = array();
-						$tireursNoms = array();
+							
+							
+							$tabs .= '<form id="form_edition_'.$term->term_id.'">';
+							$tabs .= '<table data-term-id="'.$term->term_id.'" class="editable_table"><thead><tr><th>'.__('Véhicule','asttq').'</th><th>'.__('Conducteur','asttq').'</th><th>Actions</th></tr></thead><tbody>';
 
-						foreach($tireurs as $tireur){
-							$profil = get_field('nom_du_profil',$tireur->ID);
-							if(empty($profil)){
-								$profil = $tireur->post_title;
+							foreach($tireurs as $tireur){
+
+								$tireur_id = $tireur->ID;
+								$vehicule = get_field('nom_du_vehicule', $tireur_id);
+								$nom_profil = get_field('nom_du_profil', $tireur_id);
+								$conducteurs = get_field('conducteur', $tireur_id);
+
+
+								$tabs .=  '<tr class="tireur_line" data-Tireur-ID="'.$tireur_id.'"><td data-content="'.$vehicule.'" class="vehicule">'.$vehicule.'</td><td class="conducteur multi_field">';
+
+								if(count($conducteurs)){
+										$tabs .= '<select class="conducteur">';
+									foreach($conducteurs as $conducteur){
+										$tabs .= '<option data-content="'.$conducteur['nom'].'">'.$conducteur['nom'].'</option>';
+									}
+										$tabs .= '</select>';
+								}else{
+									$tabs .= '<div data-content=""></div>';
+								}
+
+
+								$tabs .= '</td><td class="actions"><span title="Éditer" class="dashicons dashicons-welcome-write-blog edit"></span></td></tr>';
 							}
-							$tireursNoms[] = $profil;
-							$tireurArray[] = $tireur->ID;
+
+
+
+							$tabs .= '<tr class="add_tireur_line"><td colspan="4"><span class=\'dashicons dashicons-plus-alt\'></span></td></tr></tbody></table> </form>';
+							
+							$tireurArray = array();
+							$tireursNoms = array();
+
+							foreach($tireurs as $tireur){
+								$profil = get_field('nom_du_profil',$tireur->ID);
+								if(empty($profil)){
+									$profil = $tireur->post_title;
+								}
+								$tireursNoms[] = $profil;
+								$tireurArray[] = $tireur->ID;
+							}
+							
+							
+							
 						}
 						
-						*/
 						
-						$competitions = get_field('competition',$event->ID);
-						
-						$tabs .= '[et_pb_accordion_item title="'.$classe->name.'"]';
-						
-						$tabs .= '<h3>'.$classe->name.'</h3><pre>'.print_r($competitions,true).'</pre>';
 						$tabs .= '[/et_pb_accordion_item]';
 					}
 					
