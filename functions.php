@@ -1253,7 +1253,7 @@ function edition_competitions_shortcode() {
 								$conducteurs = get_field('conducteur', $tireur_id);
 
 
-								$tabs .=  '<tr class="tireur_line" data-Tireur-ID="'.$tireur_id.'"><td class="pos">'.$itt.'</td><td data-content="'.$vehicule.'" class="vehicule">';
+								$tabs .=  '<tr class="tireur_line" data-Tireur-ID="'.$tireur_id.'"><td class="pos"></td><td data-content="'.$vehicule.'" class="vehicule">';
 								
 								$tabs .= get_tireurs_select($classe->term_id,$tireur_id);
 									
