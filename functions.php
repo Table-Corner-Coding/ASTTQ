@@ -1241,17 +1241,19 @@ function edition_competitions_shortcode() {
 							
 							
 							$tabs .= '<form id="form_edition_'.$classe->term_id.'">';
-							$tabs .= '<table data-term-id="'.$classe->term_id.'" class="editable_table comp_table"><thead><tr><th>'.__('Véhicule','asttq').'</th><th>'.__('Conducteur','asttq').'</th><th>'.__('Distances','asttq').'</th><th>Actions</th></tr></thead><tbody>';
-
+							$tabs .= '<table data-term-id="'.$classe->term_id.'" class="editable_table comp_table"><thead><tr><th><span title="Mélanger le tableau" class="dashicons dashicons-randomize"></span></th><th>'.__('Véhicule','asttq').'</th><th>'.__('Conducteur','asttq').'</th><th>'.__('Distances','asttq').'</th><th>Actions</th></tr></thead><tbody>';
+							
+							$itt = 0;
+							
 							foreach($tireurs as $tireur){
-
+								$itt++;
 								$tireur_id = $tireur->ID;
 								$vehicule = get_field('nom_du_vehicule', $tireur_id);
 								$nom_profil = get_field('nom_du_profil', $tireur_id);
 								$conducteurs = get_field('conducteur', $tireur_id);
 
 
-								$tabs .=  '<tr class="tireur_line" data-Tireur-ID="'.$tireur_id.'"><td data-content="'.$vehicule.'" class="vehicule">';
+								$tabs .=  '<tr class="tireur_line" data-Tireur-ID="'.$tireur_id.'"><td class="pos">'.$itt.'</td><td data-content="'.$vehicule.'" class="vehicule">';
 								
 								$tabs .= get_tireurs_select($classe->term_id,$tireur_id);
 									

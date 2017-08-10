@@ -1,5 +1,41 @@
 // JavaScript Document
 
+(function($){
+    //Shuffle all rows, while keeping the first column
+    //Requires: Shuffle
+ $.fn.shuffleRows = function(){
+     return this.each(function(){
+        var main = $(/table/i.test(this.tagName) ? this.tBodies[0] : this);
+        var firstElem = [], counter=0;
+        main.children().each(function(){
+             firstElem.push(this.firstChild);
+        });
+        main.shuffle();
+        main.children().each(function(){
+           this.insertBefore(firstElem[counter++], this.firstChild);
+        });
+     });
+   }
+  /* Shuffle is required */
+  $.fn.shuffle = function() {
+    return this.each(function(){
+      var items = $(this).children();
+      return (items.length)
+        ? $(this).html($.shuffle(items))
+        : this;
+    });
+  }
+
+  $.shuffle = function(arr) {
+    for(
+      var j, x, i = arr.length; i;
+      j = parseInt(Math.random() * i),
+      x = arr[--i], arr[i] = arr[j], arr[j] = x
+    );
+    return arr;
+  }
+})(jQuery)
+
 jQuery(document).ready(function(){
 	
 	jQuery('select[data-selection]').each(function(){
@@ -183,6 +219,32 @@ jQuery(document).ready(function(){
 		
 		
 		
+		
+	});
+	
+	jQuery('.editable_table.comp_table').on('click','.dashicons-randomize',function(){
+		
+		jQuery.confirm({
+			title: 'Confirmation requise!',
+			content: 'Êtes-vous certain de vouloir mélanger toutes les lignes?',
+			buttons: {
+				confirm: {
+					text: "Oui",
+					action: function () {
+
+							jQuery(this).closest('table').shuffleRows();
+			
+						
+					}
+				},
+				cancel: { 
+					text: "Non, c'est une erreur...",
+					action: function(){
+								//$.alert('Canceled!');
+							}
+				}
+			}
+		});
 		
 	});
 	
