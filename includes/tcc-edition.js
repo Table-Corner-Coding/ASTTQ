@@ -75,12 +75,43 @@ jQuery(document).ready(function(){
 	jQuery(".editable_table.comp_table").on("click",".dashicons.dashicons-yes.save-conducteur",function(){
 		var theSelect = jQuery(this).parent().find('select');
 		var theNewOne = jQuery(this).parent().find('input').val();
-		theSelect.prepend('<option value="'+theNewOne+'">'+theNewOne+'</option>').val(theNewOne);
-		jQuery(this).parent().find('div').remove();
+		var theLine = jQuery(this).closest('tr.tireur_line');
+		var vehicule = theLine.find('select.tireur option:selected').text();
 		
-		jQuery(this).parent().find('dashicons-undo').removeClass('dashicons-undo').addClass('dashicons-plus-alt');
-		theSelect.show();
-		jQuery(this).remove();
+		if(theNewOne != ''){
+			
+		
+		var theTable = theLine.parent().parent();
+		var term_id = theTable.attr('data-term-id');
+		var objID = theLine.attr('data-tireur-id');
+		
+		var nom_profil = theLine.find('.nom_profil > input').val();
+		//var conducteur = [];
+		var nom = [];
+		
+		
+		theLine.find('.conducteur > div > input').each(function(){
+			nom.push(jQuery(this).val());
+		});
+		
+		
+		updateProfil(nom,vehicule,nom_profil,nom,objID,term_id,theLine);
+			
+			theSelect.prepend('<option value="'+theNewOne+'">'+theNewOne+'</option>').val(theNewOne);
+			jQuery(this).parent().find('div').remove();
+		
+			jQuery(this).parent().find('dashicons-undo').addClass('dashicons-plus-alt').removeClass('dashicons-undo');
+			theSelect.show();
+			
+			theLine.find('.conducteur > option').each(function(){
+				nom.push(jQuery(this).val());
+			});
+		
+			updateProfil(false,false,false,nom,objID,term_id,'');				
+			
+			jQuery(this).remove();
+		}
+		
 		
 		
 	});
@@ -102,30 +133,12 @@ jQuery(document).ready(function(){
 			nom.push(jQuery(this).val());
 		});
 		
-		var conducteur = {nom: nom};
 		
-		var dataString = {nom_du_vehicule: vehicule, nom_du_profil: nom_profil, conducteur: conducteur};
-		var jsonString = JSON.stringify(dataString);
+		updateProfil(nom,vehicule,nom_profil,nom,objID,term_id,theLine);
 		
-		
-		var my_data = {
-                    action: 'update_post_fields', // This is required so WordPress knows which func to use
-					objID: objID,
-					term_id : term_id,
-                    data: jsonString // Post any variables you want here
-                };
-		
-			jQuery.post(adminAjax, my_data, function(response) { // This will make an AJAX request upon page load
-                    //jQuery("#response").html("<div>"+response+"</div>");
-					//jQuery("body").removeClass("loading");
-				
-				var rData = jQuery.parseJSON(response);
-				alert(rData.message);
-				theLine.attr('data-tireur-id',rData.objID);
-				editionDone(theLine);
-            });
 	});
-
+	
+	
 	jQuery('.editable_table').on('click','td.actions > .dashicons-trash.delete',function(){
 		var theLine = jQuery(this).parent().parent();
 		var objID = theLine.attr('data-tireur-id');
@@ -206,4 +219,46 @@ function editionDone(theLine){
 
 		theLine.find(".conducteur .dashicons.dashicons-plus-alt").remove();
 	
+}
+
+
+function updateProfil(nom,vehicule,nom_profil,nom,objID,term_id,theLine){
+	
+	var conducteur = {nom: nom};
+	var dataString = [];
+	
+	if(vehicule != false){
+		dataString.nom_du_vehicule = vehicule;
+	}
+	
+	if(nom_profil != false){
+		dataString.nom_du_profil = nom_profil;
+	}
+	
+	if(nom != false){
+		dataString.conducteur = conducteur;
+	}
+	
+	var jsonString = JSON.stringify(dataString);
+
+
+	var my_data = {
+				action: 'update_post_fields', // This is required so WordPress knows which func to use
+				objID: objID,
+				term_id : term_id,
+				data: jsonString // Post any variables you want here
+			};
+
+		jQuery.post(adminAjax, my_data, function(response) { // This will make an AJAX request upon page load
+				//jQuery("#response").html("<div>"+response+"</div>");
+				//jQuery("body").removeClass("loading");
+
+			var rData = jQuery.parseJSON(response);
+			alert(rData.message);
+			if(theLine != ''){
+				theLine.attr('data-tireur-id',rData.objID);
+				editionDone(theLine);
+			}
+			
+		});
 }
