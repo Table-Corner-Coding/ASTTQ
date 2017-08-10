@@ -1227,18 +1227,7 @@ function edition_competitions_shortcode() {
 							
 							// Si la compétition n'existe pas, on peuple le tableau avec tous les tireurs de la classe.
 							
-							$tireurs = get_posts(array(
-														  'post_type' => 'tireurs',
-														  'numberposts' => -1,
-														  'tax_query' => array(
-															array(
-															  'taxonomy' => 'classes',
-															  'field' => 'id',
-															  'terms' => $objID, // Where term_id of Term 1 is "1".
-															  'include_children' => false
-															)
-														  )
-														));
+							
 							
 							
 							$tabs .= '<form id="form_edition_'.$term->term_id.'">';
@@ -1252,7 +1241,11 @@ function edition_competitions_shortcode() {
 								$conducteurs = get_field('conducteur', $tireur_id);
 
 
-								$tabs .=  '<tr class="tireur_line" data-Tireur-ID="'.$tireur_id.'"><td data-content="'.$vehicule.'" class="vehicule">'.$vehicule.'</td><td class="conducteur multi_field">';
+								$tabs .=  '<tr class="tireur_line" data-Tireur-ID="'.$tireur_id.'"><td data-content="'.$vehicule.'" class="vehicule"><select class="tireur">';
+								
+								$tabs .= get_tireurs_select($term->term_id,$tireur_id);
+									
+								$tabs .= '</select></td><td class="conducteur multi_field">';
 
 								if(count($conducteurs)){
 										$tabs .= '<select class="conducteur">';
@@ -1354,7 +1347,49 @@ function edition_competitions_shortcode() {
 }
 add_shortcode( 'edition_competitions', 'edition_competitions_shortcode' );
 
+function get_tireurs_select($classeID = 0,$selection = ''){
+	
+	$transient_name = 'tireurs_options_'.$classeID;
+	$options_array = get_transient($transient_name);
+	
+	
+	
+	$retVal = '<select class="tireur" data-selection="'.$selection.'">';
+	
+	if(empty($options_array)){
+		
+		$tireurs = get_posts(array(	'post_type' => 'tireurs',
+									'numberposts' => -1,
+									'tax_query' => array(
+									array(
+										  'taxonomy' => 'classes',
+										  'field' => 'id',
+										  'terms' => $objID, // Where term_id of Term 1 is "1".
+										  'include_children' => false
+										)
+									  )
+									));
+		foreach($tireurs as $tireur){
+			$profil = get_field('nom_profil',$tireur->ID);
+			$theSelection = '';
+			if($selection == $tireur->ID){
+				$theSelection = ' selected="selected"';
+			}
+			$line = '<option'.$theSelection.' value="'.$tireur->ID.'">'.$profil.'</option>';
+			$options_array .= str_replace($theSelection,'',$line);
+			$retVal .= $line;
+		}
+		set_transient($transient_name, $options_array);
+	}else{
+		$retVal .= $options_array;
+	}
+	
+	
 
+	$retVal .= '</select>';
+	
+	return $retVal;
+} 
 
 function update_post_fields() {
 	global $wpdb;
@@ -1362,6 +1397,9 @@ function update_post_fields() {
 	$objID = $_POST['objID'];
 	$term_id = $_POST['term_id'];
 	$allData = json_decode(stripslashes($_POST['data']),true);
+	
+	$transient_name = 'tireurs_options_'.$term_id;
+	delete_transient($transient_name);
 	
 	$worker = '';
 	

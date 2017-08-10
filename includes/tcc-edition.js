@@ -2,6 +2,11 @@
 
 jQuery(document).ready(function(){
 	
+	jQuery('select[data-selection]').each(function(){
+		jQuery(this).val(this.attr('data-selection'));
+		
+	});
+	
 	jQuery('.actions').append("<span class='dashicons dashicons-yes save' title='Enregistrer les modifications'></span><span class='dashicons dashicons-trash delete' title='Supprimer le tireur'></span>");
 	
 	jQuery(".editable_table").on("click",'span.dashicons-welcome-write-blog',function(){
