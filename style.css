@@ -654,6 +654,10 @@ table.comp_table > tbody > tr > td.pos:before{
 	display: inline-block;
 }
 
+table.comp_table td.membre{
+	text-align: center;
+}
+
 .mfieldClone{
 	display:none;
 }
