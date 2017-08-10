@@ -100,6 +100,7 @@ jQuery(document).ready(function(){
 				nom.push(jQuery(this).val());
 			});
 		
+			alert(nom);
 			updateProfil(nom,false,false,objID,term_id,false);				
 			
 			jQuery(this).remove();
