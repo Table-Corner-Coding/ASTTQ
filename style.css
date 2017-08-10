@@ -641,7 +641,15 @@ table.comp_table .multi_field .dashicons{
 	display:inline-block !important;
 }
 
-td.pos:before{
+table.comp_table{
+	counter-reset: rowNumber;
+}
+
+table.comp_table > tbody > tr {
+    counter-increment: rowNumber;
+}
+
+table.comp_table > tbody > tr > td.pos:before{
 	content: counter(rowNumber);
 	display: inline-block;
 }
