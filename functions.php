@@ -1251,11 +1251,11 @@ function edition_competitions_shortcode() {
 								$conducteurs = get_field('conducteur', $tireur_id);
 
 
-								$tabs .=  '<tr class="tireur_line" data-Tireur-ID="'.$tireur_id.'"><td data-content="'.$vehicule.'" class="vehicule"><select class="tireur">';
+								$tabs .=  '<tr class="tireur_line" data-Tireur-ID="'.$tireur_id.'"><td data-content="'.$vehicule.'" class="vehicule">';
 								
 								$tabs .= get_tireurs_select($term->term_id,$tireur_id);
 									
-								$tabs .= '</select></td><td class="conducteur multi_field">';
+								$tabs .= '</td><td class="conducteur multi_field">';
 
 								if(count($conducteurs)){
 										$tabs .= '<select class="conducteur">';
