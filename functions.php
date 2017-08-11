@@ -1321,7 +1321,7 @@ function edition_competitions_shortcode() {
 						}
 						$tabs .= '</tbody><tfoot><tr class="add_tireur_line"><td colspan="5"><span class=\'dashicons dashicons-plus-alt\'></span></td></tr></tfoot></table>';
 						
-						$tabs .= '<a class="sButton" href="" data-icon="">Sauvegarder</a></form>';
+						$tabs .= '<a class="sButton" data-icon="">Sauvegarder</a></form>';
 						
 						$tabs .= '[/et_pb_accordion_item]';
 					}
