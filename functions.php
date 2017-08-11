@@ -1424,10 +1424,10 @@ function ajax_get_tireurs_select(){
 	
 	$objID = $_POST['objID'];
 	
-	$classeID = 0;
+
 	$selection = '';
 	
-	$retVal = get_tireurs_select($classeID,$selection);
+	$retVal = get_tireurs_select($objID,$selection);
 	
 	echo json_encode(array('message'=>$retVal));
 	wp_die();
