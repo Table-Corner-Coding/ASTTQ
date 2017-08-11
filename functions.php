@@ -1260,7 +1260,7 @@ function edition_competitions_shortcode() {
 								$tabs .= '</td><td class="conducteur multi_field">';
 
 								if(count($conducteurs)){
-										$tabs .= '<select class="conducteur">';
+										$tabs .= '<select class="conducteurs_select">';
 									foreach($conducteurs as $conducteur){
 										$tabs .= '<option data-content="'.$conducteur['nom'].'">'.$conducteur['nom'].'</option>';
 									}

@@ -303,19 +303,38 @@ jQuery(document).ready(function(){
 		
 	});
 	
+	jQuery('.editable_table.comp_table').on('change','select.tireur',function(){
+		var theLine = jQuery(this).closest('tr');
+		var objID = jQuery(this).val();
+		//var hiddenField = sender;
+		var my_data = {
+			action: 'ajax_get_conducteurs', // This is required so WordPress knows which func to use
+			objID: objID
+		};
+		
+		jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
+			var rData = jQuery.parseJSON(response);
+
+			//alert(rData.message);
+			var theSelect = jQuery(rData.message);
+			theLine.find('select.conducteurs_select').replaceWith(theSelect);
+
+		});
+	});
+	
 	
 	jQuery('.editable_table.table_tireurs .add_tireur_line').on('click','.dashicons-plus-alt',function(){
 		jQuery(this).parent().parent().before('<tr class="tireur_line edit_line" data-tireur-id="0"><td data-content="" class="vehicule"><input name="vehicule" type="text" value=""></td><td class="nom_profil" data-content=""><input name="nom_profil" type="text" value=""></td><td class="conducteur multi_field"><div data-content=""><input name="conducteur[]" type="text" value=""></div><span class="dashicons dashicons-plus-alt"></span></td><td class="actions"><span title="Éditer" class="dashicons dashicons-welcome-write-blog edit"></span><span class="dashicons dashicons-yes save" title="Enregistrer les modifications"></span><span class="dashicons dashicons-trash delete" title="Supprimer le tireur"></span></td></tr>');
 	});
 	
 	jQuery('.comp_table .add_tireur_line').on('click','.dashicons-plus-alt',function(){
-		var theNewLine = jQuery('<tr class="tireur_line" data-tireur-id="0"><td class="pos"></td><td data-content="Simon Chaunt" class="vehicule"><select class="tireur" data-selection="0" disabled=""></select></td><td class="conducteur multi_field"><select class="conducteur"></select><span class="dashicons dashicons-plus-alt addConducteur"></span></td><td class="distances multi_field"><div class="mfield_container mfieldClone"><select id="" class="distance_type" name="" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Choisir" data-allow_null="0"><option value="Normal" class="">Normal</option><option value="FP">FP</option><option value="DNS">DNS</option><option value="DQ">DQ</option><option value="BR">BR</option></select><input type="number" id="" class="" name="" value="" min="" max="" step="any" placeholder=""></div><div class="mfield_container"><select id="" class="distance_type" name="" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Choisir" data-allow_null="0"><option value="Normal" class="">Normal</option><option value="FP">FP</option><option value="DNS">DNS</option><option value="DQ">DQ</option><option value="BR">BR</option></select><input type="number" id="" class="" name="" value="" min="" max="" step="any" placeholder=""></div></td><td class="membre"><label class="switch"><input type="checkbox" value="1" checked="checked" class="" autocomplete="off"><div class="slider round"></div></label></td><td class="actions"><span class="dashicons dashicons-yes save" title="Enregistrer les modifications"></span><span class="dashicons dashicons-trash delete" title="Supprimer le tireur"></span></td></tr>');
+		var theNewLine = jQuery('<tr class="tireur_line" data-tireur-id="0"><td class="pos"></td><td data-content="Simon Chaunt" class="vehicule"><select class="tireur" data-selection="0" disabled=""></select></td><td class="conducteur multi_field"><select class="conducteurs_select"></select><span class="dashicons dashicons-plus-alt addConducteur"></span></td><td class="distances multi_field"><div class="mfield_container mfieldClone"><select id="" class="distance_type" name="" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Choisir" data-allow_null="0"><option value="Normal" class="">Normal</option><option value="FP">FP</option><option value="DNS">DNS</option><option value="DQ">DQ</option><option value="BR">BR</option></select><input type="number" id="" class="" name="" value="" min="" max="" step="any" placeholder=""></div><div class="mfield_container"><select id="" class="distance_type" name="" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Choisir" data-allow_null="0"><option value="Normal" class="">Normal</option><option value="FP">FP</option><option value="DNS">DNS</option><option value="DQ">DQ</option><option value="BR">BR</option></select><input type="number" id="" class="" name="" value="" min="" max="" step="any" placeholder=""></div></td><td class="membre"><label class="switch"><input type="checkbox" value="1" checked="checked" class="" autocomplete="off"><div class="slider round"></div></label></td><td class="actions"><span class="dashicons dashicons-yes save" title="Enregistrer les modifications"></span><span class="dashicons dashicons-trash delete" title="Supprimer le tireur"></span></td></tr>');
 		
 		var tbody = jQuery(this).closest('table').find('tbody');
 		
 		tbody.append(theNewLine);
 		
-		updateLine(theNewLine);
+		//updateLine(theNewLine);
 		updateLine(tbody.find('tr:last-child'));
 	});
 	
@@ -338,7 +357,7 @@ function updateLine(theLine){
 			var theSelect = jQuery(rData.message);
 			theLine.find('select.tireur').replaceWith(theSelect);
 			
-
+			theSelect.trigger('change');
 		});
 }
 
