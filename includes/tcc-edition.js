@@ -359,7 +359,7 @@ function updateLine(theLine){
 
 			//alert(rData.message);
 			var theSelect = jQuery(rData.message);
-			theLine.find('select.tireur option').replaceWith(theSelect.find('option'));
+			theLine.find('select.tireur').find('option').replaceWith(jQuery(theSelect).find('option'));
 			
 			//theSelect.trigger('change');
 		});
