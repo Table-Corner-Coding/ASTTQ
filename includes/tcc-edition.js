@@ -359,9 +359,9 @@ function updateLine(theLine){
 
 			//alert(rData.message);
 			var theSelect = jQuery(rData.message);
-			theLine.find('select.tireur').replaceWith(theSelect);
+			theLine.find('select.tireur option').replaceWith(theSelect.find('option'));
 			
-			theSelect.trigger('change');
+			//theSelect.trigger('change');
 		});
 }
 
