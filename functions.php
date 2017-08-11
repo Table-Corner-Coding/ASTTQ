@@ -1423,8 +1423,6 @@ function get_tireurs_select($classeID = 0,$selection = ''){
 function ajax_get_tireurs_select(){
 	
 	$objID = $_POST['objID'];
-	
-
 	$selection = '';
 	
 	$retVal = get_tireurs_select($objID,$selection);
