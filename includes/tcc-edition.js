@@ -463,12 +463,12 @@ function saveCompetition(eventSender){
 			conducteur = theLine.find('select.conducteurs_select').val();
 			
 			
-			theLine.find('select.distance_type').each(function(){
-				distancesTypes.push({0:jQuery(this).val()});
+			theLine.find('.mfield_container:not(.mfieldClone) select.distance_type').each(function(){
+				distancesTypes.push(jQuery(this).val());
 			});
 			
-			theLine.find('input[type=number]').each(function(){
-				distances.push({0:jQuery(this).val()});
+			theLine.find('.mfield_container:not(.mfieldClone) input[type=number]').each(function(){
+				distances.push(jQuery(this).val());
 			});
 			
 			membres.push({ID: membreID, conducteur: conducteur, distances: distances, distancesTypes: distancesTypes});
@@ -476,11 +476,11 @@ function saveCompetition(eventSender){
 			var vehicule = jQuery(this).find('input.tireur').val();
 			conducteur = jQuery(this).find('input.conducteur').val();
 			
-			theLine.find('select.distance_type').each(function(){
+			theLine.find('.mfield_container:not(.mfieldClone) select.distance_type').each(function(){
 				distancesTypes.push(jQuery(this).val());
 			});
 			
-			theLine.find('input[type=number]').each(function(){
+			theLine.find('.mfield_container:not(.mfieldClone) input[type=number]').each(function(){
 				distances.push(jQuery(this).val());
 			});
 			
