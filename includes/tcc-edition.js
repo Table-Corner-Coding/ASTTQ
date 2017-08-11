@@ -294,13 +294,13 @@ jQuery(document).ready(function(){
 		var theLine = jQuery(this).closest('tr');
 		if(jQuery(this).is(':checked')){
 			theLine.find('select.tireur').show();
-			theLine.find('select.conducteurs_select').show();
+			theLine.find('select.conducteurs_select, .addConducteur').show();
 			theLine.find('input.tireur').remove();
 			theLine.find('input.conducteur').remove();
 			
 		}else{
 			theLine.find('select.tireur').hide();
-			theLine.find('select.conducteurs_select').hide();
+			theLine.find('select.conducteurs_select, .addConducteur').hide();
 			theLine.find('select.conducteurs_select').after('<input type="text" class="conducteur" />');
 			theLine.find('select.tireur').after('<input type="text" class="tireur" />');
 		}
