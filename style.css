@@ -665,7 +665,7 @@ table.comp_table td.membre{
 	text-align: center;
 }
 
-input.conducteur + .addConducteur{
+table.comp_table input.conducteur + .addConducteur{
 	display: none !important;
 }
 
