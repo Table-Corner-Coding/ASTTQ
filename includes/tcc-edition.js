@@ -459,9 +459,8 @@ function saveCompetition(eventSender){
 		if(jQuery(this).find('checkbox').is(':checked')){
 			
 			
-			var membreID = jQuery(this).find('select.tireur').val();
-			conducteur = jQuery(this).find('select.conducteurs_select').val();
-			
+			var membreID = theLine.find('select.tireur').val();
+			conducteur = theLine.find('select.conducteurs_select').val();
 			
 			
 			theLine.find('select.distance_type').each(function(){
