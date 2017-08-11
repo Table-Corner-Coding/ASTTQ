@@ -1219,8 +1219,9 @@ function edition_competitions_shortcode() {
 						
 						$tabs .= '[et_pb_accordion_item title="'.$classe->name.'"]';
 						
-						$tabs .= '<h3>'.$classe->name.'</h3>';
-						
+						$tabs .= '<a class="saveButton" href="" data-icon="">Sauvegarder</a>';
+						$tabs .= '<form id="form_edition_'.$classe->term_id.'">';
+							$tabs .= '<table data-term-id="'.$classe->term_id.'" class="editable_table comp_table"><thead><tr><th><span title="Mélanger le tableau" class="dashicons dashicons-randomize"></span></th><th>'.__('Véhicule','asttq').'</th><th>'.__('Conducteur','asttq').'</th><th>'.__('Distances','asttq').'</th><th>'.__('Membre','asttq').'</th><th>Actions</th></tr></thead><tbody>';
 						if(!empty($compArr[$objID])){
 							
 						}else{
@@ -1240,8 +1241,7 @@ function edition_competitions_shortcode() {
 									));
 							
 							
-							$tabs .= '<form id="form_edition_'.$classe->term_id.'">';
-							$tabs .= '<table data-term-id="'.$classe->term_id.'" class="editable_table comp_table"><thead><tr><th><span title="Mélanger le tableau" class="dashicons dashicons-randomize"></span></th><th>'.__('Véhicule','asttq').'</th><th>'.__('Conducteur','asttq').'</th><th>'.__('Distances','asttq').'</th><th>'.__('Membre','asttq').'</th><th>Actions</th></tr></thead><tbody>';
+							
 							
 							$itt = 0;
 							
@@ -1302,7 +1302,7 @@ function edition_competitions_shortcode() {
 
 
 
-							$tabs .= '</tbody><tfoot><tr class="add_tireur_line"><td colspan="5"><span class=\'dashicons dashicons-plus-alt\'></span></td></tr></tfoot></table> </form>';
+							
 							
 							$tireurArray = array();
 							$tireursNoms = array();
@@ -1319,7 +1319,7 @@ function edition_competitions_shortcode() {
 							
 							
 						}
-						
+						$tabs .= '</tbody><tfoot><tr class="add_tireur_line"><td colspan="5"><span class=\'dashicons dashicons-plus-alt\'></span></td></tr></tfoot></table> </form>';
 						
 						$tabs .= '[/et_pb_accordion_item]';
 					}

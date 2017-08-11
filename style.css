@@ -661,3 +661,29 @@ table.comp_table td.membre{
 .mfieldClone{
 	display:none;
 }
+
+/* Save Button */
+
+.saveButton {
+    color: #ffffff!important;
+    background: #2ea3f2;
+    border-color: #2ea3f2;
+    letter-spacing: 0px;
+    font-size: 20px;
+    padding-left: 0.7em;
+    padding-right: 2em;
+}
+
+.saveButton:after {
+    color: #ffffff;
+    line-height: 1.7em;
+	    content: attr(data-icon);
+    font-size: 20px!important;
+    opacity: 1;
+    margin-left: .3em;
+    left: auto;
+    display: inline-block;
+	    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+}
