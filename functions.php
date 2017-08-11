@@ -1384,7 +1384,7 @@ function get_tireurs_select($classeID = 0,$selection = ''){
 	$options_array = get_transient($transient_name);
 	//$options_array = '';
 	
-	$retVal = '<select class="tireur" data-selection="'.$selection.'">';
+	$retVal = '<select class="tireur" data-selection="'.$selection.'"><option value="">Choix du véhicule</option>';
 	
 	if(empty($options_array)){
 		
