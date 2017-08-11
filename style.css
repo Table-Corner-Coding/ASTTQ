@@ -675,7 +675,7 @@ table.comp_table input.conducteur + .addConducteur{
 
 /* Save Button */
 
-.saveButton{
+.sButton{
     color: #ffffff!important;
     background: #2ea3f2;
     border-color: #2ea3f2;
@@ -697,7 +697,7 @@ table.comp_table input.conducteur + .addConducteur{
     margin: 5px auto;
 }
 
-.saveButton:after{
+.sButton:after{
     color: #ffffff;
     line-height: 1.7em;
 	    content: attr(data-icon);

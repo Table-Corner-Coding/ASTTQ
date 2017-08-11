@@ -1219,7 +1219,7 @@ function edition_competitions_shortcode() {
 						
 						$tabs .= '[et_pb_accordion_item title="'.$classe->name.'"]';
 						
-						$tabs .= '<a class="saveButton" href="" data-icon="">Sauvegarder</a>';
+						$tabs .= '<a class="sButton" href="" data-icon="">Sauvegarder</a>';
 						$tabs .= '<form id="form_edition_'.$classe->term_id.'">';
 							$tabs .= '<table data-event-id="'.$event->ID.'" data-term-id="'.$classe->term_id.'" class="editable_table comp_table"><thead><tr><th><span title="Mélanger le tableau" class="dashicons dashicons-randomize"></span></th><th>'.__('Véhicule','asttq').'</th><th>'.__('Conducteur','asttq').'</th><th>'.__('Distances','asttq').'</th><th>'.__('Membre','asttq').'</th><th>Actions</th></tr></thead><tbody>';
 						if(!empty($compArr[$objID])){
@@ -1321,7 +1321,7 @@ function edition_competitions_shortcode() {
 						}
 						$tabs .= '</tbody><tfoot><tr class="add_tireur_line"><td colspan="5"><span class=\'dashicons dashicons-plus-alt\'></span></td></tr></tfoot></table>';
 						
-						$tabs .= '<a class="saveButton" href="" data-icon="">Sauvegarder</a></form>';
+						$tabs .= '<a class="sButton" href="" data-icon="">Sauvegarder</a></form>';
 						
 						$tabs .= '[/et_pb_accordion_item]';
 					}
