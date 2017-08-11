@@ -484,7 +484,7 @@ function saveCompetition(eventSender){
 				distances.push(jQuery(this).val());
 			});
 			
-			nonMembres.push({vehicule: vehicule, conducteur: conducteur, distances: distances, distancesTypes: distancesTypes, pos: pos}});
+			nonMembres.push({vehicule: vehicule, conducteur: conducteur, distances: distances, distancesTypes: distancesTypes,pos: pos});
 		}
 	});
 	
