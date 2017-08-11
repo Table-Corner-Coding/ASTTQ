@@ -665,6 +665,10 @@ table.comp_table td.membre{
 	text-align: center;
 }
 
+input.conducteur + .addConducteur{
+	display: none !important;
+}
+
 .mfieldClone{
 	display:none;
 }
