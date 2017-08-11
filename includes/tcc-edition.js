@@ -450,7 +450,7 @@ function saveCompetition(eventSender){
 	var nonMembres = [];
 	
 	theTable.find('tbody').find('tr').each(function(){
-		
+		pos+=1;
 		var theLine = jQuery(this);
 		var distances = [];
 		var distancesTypes = [];
@@ -471,7 +471,7 @@ function saveCompetition(eventSender){
 				distances.push(jQuery(this).val());
 			});
 			
-			membres.push({ID: membreID, conducteur: conducteur, distances: distances, distancesTypes: distancesTypes});
+			membres.push({ID: membreID, conducteur: conducteur, distances: distances, distancesTypes: distancesTypes, pos: pos});
 		}else{
 			var vehicule = jQuery(this).find('input.tireur').val();
 			conducteur = jQuery(this).find('input.conducteur').val();
@@ -484,7 +484,7 @@ function saveCompetition(eventSender){
 				distances.push(jQuery(this).val());
 			});
 			
-			nonMembres.push({vehicule: vehicule, conducteur: conducteur, distances: distances, distancesTypes: distancesTypes});
+			nonMembres.push({vehicule: vehicule, conducteur: conducteur, distances: distances, distancesTypes: distancesTypes, pos: pos}});
 		}
 	});
 	
