@@ -293,12 +293,12 @@ jQuery(document).ready(function(){
 	jQuery('.editable_table.comp_table').on('change','td.membre input[type=checkbox]',function(){
 		var theLine = jQuery(this).closest('tr');
 		if(jQuery(this).is(':checked')){
-			
-			theLine.find('select.tireur').hide();
-			theLine.find('select.tireur').after('<input type="text" class="tireur" />');
-		}else{
 			theLine.find('select.tireur').show();
 			theLine.find('input.tireur').remove();
+			
+		}else{
+			theLine.find('select.tireur').hide();
+			theLine.find('select.tireur').after('<input type="text" class="tireur" />');
 		}
 		
 	});
