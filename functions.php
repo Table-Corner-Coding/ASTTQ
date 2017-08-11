@@ -1420,6 +1420,22 @@ function get_tireurs_select($classeID = 0,$selection = ''){
 	return $retVal;
 } 
 
+function ajax_get_tireurs_select(){
+	
+	$objID = $_POST['objID'];
+	
+	$classeID = 0;
+	$selection = '';
+	
+	$retVal = get_tireurs_select($classeID,$selection);
+	
+	echo json_encode(array('message'=>$retVal));
+	wp_die();
+}
+add_action( 'wp_ajax_ajax_get_tireurs_select', 'ajax_get_tireurs_select' );
+add_action( 'wp_ajax_nopriv_ajax_get_tireurs_select', 'ajax_get_tireurs_select' );
+
+
 function update_post_fields() {
 	global $wpdb;
 	
