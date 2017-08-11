@@ -464,11 +464,11 @@ function saveCompetition(eventSender){
 			
 			
 			theLine.find('select.distance_type').each(function(){
-				distancesTypes.push(jQuery(this).val());
+				distancesTypes.push({0:jQuery(this).val()});
 			});
 			
 			theLine.find('input[type=number]').each(function(){
-				distances.push(jQuery(this).val());
+				distances.push({0:jQuery(this).val()});
 			});
 			
 			membres.push({ID: membreID, conducteur: conducteur, distances: distances, distancesTypes: distancesTypes});
