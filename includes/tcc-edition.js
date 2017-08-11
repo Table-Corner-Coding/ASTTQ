@@ -342,6 +342,10 @@ jQuery(document).ready(function(){
 		updateLine(tbody.find('tr:last-child'));
 	});
 	
+	jQuery('.comp_table').on('click','a.saveButton',function(){
+		saveCompetition(jQuery(this));
+	});
+	
 });
 
 
@@ -433,4 +437,62 @@ function updateProfil(nom,vehicule,nom_profil,objID,term_id,theLine){
 			}
 			
 		});
+}
+
+function saveCompetition(eventSender){
+	var theTable = eventSender.next('form').find('table.comp_table');
+	var classeID = theTable.attr('data-term-id');
+	var eventID = theTable.attr('data-event-id');
+	
+	var pos = 0;
+	
+	var membres = [];
+	var nonMembres = [];
+	
+	theTable.find('tbody').find('tr').each(function(){
+		
+		var theLine = jQuery(this);
+		var distances = [];
+		var distancesTypes = [];
+		var conducteur = '';
+		
+		if(jQuery(this).find('checkbox').is(':checked')){
+			
+			
+			var membreID = jQuery(this).find('select.tireur').val();
+			conducteur = jQuery(this).find('select.conducteurs_select').val();
+			
+			
+			
+			theLine.find('select.distance_type').each(function(){
+				distancesTypes.push(jQuery(this).val());
+			});
+			
+			theLine.find('input[type=number]').each(function(){
+				distances.push(jQuery(this).val());
+			});
+			
+			membres.push({ID: membreID, conducteur: conducteur, distances: distances, distancesTypes: distancesTypes});
+		}else{
+			var vehicule = jQuery(this).find('input.tireur').val();
+			conducteur = jQuery(this).find('input.conducteur').val();
+			
+			theLine.find('select.distance_type').each(function(){
+				distancesTypes.push(jQuery(this).val());
+			});
+			
+			theLine.find('input[type=number]').each(function(){
+				distances.push(jQuery(this).val());
+			});
+			
+			membres.push({vehicule: vehicule, conducteur: conducteur, distances: distances, distancesTypes: distancesTypes});
+		}
+	});
+	
+	var jsonStringMembres = JSON.stringify(membres);
+	var jsonStringNonMembres = JSON.stringify(nonMembres);
+	
+	alert('Membres: '+jsonStringMembres);
+	alert('Non-Membres: '+jsonStringNonMembres);
+	
 }
