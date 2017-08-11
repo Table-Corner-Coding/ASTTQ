@@ -342,7 +342,7 @@ jQuery(document).ready(function(){
 		updateLine(tbody.find('tr:last-child'));
 	});
 	
-	jQuery('.comp_table').on('click','a.sButton',function(){
+	jQuery('body').on('click','a.sButton',function(){
 		saveCompetition(jQuery(this));
 	});
 	
