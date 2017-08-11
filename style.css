@@ -696,4 +696,13 @@ table.comp_table td.membre{
 	    -webkit-transition: all 0.2s;
     -moz-transition: all 0.2s;
     transition: all 0.2s;
+	
+	font-family: "ETmodules" !important;
+    font-weight: normal;
+    font-style: normal;
+    font-variant: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-transform: none;
+    speak: none;
 }
