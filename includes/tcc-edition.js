@@ -511,13 +511,14 @@ function saveCompetition(eventSender){
 				//jQuery("body").removeClass("loading");
 
 			var rData = jQuery.parseJSON(response);
-			alert(rData.message);				
+			alert(rData.message);	
+			jQuery('#page-container').removeClass('loading');
 		});
 	
 	//theTable.parent().find('.save_data').html(jsonStringMembres+'\r\n\r\n'+jsonStringNonMembres);
 	
 	
-	jQuery('#page-container').removeClass('loading');
+	
 	//alert('Membres: '+jsonStringMembres);
 	//alert('Non-Membres: '+jsonStringNonMembres);
 	
