@@ -491,7 +491,7 @@ function saveCompetition(eventSender){
 	var jsonStringMembres = JSON.stringify(membres);
 	var jsonStringNonMembres = JSON.stringify(nonMembres);
 	
-	theTable.parent().find('.save_data').html(jsonStringMembres+'\r\n\r\n'+jsonStringNonMembres)
+	theTable.parent().find('.save_data').html(jsonStringMembres+'\r\n\r\n'+jsonStringNonMembres);
 	
 	//alert('Membres: '+jsonStringMembres);
 	//alert('Non-Membres: '+jsonStringNonMembres);
