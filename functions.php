@@ -1276,6 +1276,7 @@ function edition_competitions_shortcode() {
 										$tabs .= '</select><input type="number" id="" class="" name="" value="'.$current_distance['distance'].'" min="" max="" step="any" placeholder=""></div>';
 									}					
 									$tabs .= '</td>';
+									
 										
 									$tabs .= '<td class="membre"><label class="switch"><input type="checkbox" value="1" class="" autocomplete="off"><div class="slider round"></div></label></td><td class="actions"><span class="dashicons dashicons-trash delete" title="Supprimer le tireur"></span></td></tr>';
 									
