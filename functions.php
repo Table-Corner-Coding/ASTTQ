@@ -1452,13 +1452,6 @@ function update_competition_results(){
 	
 	/* Setting values from ajast Post */
 	
-	
-	
-	
-	
-	$distancesMembres = array();
-	$distancesNonMembres = array();
-	
 	$lineData = array();
 	
 	$lineData['classe'] = $classeID;
@@ -1473,15 +1466,18 @@ function update_competition_results(){
 		$distancesMembres = array();
 
 		$i = 0;
+		$distancesTypes = $membre['distancesTypes'];
+		
 		foreach($membre['distances'] as $distance){
-			$distancesMembres[] = array('statut'=>$membre['distancesTypes'][$i],
+			
+			$distancesMembres[] = array('statut'=>$distancesTypes[$i],
 										'distance'=>$distance);
 		}
 
 		$lineData['competiteur'][] = array(	'rang' => $membre['pos'],
-												'tireur' => $membreOBJ,
-												'nom_du_tireur' => $membre['conducteur'],
-												'distances' => $distancesMembres);
+											'tireur' => $membreOBJ,
+											'nom_du_tireur' => $membre['conducteur'],
+											'distances' => $distancesMembres);
 	}	
 
 	$lineData['non-membre'] = array();
@@ -1489,17 +1485,17 @@ function update_competition_results(){
 	foreach($dataNonMembres as $nonMembre){
 
 		$distancesNonMembres = array();
-
+		$distancesTypes = $nonMembre['distancesTypes'];
 		$i = 0;
 		foreach($nonMembre['distances'] as $distance){
-			$distancesNonMembres[] = array(	'statut'=>$nonMembre['distancesTypes'][$i],
-									'distance'=>$distance);
+			$distancesNonMembres[] = array(	'statut'=>$distancesTypes[$i],
+											'distance'=>$distance);
 		}
 
 		$lineData['non-membre'][] = array(	'rang' => $nonMembre['pos'],
-												'vehicule' => $nonMembre['vehicule'],
-												'nom_du_tireur' => $nonMembre['conducteur'],
-												'distances' => $distancesNonMembres);
+											'vehicule' => $nonMembre['vehicule'],
+											'nom_du_tireur' => $nonMembre['conducteur'],
+											'distances' => $distancesNonMembres);
 	}
 
 
