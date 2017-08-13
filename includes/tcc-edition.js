@@ -66,6 +66,8 @@ jQuery(document).ready(function(){
 	
 	jQuery('.actions').html("<span class='dashicons dashicons-yes save' title='Enregistrer les modifications'></span><span class='dashicons dashicons-trash delete' title='Supprimer le tireur'></span>");
 	
+	jQuery('.table_tireurs .actions').prepend('<span class="dashicons dashicons-welcome-write-blog"></span>');
+	
 	jQuery(".editable_table").on("click",'span.dashicons-welcome-write-blog',function(){
 
 		var theLine = jQuery(this).parent().parent();
