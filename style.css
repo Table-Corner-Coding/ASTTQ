@@ -675,6 +675,12 @@ div.termine{
 	margin-left: 15px;
 }
 
+
+div.bonus > input {
+    width: 50px;
+    margin: 0 10px;
+}
+
 .mfieldClone{
 	display:none;
 }
