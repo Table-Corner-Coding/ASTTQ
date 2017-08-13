@@ -896,9 +896,9 @@ function get_points_table_for_event($event_id, $refresh = false){
 				$fp = false;
 				
 				foreach($distances as $current_distance){
-					if($current_distance['distance']>$highest){
+					//if($current_distance['distance']>$highest){
 						$highest = $current_distance['distance'];
-					}
+					//}
 					if($current_distance['statut'] == 'FP'){
 						$fp = true;
 					}
