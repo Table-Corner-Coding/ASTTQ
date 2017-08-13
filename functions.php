@@ -1464,6 +1464,7 @@ function update_competition_results(){
 	$lineData['classe'] = $classeID;
 	$lineData['classe_id'] = $classeID;
 	
+	$lineData['competiteur'] = array();
 	/* Infos sur les membres */
 	foreach($dataMembres as $membre){
 		$membreOBJ = get_post($membre['ID']);
@@ -1471,8 +1472,8 @@ function update_competition_results(){
 
 		$i = 0;
 		foreach($membre['distances'] as $distance){
-			$distancesMembres[] = array(	'statut'=>$membre['distancesTypes'][$i],
-									'distance'=>$distance);
+			$distancesMembres[] = array('statut'=>$membre['distancesTypes'][$i],
+										'distance'=>$distance);
 		}
 
 		$lineData['competiteur'][] = array(	'rang' => $membre['pos'],
