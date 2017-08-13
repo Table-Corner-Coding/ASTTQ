@@ -1464,6 +1464,8 @@ function update_competition_results(){
 	$lineData['classe'] = $classeID;
 	$lineData['classe_id'] = $classeID;
 	
+	$rowIndex = -1;
+	
 	$lineData['competiteur'] = array();
 	/* Infos sur les membres */
 	foreach($dataMembres as $membre){
@@ -1503,17 +1505,21 @@ function update_competition_results(){
 
 	
 	
-	
+	$ri = 0;
 	foreach($allCompetitions as $key => $competition){
-		
+	$ri++;	
 		if($competition['classe'] == $classeID){
 			$classFound = true;
+			$rowIndex = $ri;
 			$updatedComp = $competition;
 			
 			$updatedComp['competiteur'] = $lineData['comptetiteur'];
 			$updatedComp['non-membre'] = $lineData['non-membre'];
 			
 			$allCompetitions[$key] = $updatedComp;
+			delete_row( 'competition', $ri, $eventID);
+			$classFound = false;
+			
 		} 
 	}
 	
