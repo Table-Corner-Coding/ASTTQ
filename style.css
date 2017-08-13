@@ -631,7 +631,7 @@ div[data-name=classe_id]{
 }
 
 table.comp_table input[type=number]{
-	width: 135px;
+	width: 90px;
     position: relative;
     top: -2px;
 }
@@ -676,6 +676,7 @@ table.comp_table input.conducteur + .addConducteur{
 /* Save Button */
 
 .sButton{
+	cursor: pointer;
     color: #ffffff!important;
     background: #2ea3f2;
     border-color: #2ea3f2;
