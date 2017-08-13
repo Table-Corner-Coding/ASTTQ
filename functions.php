@@ -1449,56 +1449,75 @@ function update_competition_results(){
 	
 	$classFound = false;
 	
+	
+	/* Setting values from ajast Post */
+	
+	
+	
+	
+	
+	$distancesMembres = array();
+	$distancesNonMembres = array();
+	
+	$lineData = array();
+	
+	/* Infos sur les membres */
+	foreach($dataMembres as $membre){
+		$membreOBJ = get_post($membre['ID']);
+		$distances = array();
+
+		$i = 0;
+		foreach($membre['distances'] as $distance){
+			$distancesMembres[] = array(	'statut'=>$membre['distancesTypes'][$i],
+									'distance'=>$distance);
+		}
+
+		$lineData['competiteur'][] = array(	'rang' => $membre['pos'],
+												'tireur' => $membreOBJ,
+												'nom_du_tireur' => $membre['conducteur'],
+												'distances' => $distances);
+	}	
+
+	$lineData['non-membre'] = array();
+	/* Infos sur les non-membres */
+	foreach($dataNonMembres as $nonMembre){
+
+		$distances = array();
+
+		$i = 0;
+		foreach($nonMembre['distances'] as $distance){
+			$distancesNonMembres[] = array(	'statut'=>$nonMembre['distancesTypes'][$i],
+									'distance'=>$distance);
+		}
+
+		$lineData['non-membre'][] = array(	'rang' => $nonMembre['pos'],
+												'vehicule' => $nonMembre['vehicule'],
+												'nom_du_tireur' => $nonMembre['conducteur'],
+												'distances' => $distances);
+	}
+
+
+	
+	
+	
 	foreach($allCompetitions as $key => $competition){
 		
 		if($competition['classe'] == $classeID){
 			$classFound = true;
-			
 			$updatedComp = $competition;
-			$updatedComp['competiteur'] = array();
 			
-			foreach($dataMembres as $membre){
-				$membreOBJ = get_post($membre['ID']);
-				$distances = array();
-				
-				$i = 0;
-				foreach($membre['distances'] as $distance){
-					$distances[] = array(	'statut'=>$membre['distancesTypes'][$i],
-											'distance'=>$distance);
-				}
-				
-				$updatedComp['competiteur'][] = array(	'rang' => $membre['pos'],
-													 	'tireur' => $membreOBJ,
-													 	'nom_du_tireur' => $membre['conducteur'],
-													 	'distances' => $distances);
-			}	
-			
-			$updatedComp['non-membre'] = array();
-			
-			foreach($dataNonMembres as $nonMembre){
-				
-				$distances = array();
-				
-				$i = 0;
-				foreach($nonMembre['distances'] as $distance){
-					$distances[] = array(	'statut'=>$nonMembre['distancesTypes'][$i],
-											'distance'=>$distance);
-				}
-				
-				$updatedComp['non-membre'][] = array(	'rang' => $nonMembre['pos'],
-													 	'vehicule' => $nonMembre['vehicule'],
-													 	'nom_du_tireur' => $nonMembre['conducteur'],
-													 	'distances' => $distances);
-			}
+			$updatedComp['competiteur'] = $lineData['comptetiteur'];
+			$updatedComp['non-membre'] = $lineData['non-membre'];
 			
 			$allCompetitions[$key] = $updatedComp;
 		} 
 	}
 	
 	if($classFound){
+
 		update_field('competition', $allCompetitions, $eventID);
 	}else{
-		add_row('competition', $allCompetitions[0], $eventID);
+		add_row('competition', $lineData, $eventID);
 	}
 	
 	
