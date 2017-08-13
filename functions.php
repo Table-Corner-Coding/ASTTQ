@@ -1322,7 +1322,7 @@ function edition_competitions_shortcode() {
 						$tabs .= '</tbody><tfoot><tr class="add_tireur_line"><td colspan="5"><span class=\'dashicons dashicons-plus-alt\'></span></td></tr></tfoot></table>';
 						
 						$tabs .= '<a class="sButton" data-icon="">Sauvegarder</a>';
-						$tabs .= '<pre class="save_data"></pre></form>';
+						$tabs .= '<textarea class="save_data"></textarea></form>';
 						$tabs .= '[/et_pb_accordion_item]';
 					}
 					
@@ -1434,6 +1434,80 @@ function ajax_get_tireurs_select(){
 }
 add_action( 'wp_ajax_ajax_get_tireurs_select', 'ajax_get_tireurs_select' );
 add_action( 'wp_ajax_nopriv_ajax_get_tireurs_select', 'ajax_get_tireurs_select' );
+
+function update_competition_results(){
+	global $wpdb;
+	
+	$eventID = $_POST['eventID'];
+	$classeID = $_POST['classeID'];
+	$dataMembres = json_decode(stripslashes($_POST['dataMembres']),true);
+	$dataNonMembres = json_decode(stripslashes($_POST['dataNonMembres']),true);
+	
+	$currentClasses = array();
+	
+	$allCompetitions = get_field('competition', $eventID);
+	
+	$classFound = false;
+	
+	foreach($allCompetitions as $key => $competition){
+		
+		if($competition['classe'] == $classeID){
+			$classFound = true;
+			
+			$updatedComp = $competition;
+			$updatedComp['competiteur'] = array();
+			
+			foreach($dataMembres as $membre){
+				$membreOBJ = get_post($membre['ID']);
+				$distances = array();
+				
+				$i = 0;
+				foreach($membre['distances'] as $distance){
+					$distances[] = array(	'statut'=>$membre['distancesTypes'][$i],
+											'distance'=>$distance);
+				}
+				
+				$updatedComp['competiteur'][] = array(	'rang' => $membre['pos'],
+													 	'tireur' => $membreOBJ,
+													 	'nom_du_tireur' => $membre['conducteur'],
+													 	'distances' => $distances);
+			}	
+			
+			$updatedComp['non-membre'] = array();
+			
+			foreach($dataNonMembres as $nonMembre){
+				
+				$distances = array();
+				
+				$i = 0;
+				foreach($nonMembre['distances'] as $distance){
+					$distances[] = array(	'statut'=>$nonMembre['distancesTypes'][$i],
+											'distance'=>$distance);
+				}
+				
+				$updatedComp['non-membre'][] = array(	'rang' => $nonMembre['pos'],
+													 	'vehicule' => $nonMembre['vehicule'],
+													 	'nom_du_tireur' => $nonMembre['conducteur'],
+													 	'distances' => $distances);
+			}
+			
+			$allCompetitions[$key] = $updatedComp;
+		} 
+	}
+	
+	if($classFound){
+		update_field('competition', $allCompetitions, $eventID);
+	}else{
+		add_row('competition', $allCompetitions, $eventID);
+	}
+	
+	
+	echo json_encode(array('message'=>'Les changement ont été sauvegardés','eventID'=>$eventID));
+	wp_die();
+	
+}
+add_action( 'wp_ajax_update_competition_results', 'update_competition_results' );
+add_action( 'wp_ajax_nopriv_update_competition_results', 'update_competition_results' );
 
 
 function update_post_fields() {

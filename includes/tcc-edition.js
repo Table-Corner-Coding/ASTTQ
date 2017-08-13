@@ -491,6 +491,24 @@ function saveCompetition(eventSender){
 	var jsonStringMembres = JSON.stringify(membres);
 	var jsonStringNonMembres = JSON.stringify(nonMembres);
 	
+	
+	
+	var my_data = {
+				action: 'update_competition_results', // This is required so WordPress knows which func to use
+				eventID: eventID,
+				classeID : classeID,
+				dataMembres: jsonStringMembres, // Post any variables you want here
+				dataNonMembres: jsonStringNonMembres
+			};
+
+		jQuery.post(adminAjax, my_data, function(response) { // This will make an AJAX request upon page load
+				//jQuery("#response").html("<div>"+response+"</div>");
+				//jQuery("body").removeClass("loading");
+
+			var rData = jQuery.parseJSON(response);
+			alert(rData.message);				
+		});
+	
 	theTable.parent().find('.save_data').html(jsonStringMembres+'\r\n\r\n'+jsonStringNonMembres);
 	
 	//alert('Membres: '+jsonStringMembres);
