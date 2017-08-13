@@ -1462,6 +1462,7 @@ function update_competition_results(){
 	$lineData = array();
 	
 	$lineData['classe'] = $classeID;
+	$lineData['classe_id'] = $classeID;
 	
 	/* Infos sur les membres */
 	foreach($dataMembres as $membre){
