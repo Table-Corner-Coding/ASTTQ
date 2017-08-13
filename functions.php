@@ -1207,22 +1207,14 @@ function edition_competitions_shortcode() {
 					
 					
 					foreach($classes as $classe){
-						$objID = $classe->term_id;
-						/*
-						
-	
-						
-						
-						*/
-						
-						
+						$objID = $classe->term_id;										
 						
 						$tabs .= '[et_pb_accordion_item title="'.$classe->name.'"]';
 						
 						$tabs .= '<form id="form_edition_'.$classe->term_id.'">';
 						$tabs .= '<a class="sButton" data-icon="">Sauvegarder</a>';
 							$tabs .= '<table data-event-id="'.$event->ID.'" data-term-id="'.$classe->term_id.'" class="editable_table comp_table"><thead><tr><th><span title="Mélanger le tableau" class="dashicons dashicons-randomize"></span></th><th>'.__('Véhicule','asttq').'</th><th>'.__('Conducteur','asttq').'</th><th>'.__('Distances','asttq').'</th><th>'.__('Membre','asttq').'</th><th>Actions</th></tr></thead><tbody>';
-						if(!empty($compArr[$objID])){
+						if(!empty($compArr[$objID])&& !empty($compArr[$objID]['competiteur'])){
 							
 						}else{
 							
