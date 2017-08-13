@@ -440,7 +440,7 @@ function updateProfil(nom,vehicule,nom_profil,objID,term_id,theLine){
 }
 
 function saveCompetition(eventSender){
-	var theTable = eventSender.next('form').find('table.comp_table');
+	var theTable = eventSender.parent().find('table.comp_table');
 	var classeID = theTable.attr('data-term-id');
 	var eventID = theTable.attr('data-event-id');
 	
