@@ -440,6 +440,9 @@ function updateProfil(nom,vehicule,nom_profil,objID,term_id,theLine){
 }
 
 function saveCompetition(eventSender){
+	
+	eventSender.closest('body').addClass('loading');
+	
 	var theTable = eventSender.parent().find('table.comp_table');
 	var classeID = theTable.attr('data-term-id');
 	var eventID = theTable.attr('data-event-id');
@@ -509,8 +512,10 @@ function saveCompetition(eventSender){
 			alert(rData.message);				
 		});
 	
-	theTable.parent().find('.save_data').html(jsonStringMembres+'\r\n\r\n'+jsonStringNonMembres);
+	//theTable.parent().find('.save_data').html(jsonStringMembres+'\r\n\r\n'+jsonStringNonMembres);
 	
+	
+	eventSender.closest('body').removeClass('loading');
 	//alert('Membres: '+jsonStringMembres);
 	//alert('Non-Membres: '+jsonStringNonMembres);
 	
