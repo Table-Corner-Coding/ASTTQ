@@ -1151,6 +1151,9 @@ add_shortcode( 'edition_tireurs', 'edition_tireurs_shortcode' );
 // Add Shortcode
 function edition_competitions_shortcode() {
 
+	$distValues = array('Normal','FP','DNS','DQ',"BR");
+	
+	
 	$tabs = '';
 	
 	if(is_user_logged_in() && current_user_can('manage_options')){
@@ -1215,6 +1218,114 @@ function edition_competitions_shortcode() {
 						$tabs .= '<a class="sButton" data-icon="">Sauvegarder</a>';
 							$tabs .= '<table data-event-id="'.$event->ID.'" data-term-id="'.$classe->term_id.'" class="editable_table comp_table"><thead><tr><th><span title="Mélanger le tableau" class="dashicons dashicons-randomize"></span></th><th>'.__('Véhicule','asttq').'</th><th>'.__('Conducteur','asttq').'</th><th>'.__('Distances','asttq').'</th><th>'.__('Membre','asttq').'</th><th>Actions</th></tr></thead><tbody>';
 						if(!empty($compArr[$objID])&& !empty($compArr[$objID]['competiteur'])){
+							$allTireurs = $compArr[$objID]['competiteur'];
+							$allNonMembres = $compArr[$objID]['non-membre'];
+							
+							$ordered_table = array();
+							
+							foreach($allTireurs as $current_tireur){
+								$pos = $current_tireur['rang'];
+								$ordered_table[$pos] = $current_tireur;
+							}
+							
+							foreach($allNonMembres as $current_tireur){
+								$pos = $current_tireur['rang'];
+								$ordered_table[$pos] = $current_tireur;
+							}
+							
+							$itt = 0;
+							foreach($ordered_table as $tireur){
+								
+								$itt++;
+								
+								$tireurOBJ = $tireur['tireur'];
+								$nom_du_tireur = $tireur['nom_du_tireur'];
+								$distances = $tireur['distances'];
+								
+								if(empty($tireurOBJ)){
+									// C'est un non-membre!
+									$vehicule = $tireur['vehicule'];
+									
+									$tabs .= '<tr class="tireur_line" data-tireur-id="0"><td class="pos"></td>';
+									
+									/* Véhicule */
+									$tabs .= '<td data-content="" class="vehicule"><select class="tireur" data-selection="" style="display: none;"><option value="">Choix du véhicule</option></select><input type="text" class="tireur" value="'.$tireur['vehicule'].'"></td>';
+									
+									/* Conducteur */
+									$tabs .= '<td class="conducteur multi_field"><select style="display:none;" class="conducteurs_select"></select><input value="'.$nom_du_tireur.'" type="text" class="conducteur"><span class="dashicons dashicons-plus-alt addConducteur"></span></td>';
+									
+									/* Distances */
+									$tabs .= '<td class="distances multi_field"><div class="mfield_container mfieldClone"><select id="" class="distance_type" name="" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Choisir" data-allow_null="0"><option value="Normal" class="">Normal</option><option value="FP">FP</option><option value="DNS">DNS</option><option value="DQ">DQ</option><option value="BR">BR</option></select><input type="number" id="" class="" name="" value="" min="" max="" step="any" placeholder=""></div>';
+									foreach($distances as $current_distance){
+										$tabs .= '<div class="mfield_container"><select id="" class="distance_type" name="" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Choisir" data-allow_null="0">';
+										foreach($distValues as $theValue){
+											if($current_distance['statut'] == $theValue){
+												$selection = ' selected="selected"';
+											}else{
+												$selection = '';
+											}
+											
+											$tabs .= '<option value="'.$theValue.'"'.$selection.'>'.$theValue.'</option>';
+										}
+										$tabs .= '</select><input type="number" id="" class="" name="" value="'.$current_distance['distance'].'" min="" max="" step="any" placeholder=""></div>';
+									}					
+									$tabs .= '</td>';
+										
+									$tabs .= '<td class="membre"><label class="switch"><input type="checkbox" value="1" class="" autocomplete="off"><div class="slider round"></div></label></td><td class="actions"><span class="dashicons dashicons-yes save" title="Enregistrer les modifications"></span><span class="dashicons dashicons-trash delete" title="Supprimer le tireur"></span></td></tr>';
+									
+								}else{
+									// C'est un membre
+									
+									
+									$vehicule = $tireur['vehicule'];
+									
+									$tabs .= '<tr class="tireur_line" data-tireur-id="'.$tireurOBJ->ID.'"><td class="pos"></td>';
+									
+									/* Véhicule */
+									$tabs .= '<td data-content="" class="vehicule">'.get_tireurs_select($classe->term_id,$tireurOBJ ->ID).'</td>';
+									
+									/* Conducteur */
+									$tabs .= '<td class="conducteur multi_field">';
+									
+									$conducteurs = get_field('conducteur', $tireurOBJ->ID);
+									if(count($conducteurs)){
+										$tabs .= '<select class="conducteurs_select">';
+										foreach($conducteurs as $conducteur){
+											if($conducteur == $nom_du_tireur){
+												$selection = ' selected="selected"';
+											}else{
+												$selection = '';
+											}
+											
+											$tabs .= '<option'.$selection.' data-content="'.$conducteur['nom'].'">'.$conducteur['nom'].'</option>';
+										}
+											$tabs .= '</select><span class="dashicons dashicons-plus-alt addConducteur"></span>';
+									}
+									
+									$tabs .='</td>';
+									
+									/* Distances */
+									$tabs .= '<td class="distances multi_field"><div class="mfield_container mfieldClone"><select id="" class="distance_type" name="" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Choisir" data-allow_null="0"><option value="Normal" class="">Normal</option><option value="FP">FP</option><option value="DNS">DNS</option><option value="DQ">DQ</option><option value="BR">BR</option></select><input type="number" id="" class="" name="" value="" min="" max="" step="any" placeholder=""></div>';
+									foreach($distances as $current_distance){
+										$tabs .= '<div class="mfield_container"><select id="" class="distance_type" name="" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Choisir" data-allow_null="0">';
+										foreach($distValues as $theValue){
+											if($current_distance['statut'] == $theValue){
+												$selection = ' selected="selected"';
+											}else{
+												$selection = '';
+											}
+											
+											$tabs .= '<option value="'.$theValue.'"'.$selection.'>'.$theValue.'</option>';
+										}
+										$tabs .= '</select><input type="number" id="" class="" name="" value="'.$current_distance['distance'].'" min="" max="" step="any" placeholder=""></div>';
+									}					
+									$tabs .= '</td>';
+										
+									$tabs .= '<td class="membre"><label class="switch"><input type="checkbox" checked="checked" value="1" class="" autocomplete="off"><div class="slider round"></div></label></td><td class="actions"><span class="dashicons dashicons-yes save" title="Enregistrer les modifications"></span><span class="dashicons dashicons-trash delete" title="Supprimer le tireur"></span></td></tr>';
+								}
+								
+
+							}
 							
 						}else{
 							
