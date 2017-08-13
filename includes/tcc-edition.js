@@ -449,6 +449,8 @@ function saveCompetition(eventSender){
 	var classeID = theTable.attr('data-term-id');
 	var eventID = theTable.attr('data-event-id');
 	
+	var bonus = eventSender.parent().find('.bonus_points').val();
+	
 	var pos = 0;
 	
 	var membres = [];
@@ -502,6 +504,7 @@ function saveCompetition(eventSender){
 				action: 'update_competition_results', // This is required so WordPress knows which func to use
 				eventID: eventID,
 				classeID : classeID,
+				bonus: bonus,
 				dataMembres: jsonStringMembres, // Post any variables you want here
 				dataNonMembres: jsonStringNonMembres
 			};

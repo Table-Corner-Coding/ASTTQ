@@ -669,6 +669,12 @@ table.comp_table input.conducteur + .addConducteur{
 	display: none !important;
 }
 
+div.bonus,
+div.termine{
+	float: right;
+	margin-left: 15px;
+}
+
 .mfieldClone{
 	display:none;
 }
