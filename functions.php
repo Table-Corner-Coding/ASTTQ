@@ -1498,7 +1498,7 @@ function update_competition_results(){
 	if($classFound){
 		update_field('competition', $allCompetitions, $eventID);
 	}else{
-		add_row('competition', $allCompetitions, $eventID);
+		add_row('competition', $allCompetitions[0], $eventID);
 	}
 	
 	
