@@ -163,7 +163,7 @@ if(isset($_REQUEST['acf'])){
 					echo do_shortcode($classes.$classement);
 					
 			$competitions = get_field('competition',$post->ID);
-			echo print_r($competitions, true);
+			echo '<textarea style="widht:100%;height:650px;">'.print_r($competitions, true).'</textarea>';
 				?>
 			</div>
 			<!-- .tribe-events-single-event-description -->
