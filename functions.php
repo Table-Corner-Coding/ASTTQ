@@ -1228,12 +1228,12 @@ function edition_competitions_shortcode() {
 							$ordered_table = array();
 							
 							foreach($allTireurs as $current_tireur){
-								$pos = $current_tireur['rang'];
+								$pos = int($current_tireur['rang']);
 								$ordered_table[$pos] = $current_tireur;
 							}
 							
 							foreach($allNonMembres as $current_tireur){
-								$pos = $current_tireur['rang'];
+								$pos = int($current_tireur['rang']);
 								$ordered_table[$pos] = $current_tireur;
 							}
 							
