@@ -161,7 +161,9 @@ if(isset($_REQUEST['acf'])){
 					$classes .= '[/learn_more]';
 					
 					echo do_shortcode($classes.$classement);
-				
+					
+			$competitions = get_field('competition',$post->ID);
+			echo print_r($competitions, true);
 				?>
 			</div>
 			<!-- .tribe-events-single-event-description -->
