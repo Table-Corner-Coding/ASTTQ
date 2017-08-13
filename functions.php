@@ -1470,7 +1470,7 @@ function update_competition_results(){
 	/* Infos sur les membres */
 	foreach($dataMembres as $membre){
 		$membreOBJ = get_post($membre['ID']);
-		$distances = array();
+		$distancesMembres = array();
 
 		$i = 0;
 		foreach($membre['distances'] as $distance){
@@ -1488,7 +1488,7 @@ function update_competition_results(){
 	/* Infos sur les non-membres */
 	foreach($dataNonMembres as $nonMembre){
 
-		$distances = array();
+		$distancesNonMembres = array();
 
 		$i = 0;
 		foreach($nonMembre['distances'] as $distance){
