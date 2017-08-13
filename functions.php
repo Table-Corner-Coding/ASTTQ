@@ -1237,6 +1237,8 @@ function edition_competitions_shortcode() {
 								$ordered_table[$pos] = $current_tireur;
 							}
 							
+							ksort($ordered_table);
+							
 							$itt = 0;
 							foreach($ordered_table as $tireur){
 								
