@@ -1481,7 +1481,7 @@ function update_competition_results(){
 		$lineData['competiteur'][] = array(	'rang' => $membre['pos'],
 												'tireur' => $membreOBJ,
 												'nom_du_tireur' => $membre['conducteur'],
-												'distances' => $distances);
+												'distances' => $distancesMembres);
 	}	
 
 	$lineData['non-membre'] = array();
@@ -1499,7 +1499,7 @@ function update_competition_results(){
 		$lineData['non-membre'][] = array(	'rang' => $nonMembre['pos'],
 												'vehicule' => $nonMembre['vehicule'],
 												'nom_du_tireur' => $nonMembre['conducteur'],
-												'distances' => $distances);
+												'distances' => $distancesNonMembres);
 	}
 
 
