@@ -344,6 +344,21 @@ jQuery(document).ready(function(){
 		updateLine(tbody.find('tr:last-child'));
 	});
 	
+	jQuery('body').on('change','input.event_termine',function(){
+		var eventID = jQuery(this).attr('data-event');
+		var theValue = jQuery(this).val();
+		var my_data = {
+			action: 'ajax_event_termine', // This is required so WordPress knows which func to use
+			eventID: eventID,
+			theValue: theValue			  
+		};
+		
+		jQuery.post(ajax_url, my_data, function(response) { // This will make an AJAX request upon page load
+			var rData = jQuery.parseJSON(response);
+		});
+		
+	});
+	
 	jQuery('body').on('click','a.sButton',function(){
 		saveCompetition(jQuery(this));
 	});

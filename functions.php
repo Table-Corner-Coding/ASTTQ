@@ -1201,6 +1201,7 @@ function edition_competitions_shortcode() {
 					$tabs .= '[tab][et_pb_accordion admin_label="Accordion" use_border_color="off" border_color="#ffffff" border_style="solid"]';
 					$classes = get_the_terms( $event->ID, 'classes' );
 					
+					$termine = get_field('termine',$event->ID);
 					$competitions = get_field('competition',$event->ID);
 						$compArr = array();
 						
@@ -1440,10 +1441,22 @@ function edition_competitions_shortcode() {
 						
 						$tabs .= '<a class="sButton" data-icon="">Sauvegarder</a>';
 						$tabs .= '</form>';
+						
+						
+						
 						$tabs .= '[/et_pb_accordion_item]';
 					}
 					
 					$tabs .= '[/et_pb_accordion]';
+					
+					
+					if($termine == 1){
+						$checked = ' checked="checked"';
+					}
+					else{
+						$checked = '';
+					}
+					$tabs .= '<div class="termine"><label class="switch"><input data-event="'.$event->ID.'" class="event_termine" type="checkbox"'.$checked.' value="1" class="" autocomplete="off"><div class="slider round"></div></label></div>';
 					/*
 					$tireurs = get_posts(array(
 								  'post_type' => 'tireurs',
@@ -1551,6 +1564,21 @@ function ajax_get_tireurs_select(){
 }
 add_action( 'wp_ajax_ajax_get_tireurs_select', 'ajax_get_tireurs_select' );
 add_action( 'wp_ajax_nopriv_ajax_get_tireurs_select', 'ajax_get_tireurs_select' );
+
+
+function ajax_event_termine(){
+	$eventID = $_POST['eventID'];
+	$theValue = $_POST['theValue'];
+	
+	
+	$retVal = update_field('termine', $theValue, $eventID);
+	
+	echo json_encode(array('message'=>$retVal));
+	wp_die();
+}
+add_action( 'wp_ajax_ajax_event_termine', 'ajax_event_termine' );
+add_action( 'wp_ajax_nopriv_ajax_event_termine', 'ajax_event_termine' );
+
 
 function update_competition_results(){
 	global $wpdb;
