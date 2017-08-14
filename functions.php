@@ -993,6 +993,14 @@ function get_points_table_for_event($event_id, $refresh = false){
 				}
 				
 				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' (FP)</td><td> '.$points.' </td></tr>';
+				
+				$classement .= '<!-- Event ID:  '.$event_id.' -->
+				';
+				$classement .= '<!-- Tireur ID:  '.$tireur['ID'].' -->
+				';
+				
+				$classement .= '<!-- Points :  '.$points.' -->
+				';
 			}
 			
 			foreach($grille as $tireur){
