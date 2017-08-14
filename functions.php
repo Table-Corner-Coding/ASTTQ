@@ -916,14 +916,14 @@ function get_points_table_for_event($event_id, $refresh = false){
 											'vehicule'=>$vehicule,
 											'distance'=>$highest,
 									   		'non-membre' => false,
-									   		'ID' => $tireur_id);
+									   		'ID' => $tireur_id->ID);
 				}
 				else{
 					$grille[] = array(	'nom_tireur'=>$nom_tireur,
 										'vehicule'=>$vehicule,
 										'distance'=>$highest,
 									  	'non-membre' => false,
-									  	'ID' => $tireur_id
+									  	'ID' => $tireur_id->ID
 									 );
 				}
 				
