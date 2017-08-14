@@ -842,8 +842,12 @@ function get_points_table_for_event($event_id, $refresh = false){
 	
 	
 	
+	$theYear = tribe_get_start_date ( $event_id, false, 'Y' );
+	
 	$done = array();
 	$transient_name = 'asttq_p_table_'.$event_id;
+	$sommaire_transient_name = 'asttq_points_'.$theYear;
+	
 	$current_table = get_transient($transient_name);
 	
 	$current_points_t_name = 'asttq_points_'.$event_id;
@@ -860,7 +864,10 @@ function get_points_table_for_event($event_id, $refresh = false){
 	}
 	
 	
-	
+	$sommaire = get_transient($sommaire_transient_name);
+	if(empty($sommaire)){
+		$sommaire = array();
+	}
 
 //print_r($bonus_inscription);
 
@@ -977,6 +984,8 @@ function get_points_table_for_event($event_id, $refresh = false){
 					$itt++;
 					$points = 5+$bonus_position[$itt]+$bonus_inscription;	
 					$pointsTable[$tireur_id] = $points;
+					
+					$sommaire[$event_id][$tireur_id] = $points;
 				}
 				
 				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' (FP)</td><td> '.$points.' </td></tr>';
@@ -990,7 +999,8 @@ function get_points_table_for_event($event_id, $refresh = false){
 					$points = '*';
 				}else{
 					$itt++;
-					$points = 5+$bonus_position[$itt]+$bonus_inscription;	
+					$points = 5+$bonus_position[$itt]+$bonus_inscription;
+					$sommaire[$event_id][$tireur_id] = $points;
 				}
 
 				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' </td><td> '.$points.' </td></tr>';
