@@ -1018,6 +1018,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 		
 		set_transient( $current_points_t_name,$pointsTable,YEAR_IN_SECONDS);
 		set_transient( $transient_name, $classement, YEAR_IN_SECONDS );
+		get_transient($sommaire_transient_name,$sommaire,YEAR_IN_SECONDS);
 	}else{
 		$classement = $current_table;
 	}
