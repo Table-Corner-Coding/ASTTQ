@@ -1008,6 +1008,16 @@ function get_points_table_for_event($event_id, $refresh = false){
 				}
 
 				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' </td><td> '.$points.' </td></tr>';
+				
+				
+				$classement .= '<!-- Event ID:  '.$event_id.' -->
+				';
+				$classement .= '<!-- Tireur ID:  '.$tireur['ID'].' -->
+				';
+				
+				$classement .= '<!-- Points :  '.$points.' -->
+				';
+				
 			}
 		
 			
@@ -1022,7 +1032,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 		
 		set_transient( $current_points_t_name,$pointsTable,YEAR_IN_SECONDS);
 		set_transient( $transient_name, $classement, YEAR_IN_SECONDS );
-		set_transient($sommaire_transient_name,$sommaire,YEAR_IN_SECONDS);
+		set_transient( $sommaire_transient_name,$sommaire,YEAR_IN_SECONDS);
 	}else{
 		$classement = $current_table;
 	}
