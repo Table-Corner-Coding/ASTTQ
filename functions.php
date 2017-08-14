@@ -846,7 +846,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 	
 	$done = array();
 	$transient_name = 'asttq_p_table_'.$event_id;
-	$sommaire_transient_name = 'asttq_points_'.$theYear;
+	$sommaire_transient_name = 'asttq_sommaire_'.$theYear;
 	
 	$current_table = get_transient($transient_name);
 	
