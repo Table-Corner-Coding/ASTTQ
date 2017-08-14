@@ -986,10 +986,13 @@ function get_points_table_for_event($event_id, $refresh = false){
 					
 				}else{
 					$itt++;
-					$points = 5+$bonus_position[$itt]+$bonus_inscription;	
-					$pointsTable[$tireur_id] = $points;
 					
-					$sommaire[$event_id][$tireur['ID']] = $points;
+					$tid = $tireur['ID'];
+					
+					$points = 5+$bonus_position[$itt]+$bonus_inscription;	
+					$pointsTable[$tid] = $points;
+					
+					$sommaire[$event_id][$tid] = $points;
 				}
 				
 				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' (FP)</td><td> '.$points.' </td></tr>';
@@ -1011,8 +1014,9 @@ function get_points_table_for_event($event_id, $refresh = false){
 					$points = '*';
 				}else{
 					$itt++;
+					$tid = $tireur['ID'];
 					$points = 5+$bonus_position[$itt]+$bonus_inscription;
-					$sommaire[$event_id][$tireur['ID']] = $points;
+					$sommaire[$event_id][$tid] = $points;
 				}
 
 				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' </td><td> '.$points.' </td></tr>';
