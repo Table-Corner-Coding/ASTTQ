@@ -915,13 +915,15 @@ function get_points_table_for_event($event_id, $refresh = false){
 					$fullPull[] = array(	'nom_tireur'=>$nom_tireur,
 											'vehicule'=>$vehicule,
 											'distance'=>$highest,
-									   		'non-membre' => false);
+									   		'non-membre' => false,
+									   		'ID' => $tireur_id);
 				}
 				else{
 					$grille[] = array(	'nom_tireur'=>$nom_tireur,
 										'vehicule'=>$vehicule,
 										'distance'=>$highest,
-									  	'non-membre' => false
+									  	'non-membre' => false,
+									  	'ID' => $tireur_id
 									 );
 				}
 				
@@ -951,13 +953,15 @@ function get_points_table_for_event($event_id, $refresh = false){
 					$fullPull[] = array(	'nom_tireur'=>$nom_tireur,
 											'vehicule'=>$vehicule,
 											'distance'=>$highest,
-									   		'non-membre' => true);
+									   		'non-membre' => true,
+									   		'ID' => 0);
 				}
 				else{
 					$grille[] = array(	'nom_tireur'=>$nom_tireur,
 										'vehicule'=>$vehicule,
 										'distance'=>$highest,
-									   	'non-membre' => true);
+									   	'non-membre' => true,
+									 	'ID' => 0);
 				}
 				
 			}
@@ -985,7 +989,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 					$points = 5+$bonus_position[$itt]+$bonus_inscription;	
 					$pointsTable[$tireur_id] = $points;
 					
-					$sommaire[$event_id][$tireur_id] = $points;
+					$sommaire[$event_id][$tireur['ID']] = $points;
 				}
 				
 				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' (FP)</td><td> '.$points.' </td></tr>';
@@ -1000,7 +1004,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 				}else{
 					$itt++;
 					$points = 5+$bonus_position[$itt]+$bonus_inscription;
-					$sommaire[$event_id][$tireur_id] = $points;
+					$sommaire[$event_id][$tireur['ID']] = $points;
 				}
 
 				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' </td><td> '.$points.' </td></tr>';
