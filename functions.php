@@ -396,24 +396,23 @@ function sommaire_shortcode( $atts ) {
 	
 	$content = '';
 	
-	/* 
-	$content = '<a name="_top_"></a><h2>[wpml__ context=asttq]Table des matières[/wpml__]</h2><em>
-<ol class="toc">';
+	$args = array(
+			'taxonomy' => 'classes',
+			'hide_empty' => false
+		);
+		
+	$terms = get_terms( $args );
+	
+	$classes_events = array();
+	
 
-	
-	
 	foreach($events as $current_event){
-		$termine = get_field('field_5939ced2dcd39',$current_event->ID);
-		if($termine){
-			$content .= '<li><a href="#'.str_replace(' ','_',$current_event->post_title).'">'.$current_event->post_title.'</a></li>';	
+		
+		$term_list = wp_get_post_terms($current_event->ID, 'classes', array("fields" => "ids"));
+		foreach($term_list as $current_classe){
+			$classes_events[$current_classe][] = $current_event;
 		}
 		
-	}
-	
-	$content.= '</ol>
-		</em>';
-*/
-	foreach($events as $current_event){
 		$termine = get_field('field_5939ced2dcd39',$current_event->ID);
 		if($termine){
 		$content .= '[learn_more caption="'.$current_event->post_title.'"]<a name="'.str_replace(' ','_',$current_event->post_title).'"></a>
@@ -425,6 +424,93 @@ function sommaire_shortcode( $atts ) {
 		';
 		}
 	}
+	
+	$sommaire_transient_name = 'asttq_sommaire_'.$theYear;
+	$sommaire_table = get_transient($sommaire_transient_name);
+	
+	$content .= '[learn_more caption="'.__('Sommaire').'"]';
+		
+	
+	
+	
+	foreach($terms as $classe){
+		
+		$eventsFromClasse = $classes_events[$classe->term_id];
+		
+		$content .= '<h3>'.$classe->name.'</h3>
+		
+					<table><thead><tr>
+					<th>[wpml__ context=asttq]Rang[/wpml__]</th>
+					<th>[wpml__ context=asttq]Vehicule[/wpml__]</th>
+					<th>[wpml__ context=asttq]Total[/wpml__]</th>
+		';
+		
+		$usedNames = array();
+		
+		$totals = array();
+		
+		foreach($eventsFromClasse as $theEvent){
+			$place = tribe_get_venue ( $theEvent->ID );
+			$name = substr($place,0,4);
+			
+			
+			if(empty($usedNames[$name])){
+				$usedNames[$name] = 1;
+				$name = $name."1";
+			}else{
+				$nb = $usedNames[$name];
+				$nb++;
+				$usedNames[$name] = $nb;
+				$name = $name.$nb;
+			}
+			
+			foreach($sommaire_table[$theEvent->ID] as $key => $eventPoints){
+				if(empty($totals[$key])){
+					$totals[$key] = 0;
+				}
+				$totals[$key] = $totals[$key]+$eventPoints;
+			}
+			
+			$content .= '<th>'.$name.'</th>';
+		}
+		
+		$content .= '</tr></thead><tbody>';
+		
+		arsort($totals);
+		
+		$rg = 0;
+		foreach($totals as $key => $value){
+			$rg++;
+			
+			$tireur = get_post($key);
+			$tID = $tireur->ID;
+			$nom_du_vehicule = get_field('nom_du_vehicule',$tID);
+			
+			$content .= '<tr><td>'.$rg.'</td><td>'.$nom_du_vehicule.'</td><td>'.$value.'</td>';
+			
+			foreach($eventsFromClasse as $theEvent){
+				$eID = $theEvent->ID;
+				$content .= '<td>';
+				if(empty($sommaire_table[$eID][$tID])){
+					$content .= '-';
+				}else{
+					$content .= $sommaire_table[$eID][$tID];
+				}
+				$content .= '</td>';
+			}
+		}
+		
+		
+		$content .= '</tbody></table>';
+		
+		/* Fetch events for current classe for current Year */
+		
+	}
+	
+	
+	$content .= '<div><a href="#_top_">[ [wpml__ context=asttq]Retour en haut[/wpml__] ]</a></div>[/learn_more]<hr />
+		';
+	
 	
 	return do_shortcode('<div id="pointages">'.$content.'</div>');
 	
@@ -996,9 +1082,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 				}
 				
 				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' (FP)</td><td> '.$points.' </td></tr>';				
-				$classement .= '<!-- Event ID:  '.print_r($event_id,true).' -->';
-				$classement .= '<!-- Tireur ID:  '.print_r($tireur,true).' -->';
-				$classement .= '<!-- Points :  '.$points.' -->';
+
 			}
 			
 			foreach($grille as $tireur){
@@ -1014,17 +1098,8 @@ function get_points_table_for_event($event_id, $refresh = false){
 					$sommaire[$event_id][$tid] = $points;
 				}
 
-				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' </td><td> '.$points.' </td></tr>';
-				
-				
-				$classement .= '<!-- Event ID:  '.print_r($event_id,true).' -->
-				';
-				$classement .= '<!-- Tireur ID:  '.print_r($tireur,true).' -->
-				';
-				
-				$classement .= '<!-- Points :  '.$points.' -->
-				';
-				
+				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' </td><td> '.$points.' </td></tr>';				
+		
 			}
 		
 			
