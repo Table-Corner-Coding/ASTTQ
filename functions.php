@@ -1007,7 +1007,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 			}
 		
 			
-			$classement .= '</tbody></table><br />';
+			$classement .= '</tbody></table><br />  <!-- '.print_r($sommaire,true).' --> ';
 		
 		
 		}
