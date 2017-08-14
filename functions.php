@@ -1556,6 +1556,10 @@ function update_competition_results(){
 	global $wpdb;
 	
 	$eventID = $_POST['eventID'];
+	
+	$transient_name = 'asttq_p_table_'.$eventID;
+	delete_transient($transient_name);
+	
 	$classeID = $_POST['classeID'];
 	$dataMembres = json_decode(stripslashes($_POST['dataMembres']),true);
 	$dataNonMembres = json_decode(stripslashes($_POST['dataNonMembres']),true);
