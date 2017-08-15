@@ -685,6 +685,12 @@ div.bonus > input {
 	display:none;
 }
 
+div.scrollable{
+	width: 100%;
+	overflow: scroll;
+}
+
+
 /* Save Button */
 
 .sButton{

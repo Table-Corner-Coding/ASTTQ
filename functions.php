@@ -438,7 +438,7 @@ function sommaire_shortcode( $atts ) {
 		$eventsFromClasse = $classes_events[$classe->term_id];
 		
 		$content .= '<h3>'.$classe->name.'</h3>
-		
+					<div class="scrollable">
 					<table><thead><tr>
 					<th>[wpml__ context=asttq]Rang[/wpml__]</th>
 					<th>[wpml__ context=asttq]Vehicule[/wpml__]</th>
@@ -501,7 +501,7 @@ function sommaire_shortcode( $atts ) {
 		}
 		
 		
-		$content .= '</tbody></table>';
+		$content .= '</tbody></table></div>';
 		
 		/* Fetch events for current classe for current Year */
 		
