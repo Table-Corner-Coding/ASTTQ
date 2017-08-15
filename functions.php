@@ -436,7 +436,7 @@ function sommaire_shortcode( $atts ) {
 				
 				$content .= '[learn_more caption="'.$place.'"]<a name="'.str_replace(' ','_',$place).'"></a>';
 			}
-			$content .= '<h2>'.$current_event->post_title.'</h2>'.get_points_table_for_event($current_event->ID);
+			$content .= '<h2 style="border-bottom:2px solid;">'.$current_event->post_title.'</h2>'.get_points_table_for_event($current_event->ID);
 		}
 		
 		$first = false;
