@@ -1383,19 +1383,33 @@ function edition_competitions_shortcode() {
 							
 							$ordered_table = array();
 							
+							$itt = 1;
 							foreach($allTireurs as $current_tireur){
-								$pos = (int)$current_tireur['rang'];
+								if(!empty($current_tireur['rang'])){
+									$pos = (int)$current_tireur['rang'];
+								}else{
+									$pos = $itt;
+								}
+								
 								$ordered_table[$pos] = $current_tireur;
+								$itt++;
 							}
 							
 							foreach($allNonMembres as $current_tireur){
-								$pos = (int)$current_tireur['rang'];
+								
+								if(!empty($current_tireur['rang'])){
+									$pos = (int)$current_tireur['rang'];
+								}else{
+									$pos = $itt;
+								}
+
 								$ordered_table[$pos] = $current_tireur;
+								$itt++;
 							}
 							
 							sort($ordered_table);
 							
-							$tabs .= ' <!-- $ordered_table: '.print_r($ordered_table,true).' --> ';
+							//$tabs .= ' <!-- $ordered_table: '.print_r($ordered_table,true).' --> ';
 							
 							$itt = 0;
 							foreach($ordered_table as $tireur){
