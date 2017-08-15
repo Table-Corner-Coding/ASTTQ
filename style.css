@@ -738,3 +738,12 @@ div.scrollable{
     text-transform: none;
     speak: none;
 }
+
+.comp_title {
+    border-bottom: 2px solid;
+    margin: 20px 0;
+    border-top: 2px solid;
+    padding: 5px;
+    background: #222222;
+    text-shadow: 1px 1px 1px #000000;
+}
