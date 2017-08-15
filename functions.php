@@ -406,8 +406,10 @@ function sommaire_shortcode( $atts ) {
 	$terms = get_terms( $args );
 	
 	$classes_events = array();
+	$last_location = '';
+	$first  = true;
+	$new_place = false;	
 	
-
 	foreach($events as $current_event){
 		
 		$term_list = wp_get_post_terms($current_event->ID, 'classes', array("fields" => "ids"));
@@ -417,15 +419,35 @@ function sommaire_shortcode( $atts ) {
 		
 		$termine = get_field('field_5939ced2dcd39',$current_event->ID);
 		if($termine){
-		$content .= '[learn_more caption="'.$current_event->post_title.'"]<a name="'.str_replace(' ','_',$current_event->post_title).'"></a>
+			
+		$place = tribe_get_venue ( $theEvent->ID );
+		if($place != $last_location){
+			$last_location = $place;
+			$new_place = true;
+		}else{
+			$new_place = false;
+		}	
+		
+			if($first || $new_place){
+				
+				if(!$first){
+					$content .= '<div><a href="#_top_">[ [wpml__ context=asttq]Retour en haut[/wpml__] ]</a></div>[/learn_more]<hr />';
+				}
+				
+				$content .= '[learn_more caption="'.$current_event->post_title.'"]<a name="'.str_replace(' ','_',$current_event->post_title).'"></a>';
+			}
 		
 		
-		'.get_points_table_for_event($current_event->ID).'
 		
-		<div><a href="#_top_">[ [wpml__ context=asttq]Retour en haut[/wpml__] ]</a></div>[/learn_more]<hr />
-		';
+			$content .= get_points_table_for_event($current_event->ID);
+			
+			
 		}
+		
+		$first = false;
 	}
+	
+	$content .= '<div><a href="#_top_">[ [wpml__ context=asttq]Retour en haut[/wpml__] ]</a></div>[/learn_more]<hr />';
 	
 	$sommaire_transient_name = 'asttq_sommaire_'.$theYear;
 	$sommaire_table = get_transient($sommaire_transient_name);
