@@ -1124,13 +1124,19 @@ function get_points_table_for_event($event_id, $refresh = false){
 					}
 					$sommaire[$event_id][$tid] = $points;
 				}
+				
+				if($tireur['distance']!= -1){
+					$theDist = $tireur['distance'];
+				}else{
+					$theDist = 'DNS';
+				}
 
-				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' </td><td> '.$points.' </td></tr>';				
+				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$theDist.' </td><td> '.$points.' </td></tr>';				
 		
 			}
 		
 			
-			$classement .= '</tbody></table><br />  <!-- '.print_r($sommaire,true).' --> ';
+			$classement .= '</tbody></table><br /> ';
 		
 		
 		}
