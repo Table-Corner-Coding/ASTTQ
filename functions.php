@@ -387,9 +387,11 @@ function sommaire_shortcode( $atts ) {
 	$events = tribe_get_events( array(
     'eventDisplay' => 'custom',
     'start_date'   => $theYear.'-01-01 00:01',
-    'end_date'     => $theYear.'-12-31 23:59',
+    'end_date'     => date('Y').'-'.date('m').'-'.date('d').' 23:59',
 	'posts_per_page' => '99999'
 	) );
+	
+	
 	
 	$termine = 0;
 	
