@@ -1013,6 +1013,8 @@ function get_points_table_for_event($event_id, $refresh = false){
 					//}
 					if($current_distance['statut'] == 'FP'){
 						$fp = true;
+					}elseif($current_distance['statut'] == 'DNS'){
+						$highest = -1;
 					}
 				}
 				
@@ -1051,6 +1053,8 @@ function get_points_table_for_event($event_id, $refresh = false){
 					//}
 					if($current_distance['statut'] == 'FP'){
 						$fp = true;
+					}elseif($current_distance['statut'] == 'DNS'){
+						$highest = -1;
 					}
 				}
 				
@@ -1113,7 +1117,11 @@ function get_points_table_for_event($event_id, $refresh = false){
 				}else{
 					$itt++;
 					$tid = $tireur['ID'];
-					$points = 5+$bonus_position[$itt]+$bonus_inscription;
+					if($tireur['distance'] == -1){
+						$points = 5+$bonus_inscription;
+					}else{
+						$points = 5+$bonus_position[$itt]+$bonus_inscription;
+					}
 					$sommaire[$event_id][$tid] = $points;
 				}
 
