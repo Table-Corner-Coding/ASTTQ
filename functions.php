@@ -1379,7 +1379,7 @@ function edition_competitions_shortcode() {
 							$allTireurs = $compArr[$objID]['competiteur'];
 							$allNonMembres = $compArr[$objID]['non-membre'];
 							
-							$tabs .= ' <!-- Membres: '.print_r($allTireurs,true).' --> ';
+							
 							
 							$ordered_table = array();
 							
@@ -1394,6 +1394,8 @@ function edition_competitions_shortcode() {
 							}
 							
 							sort($ordered_table);
+							
+							$tabs .= ' <!-- $ordered_table: '.print_r($ordered_table,true).' --> ';
 							
 							$itt = 0;
 							foreach($ordered_table as $tireur){
