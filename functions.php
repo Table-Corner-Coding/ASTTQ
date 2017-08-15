@@ -434,12 +434,12 @@ function sommaire_shortcode( $atts ) {
 					$content .= '<div><a href="#_top_">[ [wpml__ context=asttq]Retour en haut[/wpml__] ]</a></div>[/learn_more]<hr />';
 				}
 				
-				$content .= '[learn_more caption="'.$current_event->post_title.'"]<a name="'.str_replace(' ','_',$current_event->post_title).'"></a>';
+				$content .= '[learn_more caption="'.$place.'"]<a name="'.str_replace(' ','_',$place).'"></a>';
 			}
 		
 		
-		
-			$content .= get_points_table_for_event($current_event->ID);
+			
+			$content .= '<h2>'.$current_event->post_title.'</h2>'.get_points_table_for_event($current_event->ID);
 			
 			
 		}
