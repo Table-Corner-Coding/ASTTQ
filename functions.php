@@ -1094,9 +1094,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 				$itt2++;
 				
 				if($tireur['non-membre']){
-					$points = '*';
-					
-					
+					$points = '*';				
 				}else{
 					$itt++;
 					
@@ -1193,7 +1191,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 		
 		}
 		
-		$classement .= '<div class="last_updated"> '.strftime('%d/%m/%y - %H:%M').'</div>';
+		$classement .= ' <!-- '.print_r($grille,true).' --> <div class="last_updated"> '.strftime('%d/%m/%y - %H:%M').'</div>';
 		
 		delete_transient($transient_name);
 		
