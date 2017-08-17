@@ -983,6 +983,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 	if(empty($current_table) || $refresh == true)
 	{
 		$grille = array();
+		$grille_finale = array();
 		foreach($competitions as $competition){
 			
 			//$grille = array();
@@ -990,13 +991,17 @@ function get_points_table_for_event($event_id, $refresh = false){
 			$bonus_inscription = $competition['bonus_inscription'];	
 			
 			$term = get_term( $competition['classe'], 'classes' );
-			$classement .= '<!-- '.print_r($grille,true).' --> <h3>'.$term->name.'</h3>';
+			$classement .= '<!-- '.print_r($grille,true).' --> <h3>'.$term->name.'</h3> <!-- Grille finale: '.print_r($grille_finale,true).' -->';
 
 			$grille = array();
+			$grille_finale = array();
+			
 			$fullPull = array();
 			$fullPullNM = array();
 			
 			foreach($competition['competiteur'] as $competiteur){
+				
+				
 				$tireur_id = $competiteur['tireur'];
 				$tireur = get_post($tireur_id);
 				$vehicule = get_field('nom_du_vehicule', $tireur_id);
@@ -1091,7 +1096,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 			$itt = 0;
 			$itt2 = 0;
 			
-			$grille_finale = array();
+			
 			
 			foreach($fullPull as $tireur){
 				$itt2++;
@@ -1118,10 +1123,11 @@ function get_points_table_for_event($event_id, $refresh = false){
 				$leMembre['ID'] = $tireur['ID'];
 				$leMembre['points'] = $points;
 				
-				$leMembre['theDist'] = $theDist;
+				$leMembre['theDist'] = $theDist.' (FP)';
 				$leMembre['itt2'] = $itt2;
 				$leMembre['vehicule'] = $tireur['vehicule'];
 				$leMembre['nom_tireur'] = $tireur['nom_tireur'];
+				$leMembre['non-membre'] = $tireur['non-membre'];
 				
 				$grille_finale[$tireur['distance']][] = $leMembre;
 				
@@ -1145,6 +1151,8 @@ function get_points_table_for_event($event_id, $refresh = false){
 				$leMembre = array();
 				if($tireur['non-membre']){
 					$points = '*';
+					$leMembre['points'] = '*';
+					$leMembre['ID'] = 0;
 				}else{
 					$itt++;
 					$tid = $tireur['ID'];
@@ -1195,6 +1203,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 				$leMembre['itt2'] = $itt2;
 				$leMembre['vehicule'] = $vehicule;
 				$leMembre['nom_tireur'] = $tireur['nom_tireur'];
+				$leMembre['non-membre'] = $tireur['non-membre'];
 				
 				$grille_finale[$tireur['distance']][] = $leMembre;
 				
