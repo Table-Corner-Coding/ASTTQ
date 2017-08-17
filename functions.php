@@ -448,12 +448,9 @@ function sommaire_shortcode( $atts ) {
 	$sommaire_table = get_transient($sommaire_transient_name);
 	
 	$content .= '[learn_more caption="'.__('Sommaire').'"]';
-		
-	
-	
 	
 	foreach($terms as $classe){
-		
+		$cid = $classe->term_id;
 		$eventsFromClasse = $classes_events[$classe->term_id];
 		
 		$content .= '<h3>'.$classe->name.'</h3>
@@ -471,7 +468,7 @@ function sommaire_shortcode( $atts ) {
 		foreach($eventsFromClasse as $theEvent){
 			$place = tribe_get_venue ( $theEvent->ID );
 			$name = substr($place,0,4);
-				$content .= ' <!-- Sommaire pour l\'evenement: '.print_r($sommaire_table[$theEvent->ID],true).' --> ';
+				
 			
 			if(empty($usedNames[$name])){
 				$usedNames[$name] = 1;
@@ -483,12 +480,14 @@ function sommaire_shortcode( $atts ) {
 				$name = $name.$nb;
 			}
 			
-			foreach($sommaire_table[$theEvent->ID] as $key => $eventPoints){
+			foreach($sommaire_table[$theEvent->ID][$cid] as $key => $eventPoints){
 				if(empty($totals[$key])){
 					$totals[$key] = 0;
 				}
 				$totals[$key] = $totals[$key]+$eventPoints;
 			}
+			
+			$content .= ' <!-- Sommaire pour l\'evenement: '.print_r($sommaire_table[$theEvent->ID],true).' --> ';
 			
 			$content .= '<th>'.$name.'</th>';
 		}
@@ -1233,8 +1232,8 @@ function get_points_table_for_event($event_id, $refresh = false){
 		
 			foreach($grille as $tireur){
 				
-				
 				$tid = $tireur['ID'];
+				$cid = $term->term_id;
 				$theDist = $tireur['theDist'];
 				$points = $tireur['points'];
 				$itt2 = $tireur['itt2'];
@@ -1246,7 +1245,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$theDist.' </td><td> '.$points.' </td></tr>';	
 				
 				if($points != '*' && $tid != 0){
-					$sommaire[$event_id][$tid] = $points;
+					$sommaire[$event_id][$cid][$tid] = $points;
 				}
 				
 			}
