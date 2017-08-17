@@ -1180,35 +1180,16 @@ function get_points_table_for_event($event_id, $refresh = false){
 					
 				}
 				
-				
-				
-				
-				if($grille[$i-1]['theDist'] == $theDist){
-					$cumul += $grille[$i-1]['points'];
-					$cumul_i[] =  $i-1;
-				}elseif($cumul > 0){
-					$cumul += $grille[$i-1]['points'];
-					$cumul_i[] =  $i-1;
-					
-					foreach($cumul_i as $ci){
-						$grille[$ci]['points'] = $cumul/count($cumul_i);
-						$grille[$i]['itt2'] = $grille[$cumul_i[0]]['itt2'];
-					}
-					
-					$cumul = 0;
-					$cumul_i = array();
-				}
+	
 				
 				$leMembre['theDist'] = $theDist;
 				$leMembre['itt2'] = $itt2;
-				$leMembre['vehicule'] = $vehicule;
+				$leMembre['vehicule'] = $tireur['vehicule'];
 				$leMembre['nom_tireur'] = $tireur['nom_tireur'];
 				$leMembre['non-membre'] = $tireur['non-membre'];
 				
 				$grille_finale[$tireur['distance']][] = $leMembre;
-				
-				$grille[$i]['theDist'] = $theDist;
-				$grille[$i]['itt2'] = $itt2;		
+					
 				
 				$i++;
 			}
@@ -1229,13 +1210,14 @@ function get_points_table_for_event($event_id, $refresh = false){
 				$laPos = $value[0]['itt2'];
 				$lesPoints = $cumul/$count;
 
-				foreach($value as $tireur){
+				foreach($value as $leTireur){
 					$grille[] = array(	'itt2' => $laPos,
 										'points' => $lesPoints,
-										'theDist' => $tireur['theDist'],
-										'vehicule' => $tireur['vehicule'],
-										'nom_tireur' => $tireur['nom_tireur'],
-									 	'ID' => $tireur['ID']);
+										'theDist' => $leTireur['theDist'],
+										'vehicule' => $leTireur['vehicule'],
+										'nom_tireur' => $leTireur['nom_tireur'],
+									 	'ID' => $leTireur['ID'],
+									 	'non-membre' => $leTireur['non-membre']);
 				}
 				
 				
