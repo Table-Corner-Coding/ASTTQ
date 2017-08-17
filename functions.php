@@ -1245,12 +1245,12 @@ function get_points_table_for_event($event_id, $refresh = false){
 				$sommaire[$event_id][$tid] = $points;
 			}
 			
-			$classement .= '</tbody></table><br /> ';
+			$classement .= '</tbody></table><br />  <!-- '.print_r($grille,true).' --> ';
 		
 		
 		}
 		
-		$classement .= ' <!-- '.print_r($grille,true).' --> <div class="last_updated"> '.strftime('%d/%m/%y - %H:%M').'</div>';
+		$classement .= '<div class="last_updated"> '.strftime('%d/%m/%y - %H:%M').'</div>';
 		
 		delete_transient($transient_name);
 		
