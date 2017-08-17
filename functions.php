@@ -471,7 +471,7 @@ function sommaire_shortcode( $atts ) {
 		foreach($eventsFromClasse as $theEvent){
 			$place = tribe_get_venue ( $theEvent->ID );
 			$name = substr($place,0,4);
-			
+				$content .= ' <!-- Sommaire pour l\'evenement: '.print_r($sommaire_table[$theEvent->ID],true).' --> ';
 			
 			if(empty($usedNames[$name])){
 				$usedNames[$name] = 1;
@@ -500,6 +500,7 @@ function sommaire_shortcode( $atts ) {
 		$rg = 0;
 		
 		$content .= ' <!-- Totals: '.print_r($totals,true).' --> ';
+	
 		
 		foreach($totals as $key => $value){
 			$rg++;
