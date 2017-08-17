@@ -688,6 +688,7 @@ div.bonus > input {
 div.scrollable{
 	width: 100%;
 	overflow: scroll;
+	margin-bottom: 1em;
 }
 
 
