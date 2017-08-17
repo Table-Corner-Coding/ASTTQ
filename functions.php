@@ -945,7 +945,7 @@ add_action( 'wp_ajax_nopriv_update_point', 'update_point' );
 
 function get_points_table_for_event($event_id, $refresh = false){
 	
-	$grille = array();
+	
 	
 	$theYear = tribe_get_start_date ( $event_id, false, 'Y' );
 	
@@ -982,13 +982,15 @@ function get_points_table_for_event($event_id, $refresh = false){
 	
 	if(empty($current_table) || $refresh == true)
 	{
-	
+		$grille = array();
 		foreach($competitions as $competition){
+			
+			//$grille = array();
 			
 			$bonus_inscription = $competition['bonus_inscription'];	
 			
 			$term = get_term( $competition['classe'], 'classes' );
-			$classement .= '<h3>'.$term->name.'</h3>';
+			$classement .= '<!-- '.print_r($grille,true).' --> <h3>'.$term->name.'</h3>';
 
 			$grille = array();
 			$fullPull = array();
@@ -1245,7 +1247,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 				$sommaire[$event_id][$tid] = $points;
 			}
 			
-			$classement .= '</tbody></table><br />  <!-- '.print_r($grille,true).' --> ';
+			$classement .= '</tbody></table><br />';
 		
 		
 		}
