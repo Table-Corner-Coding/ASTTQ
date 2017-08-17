@@ -1049,8 +1049,6 @@ function get_points_table_for_event($event_id, $refresh = false){
 				$distance = $nonmembre['distance'];
 				$vehicule = $nonmembre['vehicule'];
 				$nom_tireur = $nonmembre['nom_du_tireur'];
-
-				
 				$distances = $nonmembre['distances'];
 				
 				$highest = 0;
@@ -1208,6 +1206,9 @@ function get_points_table_for_event($event_id, $refresh = false){
 				}
 
 				$laPos = $value[0]['itt2'];
+				if($count > 1){
+					$laPos = $laPos.' (=)';
+				}
 				$lesPoints = $cumul/$count;
 
 				foreach($value as $leTireur){
@@ -1233,9 +1234,16 @@ function get_points_table_for_event($event_id, $refresh = false){
 				$points = $tireur['points'];
 				$itt2 = $tireur['itt2'];
 				
+				if($points == 0){
+					$points = '*';
+				}
+				
 				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$theDist.' </td><td> '.$points.' </td></tr>';	
 				
-				$sommaire[$event_id][$tid] = $points;
+				if($points != '*'){
+					$sommaire[$event_id][$tid] = $points;
+				}
+				
 			}
 			
 			$classement .= '</tbody></table><br />';
