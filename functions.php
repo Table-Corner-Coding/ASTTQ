@@ -514,10 +514,10 @@ function sommaire_shortcode( $atts ) {
 			foreach($eventsFromClasse as $theEvent){
 				$eID = $theEvent->ID;
 				$content .= '<td>';
-				if(empty($sommaire_table[$eID][$tID])){
+				if(empty($sommaire_table[$eID][$cid][$tID])){
 					$content .= '-';
 				}else{
-					$content .= $sommaire_table[$eID][$tID];
+					$content .= $sommaire_table[$eID][$cid][$tID];
 				}
 				$content .= '</td>';
 			}
