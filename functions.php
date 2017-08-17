@@ -1055,6 +1055,8 @@ function get_points_table_for_event($event_id, $refresh = false){
 						$fp = true;
 					}elseif($current_distance['statut'] == 'DNS'){
 						$highest = -1;
+					}elseif($current_distance['statut'] == 'DNS'){
+						$highest = -2;
 					}
 				}
 				
@@ -1108,6 +1110,15 @@ function get_points_table_for_event($event_id, $refresh = false){
 
 			}
 			
+			$last_distance = '';
+			$last_tireur = '';
+			
+			$grille_arr = array();
+			$i = 0;
+			
+			$cumul = 0;
+			$cumul_i = array();
+			
 			foreach($grille as $tireur){
 				
 				$itt2++;
@@ -1119,22 +1130,56 @@ function get_points_table_for_event($event_id, $refresh = false){
 					$tid = $tireur['ID'];
 					if($tireur['distance'] == -1){
 						$points = 5+$bonus_inscription;
+					}elseif($tireur['distance'] == -2){
+						$points = 5+$bonus_position[$itt]+$bonus_inscription;
 					}else{
 						$points = 5+$bonus_position[$itt]+$bonus_inscription;
 					}
+					
+					$grille[$i]['points'] = $points;
 					$sommaire[$event_id][$tid] = $points;
 				}
 				
-				if($tireur['distance']!= -1){
-					$theDist = $tireur['distance'];
-				}else{
+				if($tireur['distance'] == -1){
 					$theDist = 'DNS';
+				}elseif($tireur['distance'] == -2){
+					$theDist = 'DQ';
+				}else{
+					$theDist = $tireur['distance'];
+					
 				}
-
-				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$theDist.' </td><td> '.$points.' </td></tr>';				
-		
+				
+				
+				
+				if($grille[$i-1]['theDist'] == $theDist){
+					$cumul += $grille[$i-1]['points'];
+					$cumul_i[] =  $i-1;
+				}elseif($cumul > 0){
+					$cumul += $grille[$i-1]['points'];
+					$cumul_i[] =  $i-1;
+					
+					foreach($cumul_i as $ci){
+						$grille[$ci]['points'] = $cumul/count($cumul_i);
+						$grille[$i]['itt2'] = $grille[$cumul_i[0]]['itt2'];
+					}
+					
+					$cumul = 0;
+					$cumul_i = array();
+				}
+				
+				$grille[$i]['theDist'] = $theDist;
+				$grille[$i]['itt2'] = $itt2;		
+				
+				$i++;
 			}
 		
+			foreach($grille as $tireur){
+				$theDist = $tireur['theDist'];
+				$points = $tireur['points'];
+				$itt2 = $tireur['itt2'];
+				
+				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$theDist.' </td><td> '.$points.' </td></tr>';	
+			}
 			
 			$classement .= '</tbody></table><br /> ';
 		
