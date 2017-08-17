@@ -1137,7 +1137,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 					}
 					
 					$grille[$i]['points'] = $points;
-					$sommaire[$event_id][$tid] = $points;
+					
 				}
 				
 				if($tireur['distance'] == -1){
@@ -1174,11 +1174,16 @@ function get_points_table_for_event($event_id, $refresh = false){
 			}
 		
 			foreach($grille as $tireur){
+				
+				
+				$tid = $tireur['ID'];
 				$theDist = $tireur['theDist'];
 				$points = $tireur['points'];
 				$itt2 = $tireur['itt2'];
 				
 				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$theDist.' </td><td> '.$points.' </td></tr>';	
+				
+				$sommaire[$event_id][$tid] = $points;
 			}
 			
 			$classement .= '</tbody></table><br /> ';
