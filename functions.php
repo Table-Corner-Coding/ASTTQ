@@ -453,6 +453,8 @@ function sommaire_shortcode( $atts ) {
 		$cid = $classe->term_id;
 		$eventsFromClasse = $classes_events[$classe->term_id];
 		
+		
+		if(count($eventsFromClasse)){
 		$content .= '<h3>'.$classe->name.'</h3>
 					<div class="scrollable">
 					<table><thead><tr>
@@ -487,7 +489,7 @@ function sommaire_shortcode( $atts ) {
 				$totals[$key] = $totals[$key]+$eventPoints;
 			}
 			
-			$content .= ' <!-- Sommaire pour l\'evenement: '.print_r($sommaire_table[$theEvent->ID],true).' --> ';
+			//$content .= ' <!-- Sommaire pour l\'evenement: '.print_r($sommaire_table[$theEvent->ID],true).' --> ';
 			
 			$content .= '<th>'.$name.'</th>';
 		}
@@ -495,21 +497,48 @@ function sommaire_shortcode( $atts ) {
 		$content .= '</tr></thead><tbody>';
 		
 		arsort($totals);
-		
 		$rg = 0;
 		
-		$content .= ' <!-- Totals: '.print_r($totals,true).' --> ';
+		//$content .= ' <!-- Totals: '.print_r($totals,true).' --> ';
 	
+		$i = 0;
 		
+	
+		// initiate the iterator for "next_val":
+		$nextIterator = new ArrayIterator($totals);
+		$nextIterator->rewind();
+		$nextIterator->next(); // put the initial pointer to 2nd position
+
+		// initiaite another iterator for "next_next_val":    
+		$nextNextIterator = new ArrayIterator($totals);
+		$nextNextIterator->rewind();
+		$nextNextIterator->next();
+		$nextNextIterator->next(); // put the initial pointer to 3rd position
+		
+		$last_pos = -99;
+		$prev_val = -99;
+			
 		foreach($totals as $key => $value){
 			$rg++;
+			$next_val = $nextIterator->current();
 			
 			$tireur = get_post($key);
 			//$tID = $tireur->ID;
 			$tID = $key;
 			$nom_du_vehicule = get_field('nom_du_vehicule',$tID);
 			
-			$content .= '<tr><td>'.$rg.'</td><td>'.$nom_du_vehicule.'</td><td>'.$value.'</td>';
+			$thePos = $rg;
+			
+			if($value == $prev_val){
+				$thePos = $last_pos.' (=)';
+			}
+			
+			if($value == $next_val){
+				$last_pos = str_replace(' (=)','',$thePos);
+				$thePos = $last_pos.' (=)';
+			}
+			
+			$content .= '<tr><td>'.$thePos.'</td><td>'.$nom_du_vehicule.'</td><td>'.$value.'</td>';
 			
 			foreach($eventsFromClasse as $theEvent){
 				$eID = $theEvent->ID;
@@ -521,13 +550,17 @@ function sommaire_shortcode( $atts ) {
 				}
 				$content .= '</td>';
 			}
+			
+			$i++;
+			$prev_val = $value;
+			$nextIterator->next();
 		}
 		
 		
 		$content .= '</tbody></table></div>';
 		
 		/* Fetch events for current classe for current Year */
-		
+		}
 	}
 	
 	
