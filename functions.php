@@ -1089,6 +1089,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 			$itt = 0;
 			$itt2 = 0;
 			
+			$grille_finale = array();
 			
 			foreach($fullPull as $tireur){
 				$itt2++;
@@ -1104,9 +1105,26 @@ function get_points_table_for_event($event_id, $refresh = false){
 					$pointsTable[$tid] = $points;
 					
 					$sommaire[$event_id][$tid] = $points;
+					
+					
 				}
 				
-				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' (FP)</td><td> '.$points.' </td></tr>';				
+				$theDist = $tireur['distance'];
+				
+				$leMembre = array();
+				
+				$leMembre['ID'] = $tireur['ID'];
+				$leMembre['points'] = $points;
+				
+				$leMembre['theDist'] = $theDist;
+				$leMembre['itt2'] = $itt2;
+				$leMembre['vehicule'] = $tireur['vehicule'];
+				$leMembre['nom_tireur'] = $tireur['nom_tireur'];
+				
+				$grille_finale[$tireur['distance']][] = $leMembre;
+				
+				
+				//$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$tireur['distance'].' (FP)</td><td> '.$points.' </td></tr>';				
 
 			}
 			
@@ -1122,7 +1140,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 			foreach($grille as $tireur){
 				
 				$itt2++;
-				
+				$leMembre = array();
 				if($tireur['non-membre']){
 					$points = '*';
 				}else{
@@ -1136,6 +1154,9 @@ function get_points_table_for_event($event_id, $refresh = false){
 						$points = 5+$bonus_position[$itt]+$bonus_inscription;
 					}
 					
+					$leMembre['ID'] = $tid;
+					$leMembre['points'] = $points;
+					
 					$grille[$i]['points'] = $points;
 					
 				}
@@ -1148,6 +1169,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 					$theDist = $tireur['distance'];
 					
 				}
+				
 				
 				
 				
@@ -1167,11 +1189,48 @@ function get_points_table_for_event($event_id, $refresh = false){
 					$cumul_i = array();
 				}
 				
+				$leMembre['theDist'] = $theDist;
+				$leMembre['itt2'] = $itt2;
+				$leMembre['vehicule'] = $vehicule;
+				$leMembre['nom_tireur'] = $tireur['nom_tireur'];
+				
+				$grille_finale[$tireur['distance']][] = $leMembre;
+				
 				$grille[$i]['theDist'] = $theDist;
 				$grille[$i]['itt2'] = $itt2;		
 				
 				$i++;
 			}
+			
+			
+			$grille = array();
+			foreach($grille_finale as $key=>$value){
+				
+				$count = count($value);
+				$cumul = 0;
+				$cumul_i = array();
+				
+				
+				foreach($value as $tireur){
+					$cumul += $tireur['points'];
+				}
+
+				$laPos = $value[0]['itt2'];
+				$lesPoints = $cumul/$count;
+
+				foreach($value as $tireur){
+					$grille[] = array(	'itt2' => $laPos,
+										'points' => $lesPoints,
+										'theDist' => $tireur['theDist'],
+										'vehicule' => $tireur['vehicule'],
+										'nom_tireur' => $tireur['nom_tireur'],
+									 	'ID' => $tireur['ID']);
+				}
+				
+				
+				
+			}
+			
 		
 			foreach($grille as $tireur){
 				
