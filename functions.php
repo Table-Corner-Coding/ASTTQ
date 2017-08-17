@@ -945,7 +945,7 @@ add_action( 'wp_ajax_nopriv_update_point', 'update_point' );
 
 function get_points_table_for_event($event_id, $refresh = false){
 	
-	
+	$grille = array();
 	
 	$theYear = tribe_get_start_date ( $event_id, false, 'Y' );
 	
