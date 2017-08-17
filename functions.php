@@ -1055,7 +1055,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 						$fp = true;
 					}elseif($current_distance['statut'] == 'DNS'){
 						$highest = -1;
-					}elseif($current_distance['statut'] == 'DNS'){
+					}elseif($current_distance['statut'] == 'DQ'){
 						$highest = -2;
 					}
 				}
