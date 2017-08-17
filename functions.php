@@ -498,11 +498,15 @@ function sommaire_shortcode( $atts ) {
 		arsort($totals);
 		
 		$rg = 0;
+		
+		$content .= ' <!-- Totals: '.print_r($totals,true).' --> ';
+		
 		foreach($totals as $key => $value){
 			$rg++;
 			
 			$tireur = get_post($key);
-			$tID = $tireur->ID;
+			//$tID = $tireur->ID;
+			$tID = $key;
 			$nom_du_vehicule = get_field('nom_du_vehicule',$tID);
 			
 			$content .= '<tr><td>'.$rg.'</td><td>'.$nom_du_vehicule.'</td><td>'.$value.'</td>';
