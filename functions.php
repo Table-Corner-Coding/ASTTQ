@@ -513,7 +513,7 @@ function sommaire_shortcode( $atts ) {
 			
 			foreach($eventsFromClasse as $theEvent){
 				$eID = $theEvent->ID;
-				$content .= '<td>';
+				$content .= '<td data-cID="'.$cid.'" data-tID="'.$tID.'" data-eID="'.$eID.'">';
 				if(empty($sommaire_table[$eID][$cid][$tID])){
 					$content .= '-';
 				}else{
