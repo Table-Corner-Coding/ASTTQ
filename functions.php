@@ -480,10 +480,14 @@ function sommaire_shortcode( $atts ) {
 			$title_line = 'Session '.$sessionNumber.' - '.$days[$theDay][$lang];
 			
 			if($lang = 'en'){
-				$title_line .= ' '.$months[$theMonth][$lang].' '.$theDayOfTheMonth.' '.$theTime;
+				//$title_line .= ' '.$months[$theMonth][$lang].' '.$theDayOfTheMonth.' '.$theTime;
+				$title_line .= tribe_get_start_date ( $current_event->ID, false, 'F j Y, H:i' );
 			}else{
-				$title_line .= ' '.$theDayOfTheMonth.' '.$months[$theMonth][$lang].' '.$theTime;
+				//$title_line .= ' '.$theDayOfTheMonth.' '.$months[$theMonth][$lang].' '.$theTime;
+				$title_line .= tribe_get_start_date ( $current_event->ID, false, 'j F Y, H:i' );
 			}
+			
+			
 			
 			
 			$content .= '<h2 class="comp_title">'.$title_line.'</h2>'.get_points_table_for_event($current_event->ID);
