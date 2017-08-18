@@ -479,7 +479,7 @@ function sommaire_shortcode( $atts ) {
 	
 			$title_line = 'Session '.$sessionNumber.' - '.$days[$theDay][$lang];
 			
-			if($lang = 'en'){
+			if($lang == 'en'){
 				//$title_line .= ' '.$months[$theMonth][$lang].' '.$theDayOfTheMonth.' '.$theTime;
 				$title_line .= ' '.tribe_get_start_date ( $current_event->ID, false, 'F j Y, H:i' );
 			}else{
