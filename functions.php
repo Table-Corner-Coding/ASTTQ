@@ -390,7 +390,7 @@ function sommaire_shortcode( $atts ) {
 
 	global $months,$days;
 	
-	$lang = strtolower(ICL_LANGUAGE_CODE);
+	
 	
 	
 	// Attributes
@@ -468,7 +468,7 @@ function sommaire_shortcode( $atts ) {
 				$content .= '[learn_more caption="'.$place.'"]<a name="'.str_replace(' ','_',$place).'"></a>';
 			}
 			
-			
+			$lang = strtolower(ICL_LANGUAGE_CODE);
 			$theYear = tribe_get_start_date ( $current_event->ID, false, 'Y' );
 			$theMonth = tribe_get_start_date ( $current_event->ID, false, 'm' );
 			$theDay = tribe_get_start_date ( $current_event->ID, false, 'N' );
