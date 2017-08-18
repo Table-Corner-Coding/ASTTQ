@@ -390,7 +390,7 @@ function sommaire_shortcode( $atts ) {
 
 	global $months,$days;
 	
-	
+	$lang = strtolower(ICL_LANGUAGE_CODE);
 	
 	
 	// Attributes
@@ -475,7 +475,7 @@ function sommaire_shortcode( $atts ) {
 			$theDayOfTheMonth = tribe_get_start_date ( $current_event->ID, false, 'j' );
 			$theTime = tribe_get_start_date ( $current_event->ID, false, 'h:i:s A' );
 	
-			$lang = ICL_LANGUAGE_CODE;
+			
 	
 			$title_line = 'Session '.$sessionNumber.' - '.$days[$theDay][$lang];
 			
