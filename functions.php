@@ -397,7 +397,7 @@ function sommaire_shortcode( $atts ) {
 	$termine = 0;
 	
 	
-	$content = '';
+	$content = '<a name="_top_"></a>';
 	
 	$args = array(
 			'taxonomy' => 'classes',
