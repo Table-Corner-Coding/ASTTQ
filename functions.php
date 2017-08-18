@@ -1,5 +1,27 @@
 <?php
 //error_reporting(E_ALL);
+$months = array('01' => array('fr'=>'janvier','en' => 'January'),
+				'02' => array('fr'=>'février','en' => 'February'),
+				'03' => array('fr'=>'mars','en' => 'March'),
+				'04' => array('fr'=>'avril','en' => 'April'),
+				'05' => array('fr'=>'mai','en' => 'May'),
+				'06' => array('fr'=>'juin','en' => 'June'),
+				'07' => array('fr'=>'juillet','en' => 'July'),
+				'08' => array('fr'=>'août','en' => 'August'),
+				'09' => array('fr'=>'septembre','en' => 'September'),
+				'10' => array('fr'=>'octobre','en' => 'October'),
+				'11' => array('fr'=>'novembre','en' => 'November'),
+				'12' => array('fr'=>'décembre','en' => 'December')
+					);
+$days = array(	'1' => array('fr'=>'dimanche','en' => 'Sunday'),
+			  	'2' => array('fr'=>'lundi','en' => 'Monday'),
+			  	'3' => array('fr'=>'mardi','en' => 'Tuesday'),
+			  	'4' => array('fr'=>'mercredi','en' => 'Wednesday'),
+			  	'5' => array('fr'=>'jeudi','en' => 'Thursday'),
+			  	'6' => array('fr'=>'vendredi','en' => 'Friday'),
+			  	'7' => array('fr'=>'samedi','en' => 'Saturday')
+				);
+
 
 add_action( 'wp_enqueue_scripts', 'my_enqueue_assets' ); 
 
@@ -366,6 +388,11 @@ add_shortcode( 'edition_positions', 'edition_positions_shortcode' );
 // Add Shortcode
 function sommaire_shortcode( $atts ) {
 
+	global $months,$days;
+	
+	
+	
+	
 	// Attributes
 	$atts = shortcode_atts(
 		array(
@@ -410,6 +437,7 @@ function sommaire_shortcode( $atts ) {
 	$last_location = '';
 	$first  = true;
 	$new_place = false;	
+	$sessionNumber = 1;
 	
 	foreach($events as $current_event){
 		
@@ -425,8 +453,10 @@ function sommaire_shortcode( $atts ) {
 		if($place != $last_location){
 			$last_location = $place;
 			$new_place = true;
+			$sessionNumber = 1;
 		}else{
 			$new_place = false;
+			$sessionNumber += 1;
 		}	
 		
 			if($first || $new_place){
@@ -437,7 +467,26 @@ function sommaire_shortcode( $atts ) {
 				
 				$content .= '[learn_more caption="'.$place.'"]<a name="'.str_replace(' ','_',$place).'"></a>';
 			}
-			$content .= '<h2 class="comp_title">'.$current_event->post_title.'</h2>'.get_points_table_for_event($current_event->ID);
+			
+			
+			$theYear = tribe_get_start_date ( $current_event->ID, false, 'Y' );
+			$theMonth = tribe_get_start_date ( $current_event->ID, false, 'm' );
+			$theDay = tribe_get_start_date ( $current_event->ID, false, 'N' );
+			$theDayOfTheMonth = tribe_get_start_date ( $current_event->ID, false, 'j' );
+			$theTime = tribe_get_start_date ( $current_event->ID, false, 'h:i:s A' );
+	
+			$lang = ICL_LANGUAGE_CODE;
+	
+			$title_line = 'Session '.$sessionNumber.' - '.$days[$theDay][$lang];
+			
+			if($lang = 'en'){
+				$title_line .= ' '.$months[$theMonth][$lang].' '.$theDayOfTheMonth.' '.$theTime;
+			}else{
+				$title_line .= ' '.$theDayOfTheMonth.' '.$months[$theMonth][$lang].' '.$theTime;
+			}
+			
+			
+			$content .= '<h2 class="comp_title">'.$title_line.'</h2>'.get_points_table_for_event($current_event->ID);
 		}
 		
 		$first = false;
@@ -981,11 +1030,19 @@ add_action( 'wp_ajax_update_point', 'update_point' );
 add_action( 'wp_ajax_nopriv_update_point', 'update_point' );
 
 
+
+
 function get_points_table_for_event($event_id, $refresh = false){
 	
-	
+	global $months,$days;
 	
 	$theYear = tribe_get_start_date ( $event_id, false, 'Y' );
+	$theDay = tribe_get_start_date ( $event_id, false, 'N' );
+	$theTime = tribe_get_start_date ( $event_id, false, 'h:i:s A' );
+	
+	$lang = ICL_LANGUAGE_CODE;
+	
+	$title_line = '';
 	
 	$done = array();
 	$transient_name = 'asttq_p_table_'.$event_id;
