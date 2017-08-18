@@ -389,7 +389,7 @@ function sommaire_shortcode( $atts ) {
     'start_date'   => $theYear.'-01-01 00:01',
     'end_date'     => date('Y').'-'.date('m').'-'.date('d').' 23:59',
 	'posts_per_page' => '99999',
-		'suppress_filters' => true
+		'suppress_filters' => false
 	) );
 	
 	
