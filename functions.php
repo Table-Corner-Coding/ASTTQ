@@ -481,10 +481,10 @@ function sommaire_shortcode( $atts ) {
 			
 			if($lang = 'en'){
 				//$title_line .= ' '.$months[$theMonth][$lang].' '.$theDayOfTheMonth.' '.$theTime;
-				$title_line .= tribe_get_start_date ( $current_event->ID, false, 'F j Y, H:i' );
+				$title_line .= ' '.tribe_get_start_date ( $current_event->ID, false, 'F j Y, H:i' );
 			}else{
 				//$title_line .= ' '.$theDayOfTheMonth.' '.$months[$theMonth][$lang].' '.$theTime;
-				$title_line .= tribe_get_start_date ( $current_event->ID, false, 'j F Y, H:i' );
+				$title_line .= ' '.tribe_get_start_date ( $current_event->ID, false, 'j F Y, H:i' );
 			}
 			
 			
