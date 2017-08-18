@@ -881,6 +881,7 @@ function foreignDbAction(){
 		
 	//$oldWPDB = $wpdb;
 	
+	
 	$wpdb_new = new wpdb($dbUser,$dbPass,$dbName,$dbHost);
 	$wpdb_new->set_prefix('wrdp_2017_');
 
