@@ -1,5 +1,5 @@
 <?php
-//error_reporting(E_ALL);
+error_reporting(0);
 $months = array('01' => array('fr'=>'janvier','en' => 'January'),
 				'02' => array('fr'=>'février','en' => 'February'),
 				'03' => array('fr'=>'mars','en' => 'March'),
@@ -388,8 +388,10 @@ add_shortcode( 'edition_positions', 'edition_positions_shortcode' );
 // Add Shortcode
 function sommaire_shortcode( $atts ) {
 
-	global $months,$days;
+	global $months,$days,$sitepress;
 	
+	$original_lang = ICL_LANGUAGE_CODE;
+	$sitepress->switch_lang( $sitepress->get_default_language() );
 	
 	
 	
@@ -624,7 +626,7 @@ function sommaire_shortcode( $atts ) {
 	
 	return do_shortcode('<div id="pointages">'.$content.'</div>');
 	
-	
+	$sitepress->switch_lang( ICL_LANGUAGE_CODE );
 }
 add_shortcode( 'sommaire', 'sommaire_shortcode' );
 
@@ -866,7 +868,7 @@ function foreignDbAction(){
 	$dbPass = DB_PASSWORD;
 	$dbUser = DB_USER;
 	$dbName = DB_NAME;
-	$dbHost = 'tccdev.net';
+	$dbHost = 'asttq.net';
 	
 	$retVal = '';
 	
@@ -2118,6 +2120,11 @@ function update_post_fields() {
 	/**/
 	
 	//echo $worker;
+	
+	$option_name = 'tireurs-to-update';
+	$current_array = get_option($option_name);
+	$current_array[$objID] = mktime();
+	update_option( $option_name, $current_array );
 	
 	echo json_encode(array('message'=>'Les changement ont été sauvegardés','objID'=>$objID));
 	
