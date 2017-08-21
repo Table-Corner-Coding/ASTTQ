@@ -870,8 +870,8 @@ function foreignDbAction(){
 	
 	foreach($tireurs_array as $key=>$value){
 		$postOBJ = get_post($key);
-		$postMeta = get_post_meta($postOBJ->ID);
-		$ACF_fields = get_fields([$postOBJ->ID]);
+		$postMeta = get_post_meta($key);
+		$ACF_fields = get_fields($key);
 		
 		$posts_to_update[] = array(	'postOBJ' => $postOBJ,
 									'postMeta'=> $postMeta,
@@ -881,8 +881,8 @@ function foreignDbAction(){
 	
 	foreach($events_array as $key=>$value){
 		$postOBJ = get_post($key);
-		$postMeta = get_post_meta($postOBJ->ID);
-		$ACF_fields = get_fields([$postOBJ->ID]);
+		$postMeta = get_post_meta($key);
+		$ACF_fields = get_fields($key);
 		
 		$posts_to_update[] = array(	'postOBJ' => $postOBJ,
 									'postMeta'=> $postMeta,
