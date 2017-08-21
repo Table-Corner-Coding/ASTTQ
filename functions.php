@@ -875,6 +875,7 @@ function foreignDbAction(){
 		
 		$posts_to_update[] = array(	'postOBJ' => $postOBJ,
 									'postMeta'=> $postMeta,
+								   	'postID'  => $key,
 								   	"ACF_fields" =>$ACF_fields
 								   );
 	}
@@ -886,6 +887,7 @@ function foreignDbAction(){
 		
 		$posts_to_update[] = array(	'postOBJ' => $postOBJ,
 									'postMeta'=> $postMeta,
+								    'postID'  => $key,
 								   	"ACF_fields" =>$ACF_fields
 								   );
 	}
@@ -918,22 +920,24 @@ function foreignDbAction(){
 			$the_post_obj = $current_post['postOBJ'];
 			$the_post_meta = $current_post['postMeta'];
 			$the_post_acf = $current_post['ACF_fields'];
+			$the_post_id = $current_post['postID'];
 			
 			foreach($the_post_meta as $key=>$value){
 				if(is_array($value))
 				{
-					update_post_meta($the_post_obj->ID,$key,$value[0]);
+					update_post_meta($the_post_id,$key,$value[0]);
 				}else{
-					update_post_meta($the_post_obj->ID,$key,$value);
+					update_post_meta($the_post_id,$key,$value);
 				}
 				
 			}
 			
 			foreach($the_post_acf as $key=>$value){
-				update_field($key, $value, $the_post_obj->ID);
+				update_field($key, $value, $the_post_id);
 			}
 			
 			wp_update_post($the_post_obj);
+			
 			set_transient('last_update',$the_post_acf);
 			
 			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
