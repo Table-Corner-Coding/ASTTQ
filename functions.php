@@ -13,7 +13,8 @@ $months = array('01' => array('fr'=>'janvier','en' => 'January'),
 				'11' => array('fr'=>'novembre','en' => 'November'),
 				'12' => array('fr'=>'décembre','en' => 'December')
 					);
-$days = array(	'1' => array('fr'=>'dimanche','en' => 'Sunday'),
+$days = array(	'0' => array('fr' => '', 'en' => ''),
+				'1' => array('fr'=>'dimanche','en' => 'Sunday'),
 			  	'2' => array('fr'=>'lundi','en' => 'Monday'),
 			  	'3' => array('fr'=>'mardi','en' => 'Tuesday'),
 			  	'4' => array('fr'=>'mercredi','en' => 'Wednesday'),
