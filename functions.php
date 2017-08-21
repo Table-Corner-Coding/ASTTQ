@@ -934,6 +934,8 @@ function foreignDbAction(){
 			}
 			
 			wp_update_post($the_post_obj);
+			set_transient('last_update',$the_post_acf);
+			
 			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
 		}
 		$retVal .= '</tbody></table>';
