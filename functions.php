@@ -13,14 +13,14 @@ $months = array('01' => array('fr'=>'janvier','en' => 'January'),
 				'11' => array('fr'=>'novembre','en' => 'November'),
 				'12' => array('fr'=>'décembre','en' => 'December')
 					);
-$days = array(	'0' => array('fr' => '', 'en' => ''),
-				'1' => array('fr'=>'dimanche','en' => 'Sunday'),
-			  	'2' => array('fr'=>'lundi','en' => 'Monday'),
-			  	'3' => array('fr'=>'mardi','en' => 'Tuesday'),
-			  	'4' => array('fr'=>'mercredi','en' => 'Wednesday'),
-			  	'5' => array('fr'=>'jeudi','en' => 'Thursday'),
-			  	'6' => array('fr'=>'vendredi','en' => 'Friday'),
-			  	'7' => array('fr'=>'samedi','en' => 'Saturday')
+$days = array(	
+				'7' => array('fr'=>'dimanche','en' => 'Sunday'),
+			  	'1' => array('fr'=>'lundi','en' => 'Monday'),
+			  	'2' => array('fr'=>'mardi','en' => 'Tuesday'),
+			  	'3' => array('fr'=>'mercredi','en' => 'Wednesday'),
+			  	'4' => array('fr'=>'jeudi','en' => 'Thursday'),
+			  	'5' => array('fr'=>'vendredi','en' => 'Friday'),
+			  	'6' => array('fr'=>'samedi','en' => 'Saturday')
 				);
 
 
