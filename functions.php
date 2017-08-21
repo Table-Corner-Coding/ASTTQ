@@ -387,6 +387,26 @@ add_shortcode( 'edition_positions', 'edition_positions_shortcode' );
 
 
 // Add Shortcode
+function full_sync_shortcode( $atts ) {
+	
+	// Attributes
+	$atts = shortcode_atts(
+		array(
+			'annee' => '',
+		),
+		$atts,
+		'sommaire'
+	);
+	
+	$theYear = $atts['annee'];
+	
+	
+	
+
+}
+add_shortcode( 'full_sync', 'full_sync_shortcode' );
+
+// Add Shortcode
 function sommaire_shortcode( $atts ) {
 
 	global $months,$days,$sitepress;
@@ -851,18 +871,22 @@ function foreignDbAction(){
 	foreach($tireurs_array as $key=>$value){
 		$postOBJ = get_post($key);
 		$postMeta = get_post_meta($postOBJ->ID);
+		$ACF_fields = get_fields([$postOBJ->ID]);
 		
 		$posts_to_update[] = array(	'postOBJ' => $postOBJ,
-										'postMeta'=> $postMeta
+									'postMeta'=> $postMeta,
+								   	"ACF_fields" =>$ACF_fields
 								   );
 	}
 	
 	foreach($events_array as $key=>$value){
 		$postOBJ = get_post($key);
 		$postMeta = get_post_meta($postOBJ->ID);
+		$ACF_fields = get_fields([$postOBJ->ID]);
 		
 		$posts_to_update[] = array(	'postOBJ' => $postOBJ,
-										'postMeta'=> $postMeta
+									'postMeta'=> $postMeta,
+								   	"ACF_fields" =>$ACF_fields
 								   );
 	}
 	
@@ -893,6 +917,7 @@ function foreignDbAction(){
 		foreach($posts_to_update as $current_post){
 			$the_post_obj = $current_post['postOBJ'];
 			$the_post_meta = $current_post['postMeta'];
+			$the_post_acf = $current_post['ACF_fields'];
 			
 			foreach($the_post_meta as $key=>$value){
 				if(is_array($value))
@@ -903,6 +928,11 @@ function foreignDbAction(){
 				}
 				
 			}
+			
+			foreach($the_post_acf as $key=>$value){
+				update_field($key, $value, $the_post_obj->ID);
+			}
+			
 			wp_update_post($the_post_obj);
 			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
 		}
@@ -2231,6 +2261,9 @@ function ajax_load_tireurs_from_class(){
 }
 add_action( 'wp_ajax_ajax_load_tireurs_from_class', 'ajax_load_tireurs_from_class' );
 add_action( 'wp_ajax_nopriv_ajax_load_tireurs_from_class', 'ajax_load_tireurs_from_class' );
+
+
+
 
 
 //include_once('includes/dynamic-repeater-on-category.php');
