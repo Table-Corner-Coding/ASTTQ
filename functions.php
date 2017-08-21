@@ -1502,7 +1502,7 @@ add_shortcode( 'edition_tireurs', 'edition_tireurs_shortcode' );
 
 // Add Shortcode
 function edition_competitions_shortcode() {
-
+	global $days,$months;
 	$distValues = array('Normal','FP','DNS','DQ',"BR");
 	
 	
@@ -1542,7 +1542,21 @@ function edition_competitions_shortcode() {
 				[tabs slidertype="left tabs"] 
 					[tabcontainer]';
 				foreach($events as $event){
-					$tabs .= '[tabtext]'.$event->post_title.'[/tabtext]';
+					$current_event = $event;
+					
+					$lang = strtolower(ICL_LANGUAGE_CODE);
+					$theYear = tribe_get_start_date ( $current_event->ID, false, 'Y' );
+					$theMonth = tribe_get_start_date ( $current_event->ID, false, 'm' );
+					$theDay = tribe_get_start_date ( $current_event->ID, false, 'N' );
+					$theDayOfTheMonth = tribe_get_start_date ( $current_event->ID, false, 'j' );
+					$theTime = tribe_get_start_date ( $current_event->ID, false, 'h:i:s A' );
+	
+			
+	
+					$title_line = tribe_get_venue($event->ID).' '.$days[$theDay][$lang];				
+					$title_line .= ' '.tribe_get_start_date ( $current_event->ID, false, 'j F' );
+
+					$tabs .= '[tabtext]'.$title_line.'[/tabtext]';
 				}
 				$tabs .= '[/tabcontainer]';			
 				$tabs .= '[tabcontent]'; 
