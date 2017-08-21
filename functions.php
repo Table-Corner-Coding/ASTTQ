@@ -1566,7 +1566,7 @@ function edition_competitions_shortcode() {
 				foreach($events as $event){
 					$tabs .= '[tab]';
 					
-					$tabs .= '<h3>'.tribe_get_venue($event->ID).'</h3>';
+					$tabs .= '<h3>'.tribe_get_venue($event->ID).' - '.tribe_get_start_date ( $event->ID, false, 'j F' ).'</h3>';
 					
 					$tabs .= '[et_pb_accordion admin_label="Accordion" use_border_color="off" border_color="#ffffff" border_style="solid"]';
 					$classes = get_the_terms( $event->ID, 'classes' );
