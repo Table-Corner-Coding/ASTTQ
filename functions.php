@@ -408,7 +408,7 @@ add_shortcode( 'full_sync', 'full_sync_shortcode' );
 
 // Add Shortcode
 function sommaire_cache_shortcode( $atts ) {
-
+wp_enqueue_script( 'et_shortcodes_frontend', '/wp-content/themes/Divi/epanel/shortcodes/js/et_shortcodes_frontend.js', array('jquery') );
 
 	// Attributes
 	$atts = shortcode_atts(
@@ -1628,6 +1628,8 @@ function edition_tireurs_shortcode() {
 		wp_enqueue_script( 'tcc-edition', get_stylesheet_directory_uri().'/includes/tcc-edition.js', array('jquery') );
 		wp_localize_script( 'tcc-edition', 'adminAjax', admin_url( 'admin-ajax.php' ) );
 		
+		
+	
 		wp_enqueue_script( 'jquery-confirm', get_stylesheet_directory_uri().'/includes/jquery-confirm/js/jquery-confirm.js', array('jquery') );
 		wp_enqueue_style( 'jquery-confirm-style', get_stylesheet_directory_uri().'/includes/jquery-confirm/css/jquery-confirm.css' );
 		
