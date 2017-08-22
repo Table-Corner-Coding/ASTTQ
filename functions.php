@@ -1042,6 +1042,9 @@ function update_from_transient() {
 			
 			// insert the post into the database
 			wp_insert_post( $my_post );
+			
+			$result = file_get_contents('http://asttq.net/update-transient/');
+			
 			wp_set_post_terms( $objID, $the_post_classes, 'classes', false );
 			//update_field( 'classe', $term_id, $objID );
 		}
