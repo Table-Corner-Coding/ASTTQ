@@ -1055,7 +1055,7 @@ function update_from_transient() {
 			
 			update_post_meta( $the_post_id, $key, $value ); 
 			
-			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
+			$retVal .= '<tr><td>'.$key.' => '.$value.'</td><td>('.$the_post_id.')'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
 		}
 			
 		/*
@@ -1065,6 +1065,8 @@ function update_from_transient() {
 			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
 		}
 		*/
+			
+			/*
 		$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
 		foreach($the_post_acf as $key => $value){
 			if(!is_array($value)){
@@ -1090,7 +1092,7 @@ function update_from_transient() {
 				update_field( $key, $field_value, $the_post_id );
 			}
 		}
-		
+		*/
 		
 		$retVal .= '</tbody></table>';
 		
