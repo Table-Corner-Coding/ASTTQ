@@ -988,6 +988,7 @@ function foreignDbAction(){
 	
 	$retVal = ob_get_clean();
 */
+	$retVal = '<iframe src="http://asttq.net/update-transient" style="width:100%;height:450px;"></iframe>';
 	return $retVal;
 	//return $retVal;
 	
