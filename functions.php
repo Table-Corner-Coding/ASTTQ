@@ -1055,7 +1055,7 @@ function update_from_transient() {
 			
 			update_post_meta( $the_post_id, $key, $value[0] ); 
 			
-			$retVal .= '<tr><td>'.$key.' => '.$value.'</td><td>('.$the_post_id.')'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
+			$retVal .= '<tr><td>'.$key.' => '.$value[0].'</td><td>('.$the_post_id.')'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
 		}
 			
 		/*
