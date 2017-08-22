@@ -1003,7 +1003,7 @@ function foreignDbAction(){
 	
 	$retVal = ob_get_clean();
 */
-	$retVal .= '<iframe src="http://asttq.net/update-transient/" style="width:100%;height:450px;"></iframe>';
+	//$retVal .= '<iframe src="http://asttq.net/update-transient/" style="width:100%;height:450px;"></iframe>';
 	return $retVal;
 	//return $retVal;
 	
@@ -1052,6 +1052,7 @@ function update_from_transient() {
 		}
 		
 		foreach($the_post_meta as $key=>$value){
+			
 			update_post_meta( $the_post_id, $key, $value ); 
 			
 			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
