@@ -931,13 +931,19 @@ function foreignDbAction(){
 	$transient_name = 'to_update';
 	set_transient($transient_name,$posts_to_update);
 	
+	
+	
+	
 		foreach($posts_to_update as $current_post){
 			
 			$the_post_meta = $current_post['postMeta'];
 			$the_post_acf = $current_post['ACF_fields'];
 			$the_post_id = $current_post['postID'];
 			$the_post_obj = get_post($the_post_id);
+			$the_post_type = $current_post['post_type'];
+			$the_post_title = $current_post['post_title'];
 			
+		/*	
 			foreach($the_post_meta as $key=>$value){
 				if(is_array($value))
 				{
@@ -948,11 +954,7 @@ function foreignDbAction(){
 				
 			}
 			
-			/*
-			foreach($the_post_acf as $key=>$value){
-				update_field($key, $value, $the_post_id);
-			}
-			*/
+			
 			
 			foreach($the_post_acf as $key => $value){
 			if(!is_array($value)){
@@ -980,8 +982,8 @@ function foreignDbAction(){
 			
 			wp_update_post($the_post_obj);
 			
-			
-			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
+			*/
+			$retVal .= '<tr><td>'.$the_post_type.'</td><td>'.$the_post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
 		}
 		$retVal .= '</tbody></table>';
 	
