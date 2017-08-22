@@ -1016,7 +1016,7 @@ function foreignDbAction(){
 function update_from_transient() {
 	$transient_name = 'to_update';
 	$posts_to_update = get_transient($transient_name,$posts_to_update);
-	
+	set_transient('last_update',$posts_to_update);
 	$retVal = '';
 	
 	foreach($posts_to_update as $current_post){
