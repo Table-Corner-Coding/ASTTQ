@@ -1036,15 +1036,22 @@ function update_from_transient() {
 			'post_title'	=> $the_post_title,
 			'post_type'		=> $the_post_type,
 			'post_status'	=> 'publish',
-			'import_id'=>$the_post_id
+			'import_id'		=>	$the_post_id
 			);
 
 			
 			// insert the post into the database
-			$objID = wp_insert_post( $my_post );
+			wp_insert_post( $my_post );
 			wp_set_post_terms( $objID, $the_post_classes, 'classes', false );
 			//update_field( 'classe', $term_id, $objID );
 		}
+		
+		foreach($the_post_meta as $key=>$value){
+			update_post_meta( $the_post_id, $key, $value ); 
+			
+			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
+		}
+			
 		/*
 		foreach($the_post_acf as $key=>$value){
 			update_field($key, $value, $the_post_id);
