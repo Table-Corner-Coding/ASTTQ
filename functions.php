@@ -903,6 +903,8 @@ function foreignDbAction(){
 	
 	$posts_to_update=array();
 	
+	if(count($tireurs_array)){
+	
 	foreach($tireurs_array as $key=>$value){
 		$postOBJ = get_post($key);
 		$postMeta = get_post_meta($key);
@@ -919,7 +921,9 @@ function foreignDbAction(){
 									'post_type'=> $postOBJ->post_type
 								   ); 
 	}
+	}
 	
+	if(count($events_array)){
 	foreach($events_array as $key=>$value){
 		$postOBJ = get_post($key);
 		$postMeta = get_post_meta($key);
@@ -935,6 +939,7 @@ function foreignDbAction(){
 								   'post_title'=> $postOBJ->post_title,
 									'post_type'=> $postOBJ->post_type
 								   );
+	}
 	}
 	
 	$dbPass = DB_PASSWORD;
