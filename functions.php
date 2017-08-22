@@ -1049,7 +1049,7 @@ function update_from_transient() {
 		$retVal .= '</tbody></table>';
 		
 	}
-	
+	delete_transient($transient_name);
 	return $retVal;
 }
 add_shortcode( 'update_from_transient', 'update_from_transient' );
