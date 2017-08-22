@@ -875,11 +875,15 @@ function foreignDbAction(){
 		$postMeta = get_post_meta($key);
 		$ACF_fields = get_fields($key);
 		
+		$term_list = wp_get_post_terms($key, 'classes', array("fields" => "ids"));
+		
 		$posts_to_update[] = array(	'postOBJ' => $postOBJ,
 									'postMeta'=> $postMeta,
 								   	'postID'  => $key,
-								   	"ACF_fields" =>$ACF_fields
-								   );
+								   	"ACF_fields" =>$ACF_fields,
+								   	'classes' => $term_list[0],
+								   'post_title'=> $postOBJ->post_title
+								   ); 
 	}
 	
 	foreach($events_array as $key=>$value){
@@ -887,10 +891,14 @@ function foreignDbAction(){
 		$postMeta = get_post_meta($key);
 		$ACF_fields = get_fields($key);
 		
+		$term_list = wp_get_post_terms($key, 'classes', array("fields" => "ids"));
+		
 		$posts_to_update[] = array(	'postOBJ' => $postOBJ,
 									'postMeta'=> $postMeta,
 								    'postID'  => $key,
-								   	"ACF_fields" =>$ACF_fields
+								   	"ACF_fields" =>$ACF_fields,
+								   'classes' => $term_list[0],
+								   'post_title'=> $postOBJ->post_title
 								   );
 	}
 	
@@ -1011,6 +1019,8 @@ function update_from_transient() {
 			$the_post_meta = $current_post['postMeta'];
 			$the_post_acf = $current_post['ACF_fields'];
 			$the_post_id = $current_post['postID'];
+			$the_post_title = $current_post['post_title'];
+			$the_post_classes = $current_post['classes'];
 			$the_post_obj = get_post($the_post_id);
 		
 		$retVal .= '<h4>Mises à jour effectuées: </h4><table><thead><tr><th>Type</th><th>Post</th><th>Time</th></tr></thead><tbody>';
@@ -1028,7 +1038,7 @@ function update_from_transient() {
 			
 			// insert the post into the database
 			$objID = wp_insert_post( $my_post );
-			//wp_set_post_terms( $objID, $term_id, 'classes', false );
+			wp_set_post_terms( $objID, $the_post_classes, 'classes', false );
 			//update_field( 'classe', $term_id, $objID );
 		}
 		/*
