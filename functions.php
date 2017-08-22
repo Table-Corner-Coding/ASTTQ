@@ -407,6 +407,36 @@ function full_sync_shortcode( $atts ) {
 add_shortcode( 'full_sync', 'full_sync_shortcode' );
 
 // Add Shortcode
+function sommaire_cache_shortcode( $atts ) {
+
+
+	// Attributes
+	$atts = shortcode_atts(
+		array(
+			'annee' => '',
+		),
+		$atts,
+		'sommaire'
+	);
+
+	$theYear = $atts['annee'];
+	
+	if(empty($theYear)){
+	/* Si l'année n'a pas été spécifiée, on prend l'année en cours */
+	$theYear = date('Y');
+	}
+	
+	$content = get_option('sommaire_'.$theYear);
+	
+	
+	return do_shortcode($content);
+
+}
+add_shortcode( 'sommaire_cache', 'sommaire_cache_shortcode' );
+
+
+
+// Add Shortcode
 function sommaire_shortcode( $atts ) {
 
 	global $months,$days,$sitepress;
@@ -859,6 +889,9 @@ function tcc_post_exists( $id ) {
 }
 
 
+
+
+
 function foreignDbAction(){
 	global $wpdb;
 	
@@ -931,6 +964,8 @@ function foreignDbAction(){
 	$transient_name = 'to_update';
 	set_transient($transient_name,$posts_to_update);
 	
+	$thisYear = date('Y');
+	update_option('sommaire_'.$thisYear, do_shortcode('[sommaire annee="'.$thisYear.'"]'));
 	
 	
 	
@@ -1028,7 +1063,13 @@ function update_from_transient() {
 			$the_post_classes = $current_post['classes'];
 			$the_post_type = $current_post['post_type'];
 			$the_post_obj = get_post($the_post_id);
-		
+			
+			$classes_ids = array();
+			
+			foreach($the_post_classes as $classe){
+				$classes_ids[] = (int)$classe;
+			}
+			
 		$retVal .= '<h4>Mises à jour effectuées: </h4><table><thead><tr><th>Type</th><th>Post</th><th>Time</th></tr></thead><tbody>';
 
 		
