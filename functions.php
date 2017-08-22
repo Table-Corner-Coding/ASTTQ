@@ -916,6 +916,9 @@ function foreignDbAction(){
 
 	$retVal .= '<h4>Mises à jour effectuées: </h4><table><thead><tr><th>Type</th><th>Post</th><th>Time</th></tr></thead><tbody>';
 	
+	$transient_name = 'to_update';
+	set_transient($transient_name,$posts_to_update);
+	
 		foreach($posts_to_update as $current_post){
 			$the_post_obj = $current_post['postOBJ'];
 			$the_post_meta = $current_post['postMeta'];
@@ -932,13 +935,38 @@ function foreignDbAction(){
 				
 			}
 			
+			/*
 			foreach($the_post_acf as $key=>$value){
 				update_field($key, $value, $the_post_id);
 			}
+			*/
+			
+			foreach($the_post_acf as $key => $value){
+			if(!is_array($value)){
+				update_field($key, $value, $the_post_id);
+				//$worker .= '<br>'.'Updating field: '.$key.' to: '.$value.' in post: '.$objID;
+			}else{
+				//$worker .= '<br>'.'Updating field: '.$key.' to: '.print_r($value,true).' in post: '.$objID;
+				$field_value = array();
+				foreach($value as $subkey=>$subvalue){
+					if(is_array($subvalue)){
+						foreach($subvalue as $val){
+							$cleanValue = str_replace(array('"','[',']'),array('','',''),$val);
+							
+							if(!empty($cleanValue)){
+								$field_value[] = array($subkey => $cleanValue);
+							}
+							
+						}
+					}
+					
+				}
+				update_field( $key, $field_value, $the_post_id );
+			}
+		}
 			
 			wp_update_post($the_post_obj);
 			
-			set_transient('last_update',$the_post_acf);
 			
 			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
 		}
@@ -966,6 +994,35 @@ function foreignDbAction(){
 	
 	//return $retVal.'<pre>'.print_r($oldWPDB, true).'</pre><pre>'.print_r($mydb, true).'</pre><pre>'.print_r($wpdb, true).'</pre>';
 }
+
+
+// Add Shortcode
+function update_from_transient() {
+	$transient_name = 'to_update';
+	$posts_to_update = get_transient($transient_name,$posts_to_update);
+	
+	$retVal = '';
+	
+	foreach($posts_to_update as $current_post){
+		
+			$the_post_meta = $current_post['postMeta'];
+			$the_post_acf = $current_post['ACF_fields'];
+			$the_post_id = $current_post['postID'];
+			$the_post_obj = get_post($the_post_id);
+		
+		$retVal .= '<h4>Mises à jour effectuées: </h4><table><thead><tr><th>Type</th><th>Post</th><th>Time</th></tr></thead><tbody>';
+		foreach($the_post_acf as $key=>$value){
+			update_field($key, $value, $the_post_id);
+			
+			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
+		}
+		$retVal .= '</tbody></table>';
+		
+	}
+	
+	return $retVal;
+}
+add_shortcode( 'update_from_transient', 'update_from_transient' );
 
 // Add Shortcode
 function update_pointages_shortcode() {
