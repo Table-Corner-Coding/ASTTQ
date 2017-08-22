@@ -1016,6 +1016,35 @@ function update_from_transient() {
 			
 			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
 		}
+		
+		
+		foreach($the_post_acf as $key => $value){
+			if(!is_array($value)){
+				update_field($key, $value, $the_post_id);
+				$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
+				//$worker .= '<br>'.'Updating field: '.$key.' to: '.$value.' in post: '.$objID;
+			}else{
+				//$worker .= '<br>'.'Updating field: '.$key.' to: '.print_r($value,true).' in post: '.$objID;
+				$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
+				$field_value = array();
+				foreach($value as $subkey=>$subvalue){
+					if(is_array($subvalue)){
+						foreach($subvalue as $val){
+							$cleanValue = str_replace(array('"','[',']'),array('','',''),$val);
+							
+							if(!empty($cleanValue)){
+								$field_value[] = array($subkey => $cleanValue);
+							}
+							
+						}
+					}
+					
+				}
+				update_field( $key, $field_value, $the_post_id );
+			}
+		}
+		
+		
 		$retVal .= '</tbody></table>';
 		
 	}
