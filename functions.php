@@ -881,7 +881,7 @@ function foreignDbAction(){
 									'postMeta'=> $postMeta,
 								   	'postID'  => $key,
 								   	"ACF_fields" =>$ACF_fields,
-								   	'classes' => $term_list[0],
+								   	'classes' => $term_list,
 								   'post_title'=> $postOBJ->post_title,
 									'post_type'=> $postOBJ->post_type
 								   ); 
@@ -898,7 +898,7 @@ function foreignDbAction(){
 									'postMeta'=> $postMeta,
 								    'postID'  => $key,
 								   	"ACF_fields" =>$ACF_fields,
-								   'classes' => $term_list[0],
+								   'classes' => $term_list,
 								   'post_title'=> $postOBJ->post_title,
 									'post_type'=> $postOBJ->post_type
 								   );
@@ -1051,7 +1051,7 @@ function update_from_transient() {
 			//update_field( 'classe', $term_id, $objID );
 		}
 			
-		wp_set_post_terms( $the_post_id, $the_post_classes, 'classes', false );
+		wp_set_post_terms( $the_post_id, array($the_post_classes), 'classes', false );
 		foreach($the_post_meta as $key=>$value){
 			
 			update_post_meta( $the_post_id, $key, $value[0] ); 
