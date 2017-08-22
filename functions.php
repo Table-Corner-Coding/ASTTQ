@@ -1007,7 +1007,7 @@ function update_from_transient() {
 	$retVal = '';
 	
 	foreach($posts_to_update as $current_post){
-		
+		if($current_post['postID'] != '0'){
 			$the_post_meta = $current_post['postMeta'];
 			$the_post_acf = $current_post['ACF_fields'];
 			$the_post_id = $current_post['postID'];
@@ -1067,6 +1067,7 @@ function update_from_transient() {
 		
 		$retVal .= '</tbody></table>';
 		
+	}
 	}
 	delete_transient($transient_name);
 	return $retVal;
