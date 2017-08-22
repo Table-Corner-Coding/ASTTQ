@@ -1050,7 +1050,8 @@ function update_from_transient() {
 			wp_set_post_terms( $objID, $the_post_classes, 'classes', false );
 			//update_field( 'classe', $term_id, $objID );
 		}
-		
+			
+		wp_set_post_terms( $objID, $the_post_classes, 'classes', false );
 		foreach($the_post_meta as $key=>$value){
 			
 			update_post_meta( $the_post_id, $key, $value[0] ); 
