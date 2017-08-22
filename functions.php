@@ -877,12 +877,13 @@ function foreignDbAction(){
 		
 		$term_list = wp_get_post_terms($key, 'classes', array("fields" => "ids"));
 		
-		$posts_to_update[] = array(	'postOBJ' => $postOBJ,
+		$posts_to_update[] = array(	/* 'postOBJ' => $postOBJ, */
 									'postMeta'=> $postMeta,
 								   	'postID'  => $key,
 								   	"ACF_fields" =>$ACF_fields,
 								   	'classes' => $term_list[0],
-								   'post_title'=> $postOBJ->post_title
+								   'post_title'=> $postOBJ->post_title,
+									'post_type'=> $postOBJ->post_type
 								   ); 
 	}
 	
@@ -893,12 +894,13 @@ function foreignDbAction(){
 		
 		$term_list = wp_get_post_terms($key, 'classes', array("fields" => "ids"));
 		
-		$posts_to_update[] = array(	'postOBJ' => $postOBJ,
+		$posts_to_update[] = array(	/* 'postOBJ' => $postOBJ, */
 									'postMeta'=> $postMeta,
 								    'postID'  => $key,
 								   	"ACF_fields" =>$ACF_fields,
 								   'classes' => $term_list[0],
-								   'post_title'=> $postOBJ->post_title
+								   'post_title'=> $postOBJ->post_title,
+									'post_type'=> $postOBJ->post_type
 								   );
 	}
 	
@@ -930,10 +932,11 @@ function foreignDbAction(){
 	set_transient($transient_name,$posts_to_update);
 	
 		foreach($posts_to_update as $current_post){
-			$the_post_obj = $current_post['postOBJ'];
+			
 			$the_post_meta = $current_post['postMeta'];
 			$the_post_acf = $current_post['ACF_fields'];
 			$the_post_id = $current_post['postID'];
+			$the_post_obj = get_post($the_post_id);
 			
 			foreach($the_post_meta as $key=>$value){
 				if(is_array($value))
@@ -1021,6 +1024,7 @@ function update_from_transient() {
 			$the_post_id = $current_post['postID'];
 			$the_post_title = $current_post['post_title'];
 			$the_post_classes = $current_post['classes'];
+			$the_post_type = $current_post['post_type'];
 			$the_post_obj = get_post($the_post_id);
 		
 		$retVal .= '<h4>Mises à jour effectuées: </h4><table><thead><tr><th>Type</th><th>Post</th><th>Time</th></tr></thead><tbody>';
@@ -1029,8 +1033,8 @@ function update_from_transient() {
 		if(!tcc_post_exists($the_post_id)){
 			
 			$my_post = array(
-			'post_title'	=> $the_post_obj->post_title,
-			'post_type'		=> $the_post_obj->post_type,
+			'post_title'	=> $the_post_title,
+			'post_type'		=> $the_post_type,
 			'post_status'	=> 'publish',
 			'import_id'=>$the_post_id
 			);
