@@ -1011,21 +1011,22 @@ function update_from_transient() {
 			$the_post_obj = get_post($the_post_id);
 		
 		$retVal .= '<h4>Mises à jour effectuées: </h4><table><thead><tr><th>Type</th><th>Post</th><th>Time</th></tr></thead><tbody>';
+		
+		/*
 		foreach($the_post_acf as $key=>$value){
 			update_field($key, $value, $the_post_id);
 			
 			$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
 		}
-		
-		
+		*/
+		$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
 		foreach($the_post_acf as $key => $value){
 			if(!is_array($value)){
 				update_field($key, $value, $the_post_id);
-				$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
+				
 				//$worker .= '<br>'.'Updating field: '.$key.' to: '.$value.' in post: '.$objID;
 			}else{
 				//$worker .= '<br>'.'Updating field: '.$key.' to: '.print_r($value,true).' in post: '.$objID;
-				$retVal .= '<tr><td>'.$the_post_obj->post_type.'</td><td>'.$the_post_obj->post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
 				$field_value = array();
 				foreach($value as $subkey=>$subvalue){
 					if(is_array($subvalue)){
