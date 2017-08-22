@@ -854,7 +854,9 @@ function acf_load_tireur_field_choices( $field ) {
 
 add_filter('acf/load_field/name=tireur', 'acf_load_tireur_field_choices');
 
-
+function tcc_post_exists( $id ) {
+  return is_string( get_post_status( $id ) );
+}
 
 
 function foreignDbAction(){
@@ -1012,7 +1014,23 @@ function update_from_transient() {
 			$the_post_obj = get_post($the_post_id);
 		
 		$retVal .= '<h4>Mises à jour effectuées: </h4><table><thead><tr><th>Type</th><th>Post</th><th>Time</th></tr></thead><tbody>';
+
 		
+		if(!tcc_post_exists($the_post_id)){
+			
+			$my_post = array(
+			'post_title'	=> $the_post_obj->post_title,
+			'post_type'		=> $the_post_obj->post_type,
+			'post_status'	=> 'publish',
+			'import_id'=>$the_post_id
+			);
+
+			
+			// insert the post into the database
+			$objID = wp_insert_post( $my_post );
+			//wp_set_post_terms( $objID, $term_id, 'classes', false );
+			//update_field( 'classe', $term_id, $objID );
+		}
 		/*
 		foreach($the_post_acf as $key=>$value){
 			update_field($key, $value, $the_post_id);
