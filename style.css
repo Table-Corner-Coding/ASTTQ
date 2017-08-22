@@ -748,3 +748,7 @@ div.scrollable{
     background: #222222;
     text-shadow: 1px 1px 1px #000000;
 }
+
+.tireur_line.edit_line .dashicons.dashicons-welcome-write-blog{
+	display: none !important;
+}
