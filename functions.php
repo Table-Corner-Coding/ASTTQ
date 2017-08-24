@@ -964,7 +964,7 @@ function foreignDbAction(){
 
 	$tempVar = $wpdb_new;
 
-	$retVal .= '<h4>Mises à jour effectuées: </h4><table><thead><tr><th>Type</th><th>Post</th><th>Time</th></tr></thead><tbody>';
+	$retVal .= '<h4>Mises à jour effectuées: </h4>( '.get_bloginfo('url').' )<table><thead><tr><th>Type</th><th>Post</th><th>Time</th></tr></thead><tbody>';
 	
 	$transient_name = 'to_update';
 	set_transient($transient_name,$posts_to_update);
