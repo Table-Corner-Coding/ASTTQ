@@ -970,8 +970,11 @@ function foreignDbAction(){
 	set_transient($transient_name,$posts_to_update);
 	
 	$thisYear = date('Y');
-	update_option('sommaire_'.$thisYear, do_shortcode('[sommaire annee="'.$thisYear.'"]'));
 	
+	$oValue =  do_shortcode('[sommaire annee="'.$thisYear.'"]');
+	update_option('sommaire_'.$thisYear,$oValue);
+	
+	$wpdb_new->update('wrdp_2017_options',array('option_value'=> $oValue.' <!-- updated --> '),array('option_name'=>'sommaire_'.$thisYear));
 	
 	
 		foreach($posts_to_update as $current_post){
