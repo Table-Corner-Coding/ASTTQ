@@ -371,15 +371,29 @@ jQuery(document).ready(function(){
 		
 		//Copy the element you want to print to the print-me div.
 		//jQuery(this).closest('table').clone().appendTo("#print-me");
-		jQuery('#print-me').append('<table class="print_table"><thead><th>#</th><th>Véhicule</th><th>Conducteur</th></thead><tbody></tbody><tfoot></tfoot></table>');	
+		
+		var theTitle = jQuery(this).closest('.et_slidecontent').find('h3').text();
+		var theClass = jQuery(this).closest('.et_pb_toggle_title').text();
+		jQuery('#print-me').append('<table class="print_table"><thead><tr><td colspan="3"><h3>'+theTitle+' ( '+theClass+' )'+'</h3></td></tr><tr><td colspan="3">&nbsp;</td></tr><tr><th>#</th><th>Véhicule</th><th>Conducteur</th></tr></thead><tbody></tbody><tfoot></tfoot></table>');	
 		var theSender = jQuery(this);
 		
 		
-		theSender.closest('table').find('tr').each(function(){
+		theSender.closest('table').find('tbody').find('tr').each(function(){
 			
+			var theLine = jQuery(this);
 			var number = jQuery(this).find('input.num').val();
-			var vehicule = jQuery(this).find('.tireur').val();
-			var conducteur = jQuery(this).find('.conducteur').val();
+			var vehicule = '';
+			var conducteur = '';
+			
+			if(jQuery(this).find('input[type=checkbox]').is(':checked')){
+				vehicule= theLine.find('select.tireur').find('option:selected').text();
+				conducteur = theLine.find('select.conducteurs_select').val();
+				
+			}else{
+				vehicule = jQuery(this).find('input.tireur').val();
+				conducteur = jQuery(this).find('input.conducteur').val();
+			}
+			
 			
 			jQuery('.print_table tbody').append('<tr><td>'+number+'</td><td>'+vehicule+'</td><td>'+conducteur+'</td></tr>');							   
 						   
