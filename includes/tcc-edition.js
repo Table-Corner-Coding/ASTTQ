@@ -372,8 +372,10 @@ jQuery(document).ready(function(){
 		//Copy the element you want to print to the print-me div.
 		//jQuery(this).closest('table').clone().appendTo("#print-me");
 		jQuery('#print-me').append('<table class="print_table"><thead><th>#</th><th>Véhicule</th><th>Conducteur</th></thead><tbody></tbody><tfoot></tfoot></table>');	
+		var theSender = jQuery(this);
 		
-		jQuery(this).closest('table').each('tr',function(){
+		
+		theSender.closest('table').find('tr').each(function(){
 			
 			var number = jQuery(this).find('input.num').val();
 			var vehicule = jQuery(this).find('.tireur').val();
