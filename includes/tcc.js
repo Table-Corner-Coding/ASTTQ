@@ -273,19 +273,6 @@ jQuery(document).ready(function(){
 	}
 	
 	
-	jQuery().on('click', ".print_btn",function () {
-    //Copy the element you want to print to the print-me div.
-    jQuery("#printarea").clone().appendTo("#print-me");
-    //Apply some styles to hide everything else while printing.
-    jQuery("body").addClass("printing");
-    //Print the window.
-    window.print();
-    //Restore the styles.
-    jQuery("body").removeClass("printing");
-    //Clear up the div.
-    jQuery("#print-me").empty();
-	});
-
 });
 
 

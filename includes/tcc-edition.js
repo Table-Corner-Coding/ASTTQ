@@ -363,6 +363,25 @@ jQuery(document).ready(function(){
 		saveCompetition(jQuery(this));
 	});
 	
+	
+	
+	jQuery('body').append('<div id="print-me"></div>');
+	
+	jQuery().on('click', ".dashicons-media-document",function () {
+    //Copy the element you want to print to the print-me div.
+    jQuery(this).closest('table').clone().appendTo("#print-me");
+    //Apply some styles to hide everything else while printing.
+    jQuery("body").addClass("printing");
+    //Print the window.
+    window.print();
+    //Restore the styles.
+    jQuery("body").removeClass("printing");
+    //Clear up the div.
+    jQuery("#print-me").empty();
+	});
+
+	
+	
 });
 
 
