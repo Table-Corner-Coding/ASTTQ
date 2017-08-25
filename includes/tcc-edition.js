@@ -378,7 +378,7 @@ jQuery(document).ready(function(){
 		
 		var theTitle = jQuery(this).closest('.et_slidecontent').find('h3').text();
 		var theClass = jQuery(this).closest('.et_pb_toggle_open').find('.et_pb_toggle_title').text();
-		jQuery('#print-me').append('<table class="print_table"><thead><tr><td colspan="3"><h3 style="text-align:center;color:#000000;line-height:1em; padding:3px 0;">'+theTitle+' ( '+theClass+' )'+'</h3></td></tr><tr><td colspan="3">&nbsp;</td></tr><tr><th>#</th><th>Véhicule</th><th>Conducteur</th></tr></thead><tbody></tbody><tfoot></tfoot></table>');	
+		jQuery('#print-me').append('<table class="print_table"><thead><tr><td colspan="6"><h3 style="text-align:center;color:#000000;line-height:1em; padding:3px 0;">'+theTitle+' ( '+theClass+' )'+'</h3></td></tr><tr><td colspan="6">&nbsp;</td></tr><tr><th>#</th><th>Véhicule</th><th>Conducteur</th><th>Distance 1</th><th>Distance 2</th><th>Distance 3</th></tr></thead><tbody></tbody><tfoot></tfoot></table>');	
 		var theSender = jQuery(this);
 		
 		
@@ -399,8 +399,9 @@ jQuery(document).ready(function(){
 			}
 			
 			
-			jQuery('.print_table tbody').append('<tr><td>'+number+'</td><td>'+vehicule+'</td><td>'+conducteur+'</td></tr>');							   
-						   
+			jQuery('.print_table tbody').append('<tr><td>'+number+'</td><td>'+vehicule+'</td><td>'+conducteur+'</td><td></td><td></td><td></td></tr>');							   
+			
+			jQuery('.print_table').before('<h2>Association Sportive de Tires de Tracteurs du Québec</h2><br />');
 		});
 		
 		//Apply some styles to hide everything else while printing.
