@@ -759,6 +759,19 @@ div.scrollable{
     body.printing #page-container { display: none; }
     /* ...except our special div. */
     body.printing #print-me { display: block !important; }
+	
+	.print_table{
+		width: 100%;
+	}
+	
+	.print_table td,
+	.print_table th{
+		border:1px solid;
+	}
+	
+	.print_table th:first-child{
+		width:60px;
+	}
 }
 
 @media screen {

@@ -427,7 +427,7 @@ function reorderRows(theTable){
        // var keyA = jQuery(a).attr('myAttribute');
         //var keyB = jQuery(b).attr('myAttribute');
 		
-		return +jQuery('td:first-child input', b).val() - jQuery('td:first-child input', a).val();
+		return +jQuery('td:first-child input', a).val() - jQuery('td:first-child input', b).val();
 		
         //return keyA - keyB;
     });
