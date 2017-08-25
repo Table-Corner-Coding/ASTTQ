@@ -658,7 +658,7 @@ table.comp_table > tbody > tr {
 
 table.comp_table > tbody > tr > td.pos:before{
 	content: counter(rowNumber);
-	display: inline-block;
+	display: none;
 }
 
 table.comp_table td.membre{
