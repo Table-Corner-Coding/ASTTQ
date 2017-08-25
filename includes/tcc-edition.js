@@ -477,12 +477,14 @@ function saveCompetition(eventSender){
 		var distances = [];
 		var distancesTypes = [];
 		var conducteur = '';
+		var rang = theLine.find('input.num').val();
 		
 		if(jQuery(this).find('input[type=checkbox]').is(':checked')){
 			
 			
 			var membreID = theLine.find('select.tireur').val();
 			conducteur = theLine.find('select.conducteurs_select').val();
+			
 			
 			
 			theLine.find('.mfield_container:not(.mfieldClone) select.distance_type').each(function(){
@@ -493,8 +495,9 @@ function saveCompetition(eventSender){
 				distances.push(jQuery(this).val());
 			});
 			
-			membres.push({ID: membreID, conducteur: conducteur, distances: distances, distancesTypes: distancesTypes, pos: pos});
+			membres.push({ID: membreID, conducteur: conducteur, distances: distances, distancesTypes: distancesTypes, pos: rang});
 		}else{
+			
 			var vehicule = jQuery(this).find('input.tireur').val();
 			conducteur = jQuery(this).find('input.conducteur').val();
 			
@@ -506,7 +509,7 @@ function saveCompetition(eventSender){
 				distances.push(jQuery(this).val());
 			});
 			
-			nonMembres.push({vehicule: vehicule, conducteur: conducteur, distances: distances, distancesTypes: distancesTypes,pos: pos});
+			nonMembres.push({vehicule: vehicule, conducteur: conducteur, distances: distances, distancesTypes: distancesTypes,pos: rang});
 		}
 	});
 	

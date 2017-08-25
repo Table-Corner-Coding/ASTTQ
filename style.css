@@ -752,3 +752,16 @@ div.scrollable{
 .tireur_line.edit_line .dashicons.dashicons-welcome-write-blog{
 	display: none !important;
 }
+
+
+@media print {
+    /* Hide everything in the body when printing... */
+    body.printing * { display: none; }
+    /* ...except our special div. */
+    body.printing #print-me { display: block; }
+}
+
+@media screen {
+    /* Hide the special layer from the screen. */
+    #print-me { display: none; }
+}

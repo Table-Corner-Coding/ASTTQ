@@ -1870,12 +1870,13 @@ function edition_competitions_shortcode() {
 								$tireurOBJ = $tireur['tireur'];
 								$nom_du_tireur = $tireur['nom_du_tireur'];
 								$distances = $tireur['distances'];
+								$rang = $tireur['rang'];
 								
 								if(empty($tireurOBJ)){
 									// C'est un non-membre!
 									$vehicule = $tireur['vehicule'];
 									
-									$tabs .= '<tr class="tireur_line" data-tireur-id="0"><td class="pos"></td>';
+									$tabs .= '<tr class="tireur_line" data-tireur-id="0"><td class="pos"><input class="num" value="'.$rang.'" type="number" /></td>';
 									
 									/* Véhicule */
 									$tabs .= '<td data-content="" class="vehicule"><select class="tireur" data-selection="" style="display: none;"><option value="">Choix du véhicule</option></select><input type="text" class="tireur" value="'.$tireur['vehicule'].'"></td>';
@@ -1909,7 +1910,7 @@ function edition_competitions_shortcode() {
 									
 									$vehicule = $tireur['vehicule'];
 									
-									$tabs .= '<tr class="tireur_line" data-tireur-id="'.$tireurOBJ->ID.'"><td class="pos"></td>';
+									$tabs .= '<tr class="tireur_line" data-tireur-id="'.$tireurOBJ->ID.'"><td class="pos"><input class="num" value="'.$rang.'" type="number" /></td>';
 									
 									/* Véhicule */
 									$tabs .= '<td data-content="" class="vehicule">'.get_tireurs_select($classe->term_id,$tireurOBJ ->ID).'</td>';

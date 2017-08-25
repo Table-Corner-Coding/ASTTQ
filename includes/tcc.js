@@ -273,14 +273,20 @@ jQuery(document).ready(function(){
 	}
 	
 	
-	/*
-	jQuery('#acf-form div[data-name=classe_id]').each(function(){
-		var theGroup = jQuery(this).parent().parent().parent().parent();
-		var theSelect = theGroup.find('div[data-name=classe]').find('input[type=hidden]').select2('data', {id:103});
+	jQuery().on('click', ".print_btn",function () {
+    //Copy the element you want to print to the print-me div.
+    jQuery("#printarea").clone().appendTo("#print-me");
+    //Apply some styles to hide everything else while printing.
+    jQuery("body").addClass("printing");
+    //Print the window.
+    window.print();
+    //Restore the styles.
+    jQuery("body").removeClass("printing");
+    //Clear up the div.
+    jQuery("#print-me").empty();
 	});
-	*/
-});
 
+});
 
 
 /*
