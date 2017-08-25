@@ -576,7 +576,9 @@ iframe body .et_slide_in_menu_container{
 }
 
 .et_slidertype_left_tabs .et-tabs-control li a{
-	line-height: normal !important;
+	line-height: 1em !important;
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
 }
 
 .entry-content table.editable_table{
