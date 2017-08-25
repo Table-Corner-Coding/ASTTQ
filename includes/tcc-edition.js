@@ -226,6 +226,8 @@ jQuery(document).ready(function(){
 	
 	jQuery('.editable_table.comp_table').on('click','.dashicons-randomize',function(){
 		var theTable = jQuery(this).parent().parent().parent().parent();
+		reorderRows(theTable);
+		/*
 		jQuery.confirm({
 			title: 'Confirmation requise!',
 			content: 'Êtes-vous certain de vouloir mélanger toutes les lignes?',
@@ -247,6 +249,8 @@ jQuery(document).ready(function(){
 				}
 			}
 		});
+		
+		*/
 		
 	});
 	
