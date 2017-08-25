@@ -401,9 +401,10 @@ jQuery(document).ready(function(){
 			
 			jQuery('.print_table tbody').append('<tr><td>'+number+'</td><td>'+vehicule+'</td><td>'+conducteur+'</td><td></td><td></td><td></td></tr>');							   
 			
-			jQuery('.print_table').before('<h2>Association Sportive de Tires de Tracteurs du Québec</h2><br />');
+			
 		});
 		
+		jQuery('.print_table').before('<h2 style="color:#000000;">Association Sportive de Tires de Tracteurs du Québec</h2><br />');
 		//Apply some styles to hide everything else while printing.
 		jQuery("body").addClass("printing");
 		//Print the window.
