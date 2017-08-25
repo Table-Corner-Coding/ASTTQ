@@ -367,7 +367,7 @@ jQuery(document).ready(function(){
 	
 	jQuery('body').append('<div id="print-me"></div>');
 	
-	jQuery().on('click', ".dashicons-media-document",function () {
+	jQuery('body').on('click', ".dashicons-media-document",function () {
     //Copy the element you want to print to the print-me div.
     jQuery(this).closest('table').clone().appendTo("#print-me");
     //Apply some styles to hide everything else while printing.
