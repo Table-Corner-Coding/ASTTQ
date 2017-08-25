@@ -367,17 +367,32 @@ jQuery(document).ready(function(){
 	
 	jQuery('body').append('<div id="print-me"></div>');
 	
-	jQuery('body').on('click', ".dashicons-media-document",function () {
-    //Copy the element you want to print to the print-me div.
-    jQuery(this).closest('table').clone().appendTo("#print-me");
-    //Apply some styles to hide everything else while printing.
-    jQuery("body").addClass("printing");
-    //Print the window.
-    window.print();
-    //Restore the styles.
-    jQuery("body").removeClass("printing");
-    //Clear up the div.
-    jQuery("#print-me").empty();
+	jQuery('body').on('click', ".dashicons-media-document",function(){
+		
+		//Copy the element you want to print to the print-me div.
+		//jQuery(this).closest('table').clone().appendTo("#print-me");
+		jQuery('#print-me').append('<table class="print_table"><thead><th>#</th><th>Véhicule</th><th>Conducteur</th></thead><tbody></tbody><tfoot></tfoot></table>');	
+		
+		jQuery(this).closest('table').each('tr',function(){
+			
+			var number = jQuery(this).find('input.num').val();
+			var vehicule = jQuery(this).find('.tireur').val();
+			var conducteur = jQuery(this).find('.conducteur').val();
+			
+			jQuery('.print_table tbody').append('<tr><td>'+number+'</td><td>'+vehicule+'</td><td>'+conducteur+'</td></tr>');							   
+						   
+		});
+		
+		//Apply some styles to hide everything else while printing.
+		jQuery("body").addClass("printing");
+		//Print the window.
+		window.print();
+		//Restore the styles.
+		jQuery("body").removeClass("printing");
+		//Clear up the div.
+		jQuery("#print-me").empty();
+		
+		
 	});
 
 	
