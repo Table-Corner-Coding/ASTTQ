@@ -631,7 +631,7 @@ div[data-name=classe_id]{
 }
 
 table.comp_table input[type=number]{
-	width: 90px;
+	width: 60px;
     position: relative;
     top: -2px;
 }
