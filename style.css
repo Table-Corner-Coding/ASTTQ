@@ -758,7 +758,7 @@ div.scrollable{
     /* Hide everything in the body when printing... */
     body.printing * { display: none; }
     /* ...except our special div. */
-    body.printing #print-me { display: block; }
+    body.printing #print-me { display: block !important; }
 }
 
 @media screen {
