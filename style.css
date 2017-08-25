@@ -767,6 +767,7 @@ div.scrollable{
 	.print_table td,
 	.print_table th{
 		border:1px solid;
+		color:#000000;
 	}
 	
 	.print_table th:first-child{
