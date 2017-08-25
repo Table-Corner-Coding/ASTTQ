@@ -373,7 +373,7 @@ jQuery(document).ready(function(){
 		//jQuery(this).closest('table').clone().appendTo("#print-me");
 		
 		var theTitle = jQuery(this).closest('.et_slidecontent').find('h3').text();
-		var theClass = jQuery(this).closest('.et_pb_toggle_open').find('et_pb_toggle_title').text();
+		var theClass = jQuery(this).closest('.et_pb_toggle_open').find('.et_pb_toggle_title').text();
 		jQuery('#print-me').append('<table class="print_table"><thead><tr><td colspan="3"><h3>'+theTitle+' ( '+theClass+' )'+'</h3></td></tr><tr><td colspan="3">&nbsp;</td></tr><tr><th>#</th><th>Véhicule</th><th>Conducteur</th></tr></thead><tbody></tbody><tfoot></tfoot></table>');	
 		var theSender = jQuery(this);
 		
