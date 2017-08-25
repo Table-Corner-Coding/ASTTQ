@@ -416,6 +416,22 @@ jQuery(document).ready(function(){
 });
 
 
+function reorderRows(theTable){
+	var tb = theTable.find('tbody');
+    var rows = tb.find('tr');
+    rows.sort(function(a, b) {
+       // var keyA = jQuery(a).attr('myAttribute');
+        //var keyB = jQuery(b).attr('myAttribute');
+		
+		return +jQuery('td:first-child input', b).val() > +jQuery('td:first-child input', a).val();
+		
+        //return keyA - keyB;
+    });
+    jQuery.each(rows, function(index, row) {
+        tb.append(row);
+    });
+}
+
 function updateLine(theLine){
 	//var theLine = hiddenField.parent().parent().parent().parent();
 	var objID = theLine.closest('table').attr('data-term-id');
