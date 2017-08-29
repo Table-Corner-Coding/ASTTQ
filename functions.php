@@ -560,7 +560,7 @@ function sommaire_shortcode( $atts ) {
 	$sommaire_transient_name = 'asttq_sommaire_'.$theYear;
 	$sommaire_table = get_transient($sommaire_transient_name);
 	
-	$content .= '[learn_more caption="'.__('Sommaire').'"]';
+	$content .= '[learn_more caption="'.__('Sommaire','asttq').'"]';
 	
 	foreach($terms as $classe){
 		$cid = $classe->term_id;
