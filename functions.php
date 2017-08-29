@@ -24,6 +24,12 @@ $days = array(
 				);
 
 
+add_action( 'after_setup_theme', 'my_theme_setup' );
+function my_theme_setup(){
+    load_theme_textdomain( 'asttq', get_stylesheet_directory_uri() . '/languages' );
+}
+
+
 add_action( 'wp_enqueue_scripts', 'my_enqueue_assets' ); 
 
 function my_enqueue_assets() { 
@@ -515,7 +521,7 @@ function sommaire_shortcode( $atts ) {
 			if($first || $new_place){
 				
 				if(!$first){
-					$content .= '<div><a href="#_top_">[ [wpml__ context=asttq]Retour en haut[/wpml__] ]</a></div>[/learn_more]<hr />';
+					$content .= '<div><a href="#_top_">[ '.__('Retour en haut','asttq').' ]</a></div>[/learn_more]<hr />';
 				}
 				
 				$content .= '[learn_more caption="'.$place.'"]<a name="'.str_replace(' ','_',$place).'"></a>';
@@ -549,7 +555,7 @@ function sommaire_shortcode( $atts ) {
 		$first = false;
 	}
 	
-	$content .= '<div><a href="#_top_">[ [wpml__ context=asttq]Retour en haut[/wpml__] ]</a></div>[/learn_more]<hr />';
+	$content .= '<div><a href="#_top_">[ '.__('Retour en haut','asttq').' ]</a></div>[/learn_more]<hr />';
 	
 	$sommaire_transient_name = 'asttq_sommaire_'.$theYear;
 	$sommaire_table = get_transient($sommaire_transient_name);
@@ -949,7 +955,10 @@ function foreignDbAction(){
 	
 	$retVal = '';
 	
-	/* Si nous avons une adresse courriel, nous mettons à jour l'historique de peiements dans la base de données des membres */
+	
+	$thisYear = date('Y');
+	
+	$oValue =  do_shortcode('[sommaire annee="'.$thisYear.'"]');
 	
 	
 	$wpdb_old = wp_clone($GLOBALS['wpdb']);
@@ -969,9 +978,7 @@ function foreignDbAction(){
 	$transient_name = 'to_update';
 	set_transient($transient_name,$posts_to_update);
 	
-	$thisYear = date('Y');
 	
-	$oValue =  do_shortcode('[sommaire annee="'.$thisYear.'"]');
 	update_option('sommaire_'.$thisYear,$oValue);
 	
 	$wpdb_new->update('wrdp_2017_options',array('option_value'=> $oValue.' <!-- updated --> '),array('option_name'=>'sommaire_'.$thisYear));
