@@ -506,7 +506,7 @@ function sommaire_shortcode( $atts ) {
 		}
 		
 		$termine = get_field('field_5939ced2dcd39',$current_event->ID);
-		if($termine){
+		if(!empty($termine)){
 			
 		$place = tribe_get_venue ( $current_event->ID );
 		if($place != $last_location){
