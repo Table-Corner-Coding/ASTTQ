@@ -1541,7 +1541,13 @@ function get_points_table_for_event($event_id, $refresh = false){
 				if($count > 1){
 					$laPos = $laPos.' (=)';
 				}
-				$lesPoints = $cumul/$count;
+				
+				if($theDist == 'DNS'){
+					$lesPoints = 5+$bonus_inscription;
+				}else{
+					$lesPoints = $cumul/$count;
+				}
+				
 
 				foreach($value as $leTireur){
 					$grille[] = array(	'itt2' => $laPos,
