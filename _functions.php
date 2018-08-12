@@ -1,22 +1,5 @@
 <?php
 error_reporting(0);
-function is_connected()
-{
-    $connected = @fsockopen("www.asttq.net", 80); 
-                                        //website, port  (try 80 or 443)
-    if ($connected){
-        $is_conn = true; //action when connected
-        fclose($connected);
-    }else{
-        $is_conn = false; //action in connection failure
-    }
-    return $is_conn;
-
-}
-
-include_once('includes/tccFunctions.php');
-
-
 $months = array('01' => array('fr'=>'janvier','en' => 'January'),
 				'02' => array('fr'=>'février','en' => 'February'),
 				'03' => array('fr'=>'mars','en' => 'March'),
@@ -429,7 +412,6 @@ function full_sync_shortcode( $atts ) {
 }
 add_shortcode( 'full_sync', 'full_sync_shortcode' );
 
-
 // Add Shortcode
 function sommaire_cache_shortcode( $atts ) {
 
@@ -453,16 +435,12 @@ function sommaire_cache_shortcode( $atts ) {
 	
 	$content = get_option('sommaire_'.$theYear);
 	
-	$retVal = do_shortcode($content);
 	
-	if(empty($retVal)){
-		$retVal = __('Aucun pointage à afficher pour le moment...','asttq');
-	}
-	
-	return $retVal;
+	return do_shortcode($content);
 
 }
 add_shortcode( 'sommaire_cache', 'sommaire_cache_shortcode' );
+
 
 
 // Add Shortcode
@@ -493,18 +471,13 @@ function sommaire_shortcode( $atts ) {
 	
 	/* On ramasse tout les événement de l'année voulue */
 	
-	$event_args =  array(
+	$events = tribe_get_events( array(
     'eventDisplay' => 'custom',
     'start_date'   => $theYear.'-01-01 00:01',
     'end_date'     => date('Y').'-'.date('m').'-'.date('d').' 23:59',
 	'posts_per_page' => '99999',
-	'suppress_filters' => false
-	);
-	
-	$events = tribe_get_events( $event_args );
-	
-	if(count($events) > 0){
-		
+		'suppress_filters' => false
+	) );
 	
 	
 	
@@ -526,8 +499,7 @@ function sommaire_shortcode( $atts ) {
 	$new_place = false;	
 	$sessionNumber = 1;
 	
-	//$content .= '<pre style="display:none;">'.print_r($events,true).'</pre>';
-	//$content .= '<pre style="display:none;">'.print_r($event_args,true).'</pre>';
+	$content .= '<pre style="display:none;">'.print_r($events,true).'</pre>';
 	
 	foreach($events as $current_event){
 		
@@ -579,8 +551,8 @@ function sommaire_shortcode( $atts ) {
 			
 			
 			
-			$points_table = get_points_table_for_event($current_event->ID);
-			$content .= '<h2 class="comp_title">'.$title_line.'</h2>'.$points_table;
+			
+			$content .= '<h2 class="comp_title">'.$title_line.'</h2>'.get_points_table_for_event($current_event->ID);
 		}
 		
 		$first = false;
@@ -661,8 +633,6 @@ function sommaire_shortcode( $atts ) {
 		
 		$last_pos = -99;
 		$prev_val = -99;
-		
-			//$content .= '<div><h3>Totaux: </h3>'.print_r($totals,true);
 			
 		foreach($totals as $key => $value){
 			$rg++;
@@ -712,13 +682,9 @@ function sommaire_shortcode( $atts ) {
 	
 	$content .= '<div><a href="#_top_">[ [wpml__ context=asttq]Retour en haut[/wpml__] ]</a></div>[/learn_more]<hr />
 		';
-		$content = do_shortcode('<div id="pointages">'.$content.'</div>');
-		
-	}else{
-		$content = '';
-	}
 	
-	return $content;
+	
+	return do_shortcode('<div id="pointages">'.$content.'</div>');
 	
 	$sitepress->switch_lang( ICL_LANGUAGE_CODE );
 }
@@ -960,7 +926,7 @@ function foreignDbAction(){
 								   	'postID'  => $key,
 								   	"ACF_fields" =>$ACF_fields,
 								   	'classes' => $term_list,
-								    'post_title'=> $postOBJ->post_title,
+								   'post_title'=> $postOBJ->post_title,
 									'post_type'=> $postOBJ->post_type
 								   ); 
 	}
@@ -997,7 +963,7 @@ function foreignDbAction(){
 	
 	$oValue =  do_shortcode('[sommaire annee="'.$thisYear.'"]');
 	
-	/*
+	
 	$wpdb_old = wp_clone($GLOBALS['wpdb']);
 	$wpdb_new = &$GLOBALS['wpdb'];	
 	
@@ -1014,18 +980,67 @@ function foreignDbAction(){
 	
 	$transient_name = 'to_update';
 	set_transient($transient_name,$posts_to_update);
-	*/
-	
-	updateRemoteOption('sommaire_'.$thisYear,$oValue);
-	
-	//$wpdb_new->update('wrdp_2017_options',array('option_value'=> $oValue.' <!-- updated --> '),array('option_name'=>'sommaire_'.$thisYear));
 	
 	
-
-
+	update_option('sommaire_'.$thisYear,$oValue);
+	
+	$wpdb_new->update('wrdp_2017_options',array('option_value'=> $oValue.' <!-- updated --> '),array('option_name'=>'sommaire_'.$thisYear));
+	
+	
+		foreach($posts_to_update as $current_post){
+			
+			$the_post_meta = $current_post['postMeta'];
+			$the_post_acf = $current_post['ACF_fields'];
+			$the_post_id = $current_post['postID'];
+			$the_post_obj = get_post($the_post_id);
+			$the_post_type = $current_post['post_type'];
+			$the_post_title = $current_post['post_title'];
+			
+		/*	
+			foreach($the_post_meta as $key=>$value){
+				if(is_array($value))
+				{
+					update_post_meta($the_post_id,$key,$value[0]);
+				}else{
+					update_post_meta($the_post_id,$key,$value);
+				}
+				
+			}
+			
+			
+			
+			foreach($the_post_acf as $key => $value){
+			if(!is_array($value)){
+				update_field($key, $value, $the_post_id);
+				//$worker .= '<br>'.'Updating field: '.$key.' to: '.$value.' in post: '.$objID;
+			}else{
+				//$worker .= '<br>'.'Updating field: '.$key.' to: '.print_r($value,true).' in post: '.$objID;
+				$field_value = array();
+				foreach($value as $subkey=>$subvalue){
+					if(is_array($subvalue)){
+						foreach($subvalue as $val){
+							$cleanValue = str_replace(array('"','[',']'),array('','',''),$val);
+							
+							if(!empty($cleanValue)){
+								$field_value[] = array($subkey => $cleanValue);
+							}
+							
+						}
+					}
+					
+				}
+				update_field( $key, $field_value, $the_post_id );
+			}
+		}
+			
+			wp_update_post($the_post_obj);
+			
+			*/
+			$retVal .= '<tr><td>'.$the_post_type.'</td><td>'.$the_post_title.'</td><td>'.strftime('%d/%m/%y - %H:%M').'</td></tr>';
+		}
+		$retVal .= '</tbody></table>';
+	
 	// On retourne sur le site local
-	
-	/*
 	$wpdb_new = $wpdb_old;	
 	
 	$option_name = 'tireurs-to-update';
@@ -1034,7 +1049,7 @@ function foreignDbAction(){
 	$option_name = 'events-to-update';
 	delete_option( $option_name );
 	
-	
+	/*
 	ob_start();
 		
 	var_dump($tempVar);
@@ -1153,11 +1168,7 @@ function update_pointages_shortcode() {
 	
 	$retVal = '';
 	
-	if(is_user_logged_in() && is_connected()){
-		
-	$retVal .= compareEventsTable();
-		$retVal .= compareVenuesTable();
-		
+	if(is_user_logged_in()){
 	$retVal .= '
 	
 	<div class="update_btn_holder">
@@ -1250,6 +1261,152 @@ function update_pointages_shortcode() {
 add_shortcode( 'update_pointages', 'update_pointages_shortcode' );
 
 
+
+
+// Add Shortcode
+function calendrier_annee_shortcode($atts) {
+	global $days, $post;
+	// Attributes
+	$atts = shortcode_atts(
+		array(
+			'annee' => '',
+		),
+		$atts,
+		'calendrier_annee'
+	);
+
+	
+	$theYear = $atts['annee'];
+	
+	if(empty($theYear)){
+	/* Si l'année n'a pas été spécifiée, on prend l'année en cours */
+	$theYear = date('Y');
+	}
+	
+	
+	$events = tribe_get_events( array(
+    'eventDisplay' => 'custom',
+    'start_date'   => $theYear.'-01-01 00:01',
+    'end_date'     => $theYear.'-12-31 23:59',
+	'posts_per_page' => '99999',
+		'suppress_filters' => false
+	) );
+
+	
+	$termine = 0;
+	
+	
+	$content = '<table class="schedule"><thead>
+	<tr><th colspan="6" style="color:#ffffff;text-align:center;"><h2>'.$post->post_title.' - '.$theYear.'</h2></th></tr>
+	<tr>
+	<th style="color:#ffffff;">'.__('Date','asttq').'</th>
+	<th style="color:#ffffff;">'.__('Heure','asttq').'</th>
+	<th style="color:#ffffff;">'.__('Endroit','asttq').'</th>
+	<th style="color:#ffffff;">'.__('Classes','asttq').'</th>
+	<th style="color:#ffffff;">'.__('Site internet','asttq').'</th>
+	<th style="color:#ffffff;">'.__('Note','asttq').'</th>
+	</tr>
+	</thead>';
+	
+	$args = array(
+			'taxonomy' => 'classes',
+			'hide_empty' => false
+		);
+		
+	$terms = get_terms( $args );
+	
+	$classes_events = array();
+	$last_location = '';
+	$first  = true;
+	$new_place = false;	
+	$sessionNumber = 1;
+	
+	foreach($events as $current_event){
+		
+		$term_list = wp_get_post_terms($current_event->ID, 'classes', array("fields" => "names"));
+		foreach($term_list as $current_classe){
+			$classes_events[$current_classe][] = $current_event;
+		}
+		
+		$termine = get_field('field_5939ced2dcd39',$current_event->ID);
+		
+			
+		$place = tribe_get_venue ( $current_event->ID );
+		if($place != $last_location){
+			$last_location = $place;
+			$new_place = true;
+			$sessionNumber = 1;
+		}else{
+			$new_place = false;
+			$sessionNumber += 1;
+		}	
+		
+
+			
+			$lang = strtolower(ICL_LANGUAGE_CODE);
+			$theYear = tribe_get_start_date ( $current_event->ID, false, 'Y' );
+			$theMonth = tribe_get_start_date ( $current_event->ID, false, 'm' );
+			$theDay = tribe_get_start_date ( $current_event->ID, false, 'N' );
+			$theDayOfTheMonth = tribe_get_start_date ( $current_event->ID, false, 'j' );
+			$theTime = tribe_get_start_date ( $current_event->ID, false, 'h:i' );
+			
+			
+			$title_parts = explode($theYear,$current_event->post_title);
+			$the_title = trim($title_parts[0],' -');
+			$the_link = '<a href="'.tribe_get_event_website_url($current_event->ID).'" target="_blank">'.$the_title.'</a>';
+			
+	
+			$title_line = 'Session '.$sessionNumber.' - '.$days[$theDay][$lang];
+			
+			if($lang == 'en'){
+				//$title_line .= ' '.$months[$theMonth][$lang].' '.$theDayOfTheMonth.' '.$theTime;
+				$title_line .= tribe_get_start_date ( $current_event->ID, false, 'F j Y, H:i' );
+				$date = tribe_get_start_date ( $current_event->ID, false, 'F jS' );
+				$hour = tribe_get_start_date ( $current_event->ID, false, 'g:i A' );
+				$day = $days[$theDay]['en'];
+			}else{
+				//$title_line .= ' '.$theDayOfTheMonth.' '.$months[$theMonth][$lang].' '.$theTime;
+				$title_line .= tribe_get_start_date ( $current_event->ID, false, 'j F Y, H:i' );
+				$date = tribe_get_start_date ( $current_event->ID, false, 'j F' );
+				$hour = tribe_get_start_date ( $current_event->ID, false, 'H:i' );
+				$day = $days[$theDay]['fr'];
+			}
+			
+			
+			$endroit = tribe_get_venue ( $current_event->ID );
+			$map_link = tribe_get_map_link($current_event->ID);	
+		
+			if(!empty($map_link)){
+				$endroit = '<a target="_blank" href="'.$map_link.'">'.$endroit.'</a>';
+			}
+		
+			$content .= '<tr>
+			<td>'.$date.' ('.$day.')</td>
+			<td>'.$hour.'</td>
+			<td>'.$endroit.'</td>
+			<td>'.implode(', ',$term_list).'</td>
+			<td>'.$the_link.'</td>
+			<td>'.$current_event->post_content.'</td>
+			
+			</tr>';
+		
+		
+		$first = false;
+	}
+	
+	$content .= '</tbody></table>';
+	
+
+	
+	
+	
+	return $content;
+}
+add_shortcode( 'calendrier_annee', 'calendrier_annee_shortcode' );
+
+
+
+
 function update_point() {
 	global $wpdb;
 	echo foreignDbAction();
@@ -1260,17 +1417,14 @@ add_action( 'wp_ajax_nopriv_update_point', 'update_point' );
 
 
 
+
 function get_points_table_for_event($event_id, $refresh = false){
 	
 	global $months,$days;
 	
-	$refresh = true;
-	
 	$theYear = tribe_get_start_date ( $event_id, false, 'Y' );
 	$theDay = tribe_get_start_date ( $event_id, false, 'N' );
 	$theTime = tribe_get_start_date ( $event_id, false, 'h:i:s A' );
-	
-	$allTheWork = array();
 	
 	$lang = ICL_LANGUAGE_CODE;
 	
@@ -1318,7 +1472,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 			$bonus_inscription = $competition['bonus_inscription'];	
 			
 			$term = get_term( $competition['classe'], 'classes' );
-			//$classement .= '<!-- '.print_r($grille,true).' --> <h3>'.$term->name.'</h3> <!-- Grille finale: '.print_r($grille_finale,true).' -->';
+			$classement .= '<!-- '.print_r($grille,true).' --> <h3>'.$term->name.'</h3> <!-- Grille finale: '.print_r($grille_finale,true).' -->';
 
 			$grille = array();
 			$grille_finale = array();
@@ -1415,12 +1569,8 @@ function get_points_table_for_event($event_id, $refresh = false){
 			
 			$fullPull = array_orderby($fullPull, 'distance', SORT_DESC);
 			$grille = array_orderby($grille, 'distance', SORT_DESC);
-			
-			//$classement .= '<pre style="display:none;">Points-Positions: '.print_r($bonus_position,true).'</pre>';
-			//$classement .= '<pre style="display:none;">FullPull: '.print_r($fullPull,true).'</pre>';
-			//$classement .= '<pre style="display:none;">Grille: '.print_r($grille,true).'</pre>';
-			
-			
+
+			$classement .= '<table><thead><tr><th>'.__('Rang','asttq').'</th><th>'.__('Véhicule','asttq').'</th><th>'.__('Compétiteur','asttq').'</th><th>'.__('Distance','asttq').'</th><th>'.__('Points','asttq').'</th></tr></thead><tbody>';
 
 			$itt = 0;
 			$itt2 = 0;
@@ -1451,17 +1601,12 @@ function get_points_table_for_event($event_id, $refresh = false){
 				
 				$leMembre['ID'] = $tireur['ID'];
 				$leMembre['points'] = $points;
-				$leMembre['points_position'] = $bonus_position[$itt];
-				
 				
 				$leMembre['theDist'] = $theDist.' (FP)';
 				$leMembre['itt2'] = $itt2;
-				
 				$leMembre['vehicule'] = $tireur['vehicule'];
 				$leMembre['nom_tireur'] = $tireur['nom_tireur'];
 				$leMembre['non-membre'] = $tireur['non-membre'];
-				
-				$leMembre['itt'] = $itt;
 				
 				$grille_finale[$tireur['distance']][] = $leMembre;
 				
@@ -1500,7 +1645,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 					
 					$leMembre['ID'] = $tid;
 					$leMembre['points'] = $points;
-					$leMembre['points_position'] = $bonus_position[$itt];
+					
 					$grille[$i]['points'] = $points;
 					
 				}
@@ -1522,7 +1667,6 @@ function get_points_table_for_event($event_id, $refresh = false){
 				$leMembre['nom_tireur'] = $tireur['nom_tireur'];
 				$leMembre['non-membre'] = $tireur['non-membre'];
 				
-				$leMembre['itt'] = $itt;
 				$grille_finale[$tireur['distance']][] = $leMembre;
 					
 				
@@ -1547,19 +1691,16 @@ function get_points_table_for_event($event_id, $refresh = false){
 					$laPos = $laPos.' (=)';
 				}
 				
-				/*
 				if($theDist == 'DNS'){
 					$lesPoints = 5+$bonus_inscription;
 				}else{
 					$lesPoints = $cumul/$count;
 				}
-				*/
-				$lesPoints = $leTireur['points'];
+				
 
 				foreach($value as $leTireur){
 					$grille[] = array(	'itt2' => $laPos,
-										//'points' => $lesPoints,
-									  	'points' => $leTireur['points'],
+										'points' => $lesPoints,
 										'theDist' => $leTireur['theDist'],
 										'vehicule' => $leTireur['vehicule'],
 										'nom_tireur' => $leTireur['nom_tireur'],
@@ -1571,42 +1712,33 @@ function get_points_table_for_event($event_id, $refresh = false){
 				
 			}
 			
-			if(count($grille))
-			{
-				
-			
-				$classement .= '<h3>'.$term->name.'</h3><table><thead><tr><th>'.__('Rang','asttq').'</th><th>'.__('Véhicule','asttq').'</th><th>'.__('Compétiteur','asttq').'</th><th>'.__('Distance','asttq').'</th><th>'.__('Points','asttq').'</th></tr></thead><tbody>';
-
-				foreach($grille as $tireur){
-
-					$tid = $tireur['ID'];
-					$cid = $term->term_id;
-					$theDist = $tireur['theDist'];
-					$points = $tireur['points'];
-					$itt2 = $tireur['itt2'];
-
-					if($points == 0){
-						$points = '*';
-					}
-
-					$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$theDist.' </td><td> '.$points.' </td></tr>';	
-
-					if($points != '*' && $tid != 0){
-						$sommaire[$event_id][$cid][$tid] = $points;
-					}
-
-				}
-
-				$classement .= '</tbody></table><br />';
 		
+			foreach($grille as $tireur){
+				
+				$tid = $tireur['ID'];
+				$cid = $term->term_id;
+				$theDist = $tireur['theDist'];
+				$points = $tireur['points'];
+				$itt2 = $tireur['itt2'];
+				
+				if($points == 0){
+					$points = '*';
+				}
+				
+				$classement .=  '<tr><td> '.$itt2.' </td><td>'.$tireur['vehicule'].'</td><td>'.$tireur['nom_tireur'].'</td><td> '.$theDist.' </td><td> '.$points.' </td></tr>';	
+				
+				if($points != '*' && $tid != 0){
+					$sommaire[$event_id][$cid][$tid] = $points;
+				}
+				
 			}
 			
+			$classement .= '</tbody></table><br />';
+		
 		
 		}
 		
 		$classement .= '<div class="last_updated"> '.strftime('%d/%m/%y - %H:%M').'</div>';
-		$classement .= '<pre style="display:none;"> '.print_r($grille_finale,true).'</pre>';
-		
 		
 		delete_transient($transient_name);
 		
@@ -1619,6 +1751,7 @@ function get_points_table_for_event($event_id, $refresh = false){
 	
 	return $classement;
 }
+
 
 
 function my_login_redirect( $redirect_to, $request, $user ) {
@@ -1713,7 +1846,7 @@ function edition_tireurs_shortcode() {
 							
 							$tireur_id = $tireur->ID;
 							$vehicule = get_field('nom_du_vehicule', $tireur_id);
-							$nom_profil = esc_attr(get_field('nom_du_profil', $tireur_id));
+							$nom_profil = get_field('nom_du_profil', $tireur_id);
 							$conducteurs = get_field('conducteur', $tireur_id);
 	
 							
@@ -1721,7 +1854,7 @@ function edition_tireurs_shortcode() {
 							
 							if(count($conducteurs)){
 								foreach($conducteurs as $conducteur){
-									$tabs .= '<div data-content="'.esc_attr($conducteur['nom']).'">'.esc_attr($conducteur['nom']).'</div>';
+									$tabs .= '<div data-content="'.$conducteur['nom'].'">'.$conducteur['nom'].'</div>';
 								}
 							}else{
 								$tabs .= '<div data-content=""></div>';
@@ -1982,6 +2115,7 @@ function edition_competitions_shortcode() {
 									$tabs .= '</td>';
 										
 									$tabs .= '<td class="membre"><label class="switch"><input type="checkbox" checked="checked" value="1" class="" autocomplete="off"><div class="slider round"></div></label></td><td class="actions"></td></tr>';
+								
 								}
 								
 
@@ -2408,20 +2542,7 @@ add_action( 'wp_ajax_nopriv_update_post_fields', 'update_post_fields' );
 function ajax_delete_post(){
 	$objID = $_POST['objID'];
 	
-	
-	
 	if(!empty($objID)){
-		
-		$thePost = get_post($_POST['objID']);
-		$post_type = $thePost->post_type;
-		if($post_type == 'tireurs'){
-			$terms = wp_get_post_terms( $_POST['objID'], "classes" );
-			foreach($terms as $term){
-				$transient_name = 'tireurs_options_'.$term->term_id;
-				delete_transient($transient_name);
-			}
-		}
-		
 		$retVal = wp_delete_post($objID);
 	}
 	//var_dump($allData);
@@ -2502,5 +2623,7 @@ add_action( 'wp_ajax_nopriv_ajax_load_tireurs_from_class', 'ajax_load_tireurs_fr
 
 
 
+
+//include_once('includes/dynamic-repeater-on-category.php');
 
 ?>
