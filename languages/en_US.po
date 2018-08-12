@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ASTTQ\n"
-"POT-Creation-Date: 2017-08-29 00:52-0400\n"
-"PO-Revision-Date: 2017-08-29 01:08-0400\n"
+"POT-Creation-Date: 2018-06-05 22:04-0400\n"
+"PO-Revision-Date: 2018-06-05 22:05-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_CA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.2\n"
+"X-Generator: Poedit 2.0.7\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -21,180 +21,194 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: edit-tireurs.php:66 functions.php:1424 functions.php:1688 functions.php:1831
-#: tribe-events/single-event.php:141
-msgid "Véhicule"
-msgstr "Vehicle"
-
-#: edit-tireurs.php:66 functions.php:1688
-msgid "Nom du profil"
-msgstr "Name of the profile"
-
-#: edit-tireurs.php:66 functions.php:1688
-msgid "Conducteurs"
-msgstr "Drivers"
-
-#: functions.php:145
+#: _functions.php:145 functions.php:150
 msgctxt "Post Type General Name"
 msgid "Tireurs"
 msgstr ""
 
-#: functions.php:146
+#: _functions.php:146 functions.php:151
 msgctxt "Post Type Singular Name"
 msgid "Tireur"
 msgstr ""
 
-#: functions.php:147
+#: _functions.php:147 functions.php:152
 msgid "Tireurs"
 msgstr ""
 
-#: functions.php:148 functions.php:174
+#: _functions.php:148 _functions.php:174 functions.php:153 functions.php:179
 msgid "Tireur"
 msgstr ""
 
-#: functions.php:149
+#: _functions.php:149 functions.php:154
 msgid "Archives"
 msgstr ""
 
-#: functions.php:150
+#: _functions.php:150 functions.php:155
 msgid "Attributs"
 msgstr ""
 
-#: functions.php:151
+#: _functions.php:151 functions.php:156
 msgid "Tireur parent:"
 msgstr ""
 
-#: functions.php:152
+#: _functions.php:152 functions.php:157
 msgid "Tous les tireurs"
 msgstr ""
 
-#: functions.php:153 functions.php:154 functions.php:155
+#: _functions.php:153 _functions.php:154 _functions.php:155 functions.php:158
+#: functions.php:159 functions.php:160
 msgid "Nouveau tireur"
 msgstr ""
 
-#: functions.php:156
+#: _functions.php:156 functions.php:161
 msgid "Modifier le tireur"
 msgstr ""
 
-#: functions.php:157
+#: _functions.php:157 functions.php:162
 msgid "Mettre à jour le tireur"
 msgstr ""
 
-#: functions.php:158
+#: _functions.php:158 functions.php:163
 msgid "Voir le tireur"
 msgstr ""
 
-#: functions.php:159
+#: _functions.php:159 functions.php:164
 msgid "Voir les tireurs"
 msgstr ""
 
-#: functions.php:160
+#: _functions.php:160 functions.php:165
 msgid "Chercher un tireur"
 msgstr ""
 
-#: functions.php:161
+#: _functions.php:161 functions.php:166
 msgid "Non trouvé"
 msgstr ""
 
-#: functions.php:162
+#: _functions.php:162 functions.php:167
 msgid "Rien dans la corbeille"
 msgstr ""
 
-#: functions.php:163
+#: _functions.php:163 functions.php:168
 msgid "Photo"
 msgstr ""
 
-#: functions.php:164
+#: _functions.php:164 functions.php:169
 msgid "Mettre une photo"
 msgstr ""
 
-#: functions.php:165
+#: _functions.php:165 functions.php:170
 msgid "Enlever la photo"
 msgstr ""
 
-#: functions.php:166
+#: _functions.php:166 functions.php:171
 msgid "Utiliser comme photo"
 msgstr ""
 
-#: functions.php:167
+#: _functions.php:167 functions.php:172
 msgid "Insérer"
 msgstr ""
 
-#: functions.php:168
+#: _functions.php:168 functions.php:173
 msgid "Mis en ligne sur ce tireur"
 msgstr ""
 
-#: functions.php:169
+#: _functions.php:169 functions.php:174
 msgid "Liste"
 msgstr "List"
 
-#: functions.php:170
+#: _functions.php:170 functions.php:175
 msgid "Liste de navigation"
 msgstr ""
 
-#: functions.php:171
+#: _functions.php:171 functions.php:176
 msgid "Filter items list"
 msgstr ""
 
-#: functions.php:175
+#: _functions.php:175 functions.php:180
 msgid "Post Type Description"
 msgstr ""
 
-#: functions.php:524 functions.php:558
+#: _functions.php:527 _functions.php:561 functions.php:507 functions.php:541
 msgid "Retour en haut"
 msgstr "Back to top"
 
-#: functions.php:563
+#: _functions.php:566 functions.php:546
 msgid "Sommaire"
 msgstr "Summary"
 
-#: functions.php:1424 tribe-events/single-event.php:141
+#: _functions.php:1302 tribe-events/list/loop.php:26
+msgid "Date"
+msgstr "Date"
+
+#: _functions.php:1303 tribe-events/list/loop.php:27
+msgid "Heure"
+msgstr "Time"
+
+#: _functions.php:1304 tribe-events/list/loop.php:28
+msgid "Endroit"
+msgstr "Location"
+
+#: _functions.php:1305 tribe-events/list/loop.php:29
+msgid "Classes"
+msgstr ""
+
+#: _functions.php:1306
+msgid "Site internet"
+msgstr ""
+
+#: _functions.php:1307
+msgid "Note"
+msgstr ""
+
+#: _functions.php:1573 functions.php:1363 tribe-events/single-event.php:141
 msgid "Rang"
 msgstr "Rank"
 
-#: functions.php:1424 tribe-events/single-event.php:141
+#: _functions.php:1573 _functions.php:1843 _functions.php:1986
+#: edit-tireurs.php:66 functions.php:1363 functions.php:1633 functions.php:1776
+#: tribe-events/single-event.php:141
+msgid "Véhicule"
+msgstr "Vehicle"
+
+#: _functions.php:1573 functions.php:1363 tribe-events/single-event.php:141
 msgid "Compétiteur"
 msgstr "Competitor"
 
-#: functions.php:1424 tribe-events/single-event.php:141
+#: _functions.php:1573 functions.php:1363 tribe-events/single-event.php:141
 msgid "Distance"
 msgstr "Distance"
 
-#: functions.php:1424 tribe-events/single-event.php:141
+#: _functions.php:1573 functions.php:1363 tribe-events/single-event.php:141
 msgid "Points"
 msgstr "Points"
 
-#: functions.php:1831
+#: _functions.php:1843 edit-tireurs.php:66 functions.php:1633
+msgid "Nom du profil"
+msgstr "Name of the profile"
+
+#: _functions.php:1843 edit-tireurs.php:66 functions.php:1633
+msgid "Conducteurs"
+msgstr "Drivers"
+
+#: _functions.php:1986 functions.php:1776
 msgid "Conducteur"
 msgstr "Driver"
 
-#: functions.php:1831
+#: _functions.php:1986 functions.php:1776
 msgid "Distances"
 msgstr "Distances"
 
-#: functions.php:1831
+#: _functions.php:1986 functions.php:1776
 msgid "Membre"
 msgstr "Member"
+
+#: functions.php:666
+msgid "Aucune compétition à afficher pour le moment..."
+msgstr "Nothing to show at the moment..."
 
 #: tribe-events/list/content.php:40
 msgid "Évènements"
 msgstr "Events"
-
-#: tribe-events/list/loop.php:26
-msgid "Date"
-msgstr "Date"
-
-#: tribe-events/list/loop.php:27
-msgid "Heure"
-msgstr "Time"
-
-#: tribe-events/list/loop.php:28
-msgid "Endroit"
-msgstr "Location"
-
-#: tribe-events/list/loop.php:29
-msgid "Classes"
-msgstr ""
 
 #: tribe-events/list/loop.php:30
 msgid "Évènement"
